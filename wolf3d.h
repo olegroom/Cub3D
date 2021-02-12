@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/11 21:47:48 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/12 04:32:34 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct	s_player
 typedef struct	s_image
 {
 	char			*img;
-	unsigned int	*addr;
+	char			*addr;
 	int				bpp;
 	int				size_line;
 	int				endian;
@@ -69,12 +69,11 @@ void		make_array_map(t_list **head, int size);
 void		ft_putendl(char *s);
 void		ft_putchar(char c);
 void		draw_map_2d(t_all *node, int size);
-void		draw_square(t_all *node);
-void		draw_person(t_all *node);
+void		draw_image(t_all *node, t_image *image);
+void		draw_person(t_all *node, t_image *image);
 void		node_init(t_all *node, int size);
 void		revert_x_y(t_all *node);
-void		draw(t_all *node);
-
-
+void		draw(t_all *node, t_image *image);
+void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
 
 #endif
