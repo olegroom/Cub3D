@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/12 04:37:19 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/14 08:03:51 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,42 +18,44 @@ int		ft_key(int key_code, t_all *node)
 {
 	if (key_code == 123)
 	{
-		node->player->x--;
-		printf("left and x = %d\n", node->player->x);
-		printf("left and y = %d\n", node->player->y);
+		node->player->dir -= 0.1;
+		printf("left and x = %f\n", node->player->x);
+		printf("left and y = %f\n", node->player->y);
 	}
 	else if (key_code == 124)
 	{
-		node->player->x++;
-		printf("right and x = %d\n", node->player->x);
-		printf("right and y = %d\n", node->player->y);
+		node->player->dir += 0.1;
+		printf("right and x = %f\n", node->player->x);
+		printf("right and y = %f\n", node->player->y);
 	}
 	else if (key_code == 125)
 	{
 		node->player->y++;
-		printf("down and x = %d\n", node->player->x);
-		printf("down and y = %d\n", node->player->y);
+		printf("down and x = %f\n", node->player->x);
+		printf("down and y = %f\n", node->player->y);
 	}
 	else if (key_code == 126)
 	{	
 		node->player->y--;
-		printf("up and x = %d\n", node->player->x);
-		printf("up and y = %d\n", node->player->y);
+		printf("up and x = %f\n", node->player->x);
+		printf("up and y = %f\n", node->player->y);
 	}
+	else if (key_code == 53)
+		exit(0);
 	return (0);
 }
 
 int		render_next_frame(t_all *node)
 {
-	t_image image;
-	image.img = mlx_new_image(node->mlx, RES_X, RES_Y);
-	image.addr = mlx_get_data_addr(image.img, &image.bpp, &image.size_line, &image.endian);
-	draw_image(node, &image);
-	mlx_put_image_to_window(node->mlx, node->win, image.img, 0, 0);
+	node->image->img = mlx_new_image(node->mlx, RES_X, RES_Y);
+	node->image->addr = mlx_get_data_addr(node->image->img, &node->image->bpp, &node->image->size_line, &node->image->endian);
+	draw_image(node);
+	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
+	mlx_destroy_image(node->mlx, node->image->img);
 	return (0);
 }
 
-void	draw_image(t_all *node, t_image *image)
+void	draw_image(t_all *node)
 {
 	node->mapa->x = 0;
 	while (node->mapa->x < node->lst_size)
@@ -61,14 +63,14 @@ void	draw_image(t_all *node, t_image *image)
 		node->mapa->y = 0;
 		while (node->map[node->mapa->x][node->mapa->y] != '\0')
 		{
-			draw(node, image);
-			draw_person(node, image);
+			draw_square(node);
+			draw_vector(node);
 			node->mapa->y++;
 			if (node->help->max_y < node->mapa->y)
 				node->help->max_y = node->mapa->y;
 		}
 		node->mapa->x++;
-	}	
+	}
 }
 
 void	draw_map_2d(t_all *node, int size)
@@ -78,52 +80,49 @@ void	draw_map_2d(t_all *node, int size)
 	mlx_loop(node->mlx);
 }
 
-void	draw(t_all *node, t_image *image)
+void	draw_square(t_all *node)
 {
-	int i;
-	int j;
-	int x;
-	int y;
-
-	x = node->mapa->y * SCALE;
-	y = node->mapa->x * SCALE;
-	i = y + SCALE;
-	j = x + SCALE;
-	while (y < i)
+	node->help->x = node->mapa->y * SCALE;
+	node->help->y = node->mapa->x * SCALE;
+	node->help->y_scale = node->help->y + SCALE;
+	node->help->x_scale = node->help->x + SCALE;
+	while (node->help->y < node->help->y_scale)
 	{
-		while (x < j)
+		while (node->help->x < node->help->x_scale)
 		{
 			if (node->map[node->mapa->x][node->mapa->y] == '1')
-				my_mlx_pixel_put(image, x, y, 0xFFFFFF);
-			else if (node->map[node->mapa->x][node->mapa->y] == '0'|| \
-			ft_strchr(PERS, node->map[node->mapa->x][node->mapa->y]))
-				my_mlx_pixel_put(image, x, y, 0x000000);
-			x++;
+				my_mlx_pixel_put(node->image, node->help->x, node->help->y, 0xFFFFFF);
+			else
+				my_mlx_pixel_put(node->image, node->help->x, node->help->y, 0x000000);
+			node->help->x++;
 		}
-		x -= SCALE;
-		y++;
+		node->help->x -= SCALE;
+		node->help->y++;
 	}
 }
 
-void	draw_person(t_all *node, t_image *image)
+void	draw_vector(t_all *node)
 {
-	int i;
-	int j;
-	int x;
-	int y;
+	t_player plr = *node->player;
 
-	x = (node->player->x - 1) * SCALE;
-	y = (node->player->y - 1) * SCALE;
-	i = y + SCALE;
-	j = x + SCALE;
-	while (y < i)
+	double f;
+	double l;
+	l = plr.x * SCALE;
+	f = plr.y * SCALE;
+
+	plr.start = node->player->dir - M_PI_4;
+	plr.end = node->player->dir + M_PI_4;
+
+	while (plr.start < plr.end)
 	{
-		while (x < j)
+		plr.x = l;
+		plr.y = f;
+		while (node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
 		{
-			my_mlx_pixel_put(image, x, y, 0x00F0F0);
-			x++;
+			plr.x += cos(plr.start);
+			plr.y += sin(plr.start);
+			my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		x -= SCALE;
-		y++;
+		plr.start += M_PI_2 / 60;
 	}
 }

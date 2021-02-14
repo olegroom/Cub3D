@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/12 04:32:42 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/14 04:21:43 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,29 @@ void	node_init(t_all *node, int size)
 	node->player = malloc(sizeof(t_player));
 	node->player->x = 0;
 	node->player->y = 0;
+	node->player->dir = M_PI * 1.5;
 
 	node->help = malloc(sizeof(t_help));
 	node->help->max_y = 0;
+	node->help->x = 0;
+	node->help->x = 0;
+	node->help->x = 0;
+	node->help->x = 0;
 
 	node->lst_size = size;
 	node->mlx = mlx_init();
 	node->win = mlx_new_window(node->mlx, RES_X, RES_Y, "new window");
 	
-	// node->image = malloc(sizeof(t_image));
-	// node->image->bpp = 0;
-	// node->image->size_line = 0;
-	// node->image->endian = 0;
-	// node->image->addr = NULL;
-	// node->image->img = NULL;
+	node->image = malloc(sizeof(t_image));
+	node->image->bpp = 0;
+	node->image->size_line = 0;
+	node->image->endian = 0;
+	node->image->addr = NULL;
+	node->image->img = NULL;
 }
 
 void	my_mlx_pixel_put(t_image *img, int x, int y, int color)
 {
-	// img->img[y * RES_X + x] = color;
 	char    *dst;
 
     dst = img->addr + (y * img->size_line + x * (img->bpp / 8));

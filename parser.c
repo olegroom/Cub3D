@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/10 21:57:12 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/14 04:00:43 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_fill(t_all *node)
 	revert_x_y(node);
 	node->mapa->x_max = node->mapa->x;
 	node->mapa->y_max = node->mapa->y;
-	printf("Player's position:\nx = %d\ny = %d\n", node->player->x, node->player->y);
+	printf("Player's position:\nx = %f\ny = %f\n", node->player->x, node->player->y);
 }
 
 void	make_array_map(t_list **head, int size)
