@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/14 08:03:51 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/14 09:09:15 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ int		ft_key(int key_code, t_all *node)
 	if (key_code == 123)
 	{
 		node->player->dir -= 0.1;
-		printf("left and x = %f\n", node->player->x);
-		printf("left and y = %f\n", node->player->y);
+		printf("DIRECTION: %.1f\n", node->player->dir);
 	}
 	else if (key_code == 124)
 	{
 		node->player->dir += 0.1;
-		printf("right and x = %f\n", node->player->x);
-		printf("right and y = %f\n", node->player->y);
+		printf("DIRECTION: %.1f\n", node->player->dir);
 	}
 	else if (key_code == 125)
 	{
@@ -45,42 +43,31 @@ int		ft_key(int key_code, t_all *node)
 	return (0);
 }
 
-int		render_next_frame(t_all *node)
+int		draw_image(t_all *node)
 {
 	node->image->img = mlx_new_image(node->mlx, RES_X, RES_Y);
 	node->image->addr = mlx_get_data_addr(node->image->img, &node->image->bpp, &node->image->size_line, &node->image->endian);
-	draw_image(node);
-	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
-	mlx_destroy_image(node->mlx, node->image->img);
-	return (0);
-}
-
-void	draw_image(t_all *node)
-{
 	node->mapa->x = 0;
 	while (node->mapa->x < node->lst_size)
 	{
 		node->mapa->y = 0;
 		while (node->map[node->mapa->x][node->mapa->y] != '\0')
 		{
-			draw_square(node);
-			draw_vector(node);
+			if (node->map[node->mapa->x][node->mapa->y] == '1')
+				draw_square(node, 0xFFFFFF);
 			node->mapa->y++;
 			if (node->help->max_y < node->mapa->y)
 				node->help->max_y = node->mapa->y;
 		}
 		node->mapa->x++;
 	}
+	draw_vector(node);
+	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
+	mlx_destroy_image(node->mlx, node->image->img);
+	return (0);
 }
 
-void	draw_map_2d(t_all *node, int size)
-{
-	mlx_loop_hook(node->mlx, render_next_frame, node);
-	mlx_hook(node->win, 2, 1L<<0, ft_key, node);
-	mlx_loop(node->mlx);
-}
-
-void	draw_square(t_all *node)
+void	draw_square(t_all *node, int color)
 {
 	node->help->x = node->mapa->y * SCALE;
 	node->help->y = node->mapa->x * SCALE;
@@ -89,13 +76,7 @@ void	draw_square(t_all *node)
 	while (node->help->y < node->help->y_scale)
 	{
 		while (node->help->x < node->help->x_scale)
-		{
-			if (node->map[node->mapa->x][node->mapa->y] == '1')
-				my_mlx_pixel_put(node->image, node->help->x, node->help->y, 0xFFFFFF);
-			else
-				my_mlx_pixel_put(node->image, node->help->x, node->help->y, 0x000000);
-			node->help->x++;
-		}
+			my_mlx_pixel_put(node->image, node->help->x++, node->help->y, color);
 		node->help->x -= SCALE;
 		node->help->y++;
 	}
@@ -123,6 +104,13 @@ void	draw_vector(t_all *node)
 			plr.y += sin(plr.start);
 			my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		plr.start += M_PI_2 / 60;
+		plr.start += M_PI_2 / 120;
 	}
+}
+
+void	draw_map_2d(t_all *node, int size)
+{
+	mlx_loop_hook(node->mlx, draw_image, node);
+	mlx_hook(node->win, 2, 1L<<0, ft_key, node);
+	mlx_loop(node->mlx);
 }

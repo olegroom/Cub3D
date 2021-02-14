@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/14 04:18:55 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/14 09:07:38 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define RES_X 1980
 # define RES_Y 1080
 
-# define SCALE 40
+# define SCALE 50
 # define PERS "NWSE"
 # include <stdio.h>
 # include <fcntl.h>
@@ -86,11 +86,11 @@ void		make_array_map(t_list **head, int size);
 void		ft_putendl(char *s);
 void		ft_putchar(char c);
 void		draw_map_2d(t_all *node, int size);
-void		draw_image(t_all *node);
+int			draw_image(t_all *node);
 void		draw_person(t_all *node);
 void		node_init(t_all *node, int size);
 void		revert_x_y(t_all *node);
-void		draw_square(t_all *node);
+void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void		ft_put_wall(t_all *node);
 
