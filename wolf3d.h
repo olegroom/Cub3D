@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/14 09:07:38 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/15 16:59:40 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 1980
-# define RES_Y 1080
+# define RES_X 2560
+# define RES_Y 1440
 
 # define SCALE 50
 # define PERS "NWSE"
@@ -46,20 +46,21 @@ typedef struct	s_mapa
 
 typedef struct	s_player
 {
-	double		x;
-	double		y;
+	double	x;
+	double	y;
 	double	dir;
 	double	start;
 	double	end;
+	double	i;
 }				t_player;
 
 typedef struct	s_image
 {
-	char			*img;
-	char			*addr;
-	int				bpp;
-	int				size_line;
-	int				endian;
+	char	*img;
+	char	*addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
 }				t_image;
 
 typedef struct	s_point
@@ -92,6 +93,6 @@ void		node_init(t_all *node, int size);
 void		revert_x_y(t_all *node);
 void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
-void		ft_put_wall(t_all *node);
+void		draw_column(t_all *node);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/14 09:09:15 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/15 17:07:02 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,39 @@ int		ft_key(int key_code, t_all *node)
 {
 	if (key_code == 123)
 	{
-		node->player->dir -= 0.1;
+		node->player->dir -= M_PI_2 / 360 * 10;
 		printf("DIRECTION: %.1f\n", node->player->dir);
+		printf("sin = %f\ncos = %f\n", sin(node->player->dir), cos(node->player->dir));
 	}
 	else if (key_code == 124)
 	{
-		node->player->dir += 0.1;
+		node->player->dir += M_PI_2 / 360 * 10;
 		printf("DIRECTION: %.1f\n", node->player->dir);
-	}
-	else if (key_code == 125)
-	{
-		node->player->y++;
-		printf("down and x = %f\n", node->player->x);
-		printf("down and y = %f\n", node->player->y);
+		printf("sin = %f\ncos = %f\n", sin(node->player->dir), cos(node->player->dir));
 	}
 	else if (key_code == 126)
+	{
+		if (node->map[(int)(node->player->y + sin(node->player->dir)/3)]\
+		[(int)(node->player->x + cos(node->player->dir)/3)] != '1')
+		{
+			node->player->x += cos(node->player->dir)/4;
+			node->player->y += sin(node->player->dir)/4;
+			printf("forward: x = %.3f\n", node->player->x);
+			printf("forward: y = %.3f\n", node->player->y);
+		}
+	}
+	else if (key_code == 125)
 	{	
-		node->player->y--;
-		printf("up and x = %f\n", node->player->x);
-		printf("up and y = %f\n", node->player->y);
+		if (node->map[(int)(node->player->y - sin(node->player->dir)/3)]\
+		[(int)(node->player->x - cos(node->player->dir)/3)] != '1')
+		{
+			node->player->x -= cos(node->player->dir)/4;
+			node->player->y -= sin(node->player->dir)/4;
+		}
 	}
 	else if (key_code == 53)
 		exit(0);
+	// printf("\n%d\n", key_code);
 	return (0);
 }
 
@@ -48,19 +59,21 @@ int		draw_image(t_all *node)
 	node->image->img = mlx_new_image(node->mlx, RES_X, RES_Y);
 	node->image->addr = mlx_get_data_addr(node->image->img, &node->image->bpp, &node->image->size_line, &node->image->endian);
 	node->mapa->x = 0;
-	while (node->mapa->x < node->lst_size)
-	{
-		node->mapa->y = 0;
-		while (node->map[node->mapa->x][node->mapa->y] != '\0')
-		{
-			if (node->map[node->mapa->x][node->mapa->y] == '1')
-				draw_square(node, 0xFFFFFF);
-			node->mapa->y++;
-			if (node->help->max_y < node->mapa->y)
-				node->help->max_y = node->mapa->y;
-		}
-		node->mapa->x++;
-	}
+	// while (node->mapa->x < node->lst_size)
+	// {
+	// 	node->mapa->y = 0;
+	// 	while (node->map[node->mapa->x][node->mapa->y] != '\0')
+	// 	{
+	// 		if (node->map[node->mapa->x][node->mapa->y] == '1')
+	// 		{
+	// 				draw_square(node, 0xFFFFFF);
+	// 		}
+	// 		node->mapa->y++;
+	// 		if (node->help->max_y < node->mapa->y)
+	// 			node->help->max_y = node->mapa->y;
+	// 	}
+	// 	node->mapa->x++;
+	// }
 	draw_vector(node);
 	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
 	mlx_destroy_image(node->mlx, node->image->img);
@@ -71,14 +84,28 @@ void	draw_square(t_all *node, int color)
 {
 	node->help->x = node->mapa->y * SCALE;
 	node->help->y = node->mapa->x * SCALE;
+	
 	node->help->y_scale = node->help->y + SCALE;
 	node->help->x_scale = node->help->x + SCALE;
-	while (node->help->y < node->help->y_scale)
+	while (node->help->y < node->help->y_scale - 1)
 	{
-		while (node->help->x < node->help->x_scale)
+		while (node->help->x < node->help->x_scale - 1)
 			my_mlx_pixel_put(node->image, node->help->x++, node->help->y, color);
-		node->help->x -= SCALE;
+		node->help->x -= SCALE - 1;
 		node->help->y++;
+	}
+}
+
+void		draw_column(t_all *node)
+{
+	while (node->mapa->x < RES_X)
+	{
+		while (node->mapa->y < RES_Y)
+		{
+			
+			node->mapa->y++;
+		}
+		node->mapa->x++;
 	}
 }
 
@@ -98,13 +125,16 @@ void	draw_vector(t_all *node)
 	{
 		plr.x = l;
 		plr.y = f;
+		node->player->i = 0;
 		while (node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
 		{
 			plr.x += cos(plr.start);
 			plr.y += sin(plr.start);
+			node->player->i++;
 			my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		plr.start += M_PI_2 / 120;
+		draw_column(node);
+		plr.start += M_PI_2 / 360;
 	}
 }
 

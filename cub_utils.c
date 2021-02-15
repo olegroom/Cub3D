@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/14 04:21:43 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/15 16:39:31 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	node_init(t_all *node, int size)
 	node->player->x = 0;
 	node->player->y = 0;
 	node->player->dir = M_PI * 1.5;
+	node->player->i = 0;
 
 	node->help = malloc(sizeof(t_help));
 	node->help->max_y = 0;
