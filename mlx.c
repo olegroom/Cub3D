@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/16 14:52:41 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/16 21:34:26 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		ft_key(int key_code, t_all *node)
 	}
 	else if (key_code == 53)
 		exit(0);
-	// printf("\n%d\n", key_code);
+	printf("\n%d\n", key_code);
 	return (0);
 }
 
@@ -114,14 +114,13 @@ void	draw_square(t_all *node, int color)
 	}
 }
 
-// void		draw_column(t_all *node)
+// void		draw_column(t_all *node, double angle)
 // {
-// 	node->player->i *= -1;
-// 	while (node->mapa->y < RES_Y)
-// 	{
-		
-// 		node->mapa->y++;
-// 	}
+
+// 	node->player->i *= cos(angle);
+
+// 	while (node->column->k < node->column->l)
+// 		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0x9999FF);	
 // }
 
 void	draw_vector(t_all *node)
@@ -135,7 +134,7 @@ void	draw_vector(t_all *node)
 
 	plr.start = node->player->dir - M_PI_4;
 	plr.end = node->player->dir + M_PI_4;
-
+	node->mapa->x = 0;
 	while (plr.start < plr.end)
 	{
 		plr.x = l;
@@ -148,9 +147,9 @@ void	draw_vector(t_all *node)
 			node->player->i++;
 			my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		// draw_column(node);
-		// node->player->x++;
-		plr.start += M_PI_2 / 360;
+		// draw_column(node, plr.start - plr.dir);
+		// node->mapa->x++;
+		plr.start += M_PI_2 / RES_X;
 	}
 }
 

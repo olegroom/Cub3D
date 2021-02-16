@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/15 16:39:31 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/16 21:35:17 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ void	node_init(t_all *node, int size)
 	node->image->endian = 0;
 	node->image->addr = NULL;
 	node->image->img = NULL;
+
+	// node->column = malloc(sizeof(t_column));
+	
+	// node->column->dist_to_wall = 0;
+	// node->column->height_wall = 0;
+	// node->column->height_pp = 0;
+	// node->column->dist_to_pp = 0;
+	// node->column->k = 0;
+	// node->column->l = 0;
 }
 
 void	my_mlx_pixel_put(t_image *img, int x, int y, int color)
