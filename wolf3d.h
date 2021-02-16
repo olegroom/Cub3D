@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/15 16:59:40 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/15 17:08:58 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define RES_X 2560
 # define RES_Y 1440
 
-# define SCALE 50
+# define SCALE 70
 # define PERS "NWSE"
 # include <stdio.h>
 # include <fcntl.h>

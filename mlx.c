@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/15 17:07:02 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/16 14:52:41 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_key(int key_code, t_all *node)
 		printf("DIRECTION: %.1f\n", node->player->dir);
 		printf("sin = %f\ncos = %f\n", sin(node->player->dir), cos(node->player->dir));
 	}
-	else if (key_code == 126)
+	else if (key_code == 13)
 	{
 		if (node->map[(int)(node->player->y + sin(node->player->dir)/3)]\
 		[(int)(node->player->x + cos(node->player->dir)/3)] != '1')
@@ -39,13 +39,31 @@ int		ft_key(int key_code, t_all *node)
 			printf("forward: y = %.3f\n", node->player->y);
 		}
 	}
-	else if (key_code == 125)
+	else if (key_code == 1)
 	{	
 		if (node->map[(int)(node->player->y - sin(node->player->dir)/3)]\
 		[(int)(node->player->x - cos(node->player->dir)/3)] != '1')
 		{
 			node->player->x -= cos(node->player->dir)/4;
 			node->player->y -= sin(node->player->dir)/4;
+		}
+	}
+	else if (key_code == 0)
+	{
+		if (node->map[(int)(node->player->y - cos(node->player->dir)/3)]\
+		[(int)(node->player->x + sin(node->player->dir)/3)] != '1')
+		{
+		node->player->x += sin(node->player->dir)/4;
+		node->player->y -= cos(node->player->dir)/4;
+		}
+	}
+	else if (key_code == 2)
+	{
+		if (node->map[(int)(node->player->y + cos(node->player->dir)/3)]\
+		[(int)(node->player->x - sin(node->player->dir)/3)] != '1')
+		{
+		node->player->x -= sin(node->player->dir)/4;
+		node->player->y += cos(node->player->dir)/4;
 		}
 	}
 	else if (key_code == 53)
@@ -59,21 +77,21 @@ int		draw_image(t_all *node)
 	node->image->img = mlx_new_image(node->mlx, RES_X, RES_Y);
 	node->image->addr = mlx_get_data_addr(node->image->img, &node->image->bpp, &node->image->size_line, &node->image->endian);
 	node->mapa->x = 0;
-	// while (node->mapa->x < node->lst_size)
-	// {
-	// 	node->mapa->y = 0;
-	// 	while (node->map[node->mapa->x][node->mapa->y] != '\0')
-	// 	{
-	// 		if (node->map[node->mapa->x][node->mapa->y] == '1')
-	// 		{
-	// 				draw_square(node, 0xFFFFFF);
-	// 		}
-	// 		node->mapa->y++;
-	// 		if (node->help->max_y < node->mapa->y)
-	// 			node->help->max_y = node->mapa->y;
-	// 	}
-	// 	node->mapa->x++;
-	// }
+	while (node->mapa->x < node->lst_size)
+	{
+		node->mapa->y = 0;
+		while (node->map[node->mapa->x][node->mapa->y] != '\0')
+		{
+			if (node->map[node->mapa->x][node->mapa->y] == '1')
+			{
+					draw_square(node, 0xFFFFFF);
+			}
+			node->mapa->y++;
+			if (node->help->max_y < node->mapa->y)
+				node->help->max_y = node->mapa->y;
+		}
+		node->mapa->x++;
+	}
 	draw_vector(node);
 	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
 	mlx_destroy_image(node->mlx, node->image->img);
@@ -96,18 +114,15 @@ void	draw_square(t_all *node, int color)
 	}
 }
 
-void		draw_column(t_all *node)
-{
-	while (node->mapa->x < RES_X)
-	{
-		while (node->mapa->y < RES_Y)
-		{
-			
-			node->mapa->y++;
-		}
-		node->mapa->x++;
-	}
-}
+// void		draw_column(t_all *node)
+// {
+// 	node->player->i *= -1;
+// 	while (node->mapa->y < RES_Y)
+// 	{
+		
+// 		node->mapa->y++;
+// 	}
+// }
 
 void	draw_vector(t_all *node)
 {
@@ -133,7 +148,8 @@ void	draw_vector(t_all *node)
 			node->player->i++;
 			my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		draw_column(node);
+		// draw_column(node);
+		// node->player->x++;
 		plr.start += M_PI_2 / 360;
 	}
 }
