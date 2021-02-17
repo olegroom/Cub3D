@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/18 01:02:17 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/18 02:37:08 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,15 @@ void		draw_column(t_all *node, double angle)
 	(node->player->i * cos(angle)) * node->column->dist_to_pp;
 	node->column->k = (RES_Y - node->column->height_pp)/2;
 	node->column->l = RES_Y - node->column->k;
+	int n = 0;
+	int m = node->column->l;
+	int n_help = (RES_Y - node->column->height_pp)/2;
+	while (n < n_help)
+		my_mlx_pixel_put(node->image, node->mapa->x, n++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
 		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0x4444FF);
+	while (m < RES_Y)
+		my_mlx_pixel_put(node->image, node->mapa->x, m++, create_trgb(node->floor->r, node->floor->g, node->floor->b));
 }
 
 void	draw_vector(t_all *node)

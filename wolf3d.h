@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/18 01:00:01 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/18 02:38:18 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,12 @@ typedef	struct	s_column
 	double	l;
 }				t_column;
 
-
+typedef	struct	s_color
+{
+	int r;
+	int g;
+	int b;
+}				t_color;
 typedef struct	s_all
 {
 	t_column	*column;
@@ -93,6 +98,8 @@ typedef struct	s_all
 	t_help		*help;
 	t_player	*player;
 	t_mapa		*mapa;
+	t_color		*ceiling;
+	t_color		*floor;
 	int			lst_size;
 }				t_all;
 
@@ -110,5 +117,6 @@ void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void		draw_column(t_all *node, double angle);
 void		ft_put_2d_map_draw(t_all *node);
+int			create_trgb(int r, int g, int b);
 
 #endif
