@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/15 13:49:58 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/18 01:03:21 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ void	ft_fill(t_all *node)
 		}
 		node->mapa->x++;
 	}
-	node->mapa->y = node->help->max_y;
 	revert_x_y(node);
 	node->mapa->x_max = node->mapa->x;
-	node->mapa->y_max = node->mapa->y;
-	printf("Player's position:\nx = %f\ny = %f\n", node->player->x, node->player->y);
+	// printf("Player's position:\nx = %f\ny = %f\n", node->player->x, node->player->y);
 }
 
 void	make_array_map(t_list **head, int size)
@@ -53,10 +51,6 @@ void	make_array_map(t_list **head, int size)
 	}
 	node_init(&node, size);
 	ft_fill(&node);
-	int x;
-	int y;
-	mlx_get_screen_size(node.mlx, &x, &y);
-	printf("%d %d", x, y);
 	draw_map_2d(&node, size);
 }
 

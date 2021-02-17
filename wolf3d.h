@@ -6,18 +6,19 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/16 21:35:12 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/18 01:00:01 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 2560
-# define RES_Y 1440
-
-# define SCALE 70
+# define RES_X 1980
+# define RES_Y 1020
+# define STEP M_PI_2/RES_X
+# define SCALE 64
 # define PERS "NWSE"
+
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -52,6 +53,8 @@ typedef struct	s_player
 	double	start;
 	double	end;
 	double	i;
+	double	l;
+	double	f;
 }				t_player;
 
 typedef struct	s_image
@@ -69,19 +72,20 @@ typedef struct	s_point
 	int y;
 }				t_point;
 
-// typedef	struct	s_column
-// {
-// 	int	dist_to_wall;
-// 	int	height_wall;
-// 	int	height_pp;
-// 	int	dist_to_pp;
-// 	int	k;
-// 	int l;
-// }				t_column;
+typedef	struct	s_column
+{
+	double	height_wall;
+	double	height_pp;
+	double	dist_to_wall;
+	double	dist_to_pp;
+	double	k;
+	double	l;
+}				t_column;
 
 
 typedef struct	s_all
 {
+	t_column	*column;
 	void		*mlx;
 	void		*win;
 	char		**map;
@@ -89,7 +93,6 @@ typedef struct	s_all
 	t_help		*help;
 	t_player	*player;
 	t_mapa		*mapa;
-	// t_column	*column;
 	int			lst_size;
 }				t_all;
 
@@ -106,5 +109,6 @@ void		revert_x_y(t_all *node);
 void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void		draw_column(t_all *node, double angle);
+void		ft_put_2d_map_draw(t_all *node);
 
 #endif

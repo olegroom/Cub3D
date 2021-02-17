@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_utils.c                                        :+:      :+:    :+:   */
+/*   cub_utils_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/16 21:35:17 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/18 01:03:00 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,21 @@ void	node_init(t_all *node, int size)
 	node->image->addr = NULL;
 	node->image->img = NULL;
 
-	// node->column = malloc(sizeof(t_column));
-	
-	// node->column->dist_to_wall = 0;
-	// node->column->height_wall = 0;
-	// node->column->height_pp = 0;
-	// node->column->dist_to_pp = 0;
-	// node->column->k = 0;
-	// node->column->l = 0;
+	node->column = malloc(sizeof(t_column));
+	node->column->height_wall = SCALE;
+	node->column->dist_to_pp = RES_X/2 / tan(M_PI_4);
+	node->column->height_pp = 0;
+	node->column->dist_to_wall = 0;
+	node->column->k = 0;
+	node->column->l = 0;
 }
 
 void	my_mlx_pixel_put(t_image *img, int x, int y, int color)
 {
 	char    *dst;
 
+	if (x < 0 || x >= RES_X || y < 0 || y >= RES_Y)
+		return ;
     dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
     *(unsigned int*)dst = color;
 }

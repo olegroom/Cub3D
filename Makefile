@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/02/10 22:08:06 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/02/18 00:47:48 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ lib:
 	cp $(LIBFT) .
 
 $(NAME):
-	gcc parser.c mlx.c cub_utils.c libft.a $(MLX)
+	gcc parser.c mlx.c cub_utils_1.c cub_utils_2.c libft.a $(MLX)
 	./a.out map.cub
 
 img:
