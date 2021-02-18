@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/18 02:37:08 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/18 03:52:07 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ int		ft_key(int key_code, t_all *node)
 	{
 		if (node->map[(int)(node->player->y + sin(node->player->dir)/4)]\
 		[(int)(node->player->x + cos(node->player->dir)/4)] != '1')
-		{
 			node->player->x += cos(node->player->dir)/8;
 			node->player->y += sin(node->player->dir)/8;
-		}
 	}
 	else if (key_code == 1)
 	{	
@@ -71,21 +69,28 @@ int		draw_image(t_all *node)
 	return (0);
 }
 
-void		draw_column(t_all *node, double angle)
+void		draw_column(t_all *node, double angle, double start)
 {
+	t_help help;
 	node->column->height_pp = node->column->height_wall/\
 	(node->player->i * cos(angle)) * node->column->dist_to_pp;
 	node->column->k = (RES_Y - node->column->height_pp)/2;
 	node->column->l = RES_Y - node->column->k;
-	int n = 0;
-	int m = node->column->l;
-	int n_help = (RES_Y - node->column->height_pp)/2;
-	while (n < n_help)
-		my_mlx_pixel_put(node->image, node->mapa->x, n++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
-	while (node->column->k < node->column->l)
-		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0x4444FF);
-	while (m < RES_Y)
-		my_mlx_pixel_put(node->image, node->mapa->x, m++, create_trgb(node->floor->r, node->floor->g, node->floor->b));
+	help.x = 0;
+	help.y = node->column->l;
+	help.max_x = (RES_Y - node->column->height_pp)/2;
+	while (help.x < help.max_x)
+		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
+	if (start < 7*M_PI/(double)4 && start > 5*M_PI/(double)4) // north
+		while (node->column->k < node->column->l)
+			my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0x4444FF);
+	else
+		while (node->column->k < node->column->l)
+			my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0xFF4444);
+
+	
+	while (help.y < RES_Y)
+		my_mlx_pixel_put(node->image, node->mapa->x, help.y++, create_trgb(node->floor->r, node->floor->g, node->floor->b));
 }
 
 void	draw_vector(t_all *node)
@@ -103,14 +108,14 @@ void	draw_vector(t_all *node)
 		plr.x = plr.l;
 		plr.y = plr.f;
 		node->player->i = 0;
-		while (plr.x >= 0 && plr.y >= 0 && plr.x < RES_X && plr.y < RES_Y && node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
+		while (node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
 		{
 			plr.x += cos(plr.start);
 			plr.y += sin(plr.start);
 			node->player->i++;
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		draw_column(node, plr.start - plr.dir);
+		draw_column(node, plr.start - plr.dir, plr.start);
 		node->mapa->x++;
 		plr.start += STEP;
 	}
@@ -120,5 +125,6 @@ void	draw_map_2d(t_all *node, int size)
 {
 	mlx_loop_hook(node->mlx, draw_image, node);
 	mlx_hook(node->win, 2, 1L<<0, ft_key, node);
+	// mlx_hook(node->win, 4, 1L<<2, ft_shift, node);
 	mlx_loop(node->mlx);
 }
