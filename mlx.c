@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/18 03:52:07 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/18 04:08:52 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,8 @@ void		draw_column(t_all *node, double angle, double start)
 	help.max_x = (RES_Y - node->column->height_pp)/2;
 	while (help.x < help.max_x)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
-	if (start < 7*M_PI/(double)4 && start > 5*M_PI/(double)4) // north
-		while (node->column->k < node->column->l)
-			my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0x4444FF);
-	else
-		while (node->column->k < node->column->l)
-			my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0xFF4444);
-
-	
+	while (node->column->k < node->column->l)
+		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0x4444FF);
 	while (help.y < RES_Y)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.y++, create_trgb(node->floor->r, node->floor->g, node->floor->b));
 }
@@ -108,7 +102,7 @@ void	draw_vector(t_all *node)
 		plr.x = plr.l;
 		plr.y = plr.f;
 		node->player->i = 0;
-		while (node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
+		while (plr.x < RES_X && plr.y < RES_Y && plr.x > 0 && plr.y > 0 && node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
 		{
 			plr.x += cos(plr.start);
 			plr.y += sin(plr.start);
