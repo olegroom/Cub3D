@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/18 04:11:41 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/20 19:50:16 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 int		ft_key(int key_code, t_all *node)
 {
 	if (key_code == 123)
-		node->player->dir -= M_PI_2 / 50;
+		node->player->dir -= 0.05;
 	else if (key_code == 124)
-		node->player->dir += M_PI_2 / 50;
+		node->player->dir += 0.05;
 	else if (key_code == 13)
 	{
 		if (node->map[(int)(node->player->y + sin(node->player->dir)/4)]\
 		[(int)(node->player->x + cos(node->player->dir)/4)] != '1')
+		{
 			node->player->x += cos(node->player->dir)/8;
 			node->player->y += sin(node->player->dir)/8;
+		}
 	}
 	else if (key_code == 1)
 	{	
@@ -72,6 +74,7 @@ int		draw_image(t_all *node)
 void		draw_column(t_all *node, double angle, double start)
 {
 	t_help help;
+
 	node->column->height_pp = node->column->height_wall/\
 	(node->player->i * cos(angle)) * node->column->dist_to_pp;
 	node->column->k = (RES_Y - node->column->height_pp)/2;
@@ -119,6 +122,5 @@ void	draw_map_2d(t_all *node, int size)
 {
 	mlx_loop_hook(node->mlx, draw_image, node);
 	mlx_hook(node->win, 2, 1L<<0, ft_key, node);
-	// mlx_hook(node->win, 4, 1L<<2, ft_shift, node);
 	mlx_loop(node->mlx);
 }

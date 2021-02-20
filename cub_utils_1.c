@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/18 04:02:27 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/20 18:02:34 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	node_init(t_all *node, int size)
 
 	node->column = malloc(sizeof(t_column));
 	node->column->height_wall = SCALE;
-	node->column->dist_to_pp = RES_X/2 / tan(M_PI_4);
+	node->column->dist_to_pp = (RES_X/2)/tan(M_PI_4);
 	node->column->height_pp = 0;
 	node->column->dist_to_wall = 0;
 	node->column->k = 0;
