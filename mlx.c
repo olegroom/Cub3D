@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/20 19:50:16 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/20 20:23:48 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	draw_vector(t_all *node)
 		plr.x = plr.l;
 		plr.y = plr.f;
 		node->player->i = 0;
-		while (plr.x < RES_X && plr.y < RES_Y && plr.x > 0 && plr.y > 0 && node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
+		while (/*plr.x < RES_X && plr.y < RES_Y && */plr.x > 0 && plr.y > 0 && node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
 		{
 			plr.x += cos(plr.start);
 			plr.y += sin(plr.start);
