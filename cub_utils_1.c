@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/20 20:11:16 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/22 20:49:51 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	node_init(t_all *node, int size)
 	node->help->x = 0;
 	node->help->x = 0;
 	node->help->x = 0;
+
+	node->help2 = malloc(sizeof(t_help2));
 
 	node->lst_size = size;
 	node->mlx = mlx_init();

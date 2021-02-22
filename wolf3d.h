@@ -6,17 +6,17 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/22 19:37:48 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/22 20:48:45 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 2560
-# define RES_Y 1440
+# define RES_X 1200
+# define RES_Y 840
 # define STEP M_PI_2/RES_X
-# define SCALE 120
+# define SCALE 50
 # define PERS "NWSE"
 
 # include <stdio.h>
@@ -26,6 +26,11 @@
 # include <math.h>
 # include "libs/libft/libft.h"
 # include "libs/minilibx/mlx.h"
+
+typedef struct	s_help2
+{
+	int i;
+}				t_help2;
 
 typedef struct	s_help
 {
@@ -89,12 +94,14 @@ typedef	struct	s_color
 	int g;
 	int b;
 }				t_color;
+
 typedef struct	s_all
 {
 	t_column	*column;
 	void		*mlx;
 	void		*win;
 	char		**map;
+	t_help2		*help2;
 	t_image		*image;
 	t_help		*help;
 	t_player	*player;
@@ -119,5 +126,6 @@ void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void		draw_column(t_all *node, double angle, double start, int color);
 void		ft_put_2d_map_draw(t_all *node);
 int			create_trgb(int r, int g, int b);
+void		draw_wall_side(t_all *node, t_help help, t_player plr);
 
 #endif

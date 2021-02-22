@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/22 19:40:35 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/22 20:36:14 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	draw_vector(t_all *node)
 		plr.x = plr.l;
 		plr.y = plr.f;
 		node->player->i = 0;
-		while (/*plr.x < RES_X && plr.y < RES_Y && */plr.x > 0 && plr.y > 0 && node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
+		while (plr.x > 0 && plr.y > 0 && node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
 		{
 			help.x = plr.x/SCALE;
 			help.y = plr.y/SCALE;
@@ -118,40 +118,44 @@ void	draw_vector(t_all *node)
 			node->player->i++;
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		if ((int)help.y == (int)plr.y/SCALE && help.x < plr.x/SCALE)
-		{
-			draw_column(node, plr.start - plr.dir, plr.start, 0xFF0000);
-			help.i = 0;
-		}
-		else if ((int)help.y == (int)plr.y/SCALE && help.x > plr.x/SCALE)
-		{
-			draw_column(node, plr.start - plr.dir, plr.start, 0x0000FF);
-			help.i = 1;
-		}
-		else if (help.y > plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
-		{
-			draw_column(node, plr.start - plr.dir, plr.start, 0xFFFFFF);
-			help.i = 2;
-		}
-		else if (help.y < plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
-		{
-			draw_column(node, plr.start - plr.dir, plr.start, 0x00FF00);
-			help.i = 3;
-		}
-		else
-		{
-			if (help.i == 0)
-				draw_column(node, plr.start - plr.dir, plr.start, 0xFF0000);
-			else if (help.i == 1)
-				draw_column(node, plr.start - plr.dir, plr.start, 0x0000FF);
-			else if (help.i == 2)
-				draw_column(node, plr.start - plr.dir, plr.start, 0xFFFFFF);
-			else if (help.i == 3)
-				draw_column(node, plr.start - plr.dir, plr.start, 0x00FF00);	
-		}
-			
+		draw_wall_side(node, help, plr);
 		node->mapa->x++;
 		plr.start += STEP;
+	}
+}
+
+void	draw_wall_side(t_all *node, t_help help, t_player plr)
+{
+	if ((int)help.y == (int)plr.y/SCALE && help.x < plr.x/SCALE)
+	{
+		draw_column(node, plr.start - plr.dir, plr.start, 0xFF0000);
+		node->help2->i = 0;
+	}
+	else if ((int)help.y == (int)plr.y/SCALE && help.x > plr.x/SCALE)
+	{
+		draw_column(node, plr.start - plr.dir, plr.start, 0x0000FF);
+		node->help2->i = 1;
+	}
+	else if (help.y > plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
+	{
+		draw_column(node, plr.start - plr.dir, plr.start, 0xFFFFFF);
+		node->help2->i = 2;
+	}
+	else if (help.y < plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
+	{
+		draw_column(node, plr.start - plr.dir, plr.start, 0x00FF00);
+		node->help2->i = 3;
+	}
+	else
+	{
+		if (node->help2->i == 0)
+			draw_column(node, plr.start - plr.dir, plr.start, 0xFF0000);
+		else if (node->help2->i == 1)
+			draw_column(node, plr.start - plr.dir, plr.start, 0x0000FF);
+		else if (node->help2->i == 2)
+			draw_column(node, plr.start - plr.dir, plr.start, 0xFFFFFF);
+		else if (node->help2->i == 3)
+			draw_column(node, plr.start - plr.dir, plr.start, 0x00FF00);	
 	}
 }
 

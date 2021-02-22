@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/18 04:02:41 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/22 20:53:38 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_fill(t_all *node)
 					node->player->dir = M_PI * 1.5;
 				else if (node->map[node->mapa->x][node->mapa->y] == 'E')
 					node->player->dir = 0;
-				node->player->x = node->mapa->y + 1;
-				node->player->y = node->mapa->x + 1;
+				node->player->x = node->mapa->y + 0.5;
+				node->player->y = node->mapa->x + 0.5;
 			}
 			
 			node->mapa->y++;
