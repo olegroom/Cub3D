@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/22 20:53:38 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/22 22:24:30 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,12 @@ int	main(int argc, char **argv)
 	int fd;
 	char *line = NULL;
 	t_list *head = NULL;
-	fd = open(argv[1], O_RDONLY);
-	while(get_next_line(fd, &line))
+	if (argc == 2)
+	{
+		fd = open(argv[1], O_RDONLY);
+		while(get_next_line(fd, &line))
+			ft_lstadd_back(&head, ft_lstnew(line));
 		ft_lstadd_back(&head, ft_lstnew(line));
-	ft_lstadd_back(&head, ft_lstnew(line));
-	close(fd);
-	make_array_map(&head, ft_lstsize(head));
-	return (0);
+		make_array_map(&head, ft_lstsize(head));
+	}
 }
