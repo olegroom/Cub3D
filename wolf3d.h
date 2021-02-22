@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/22 20:48:45 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/22 21:57:38 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 1200
-# define RES_Y 840
+# define RES_X 2200
+# define RES_Y 1240
 # define STEP M_PI_2/RES_X
 # define SCALE 50
 # define PERS "NWSE"
