@@ -6,17 +6,17 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/20 20:25:48 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/22 19:37:48 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 100
-# define RES_Y 100
+# define RES_X 2560
+# define RES_Y 1440
 # define STEP M_PI_2/RES_X
-# define SCALE 15
+# define SCALE 120
 # define PERS "NWSE"
 
 # include <stdio.h>
@@ -35,6 +35,7 @@ typedef struct	s_help
 	int		y;
 	int		x_scale;
 	int		y_scale;
+	int		i;
 }				t_help;
 
 typedef struct	s_mapa
@@ -115,7 +116,7 @@ void		node_init(t_all *node, int size);
 void		revert_x_y(t_all *node);
 void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
-void		draw_column(t_all *node, double angle, double start);
+void		draw_column(t_all *node, double angle, double start, int color);
 void		ft_put_2d_map_draw(t_all *node);
 int			create_trgb(int r, int g, int b);
 

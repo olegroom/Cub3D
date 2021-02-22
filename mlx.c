@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/20 20:23:48 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/22 19:40:35 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int		ft_key(int key_code, t_all *node)
 {
 	if (key_code == 123)
-		node->player->dir -= 0.05;
+		node->player->dir -= 0.025;
 	else if (key_code == 124)
-		node->player->dir += 0.05;
+		node->player->dir += 0.025;
 	else if (key_code == 13)
 	{
 		if (node->map[(int)(node->player->y + sin(node->player->dir)/4)]\
@@ -71,7 +71,7 @@ int		draw_image(t_all *node)
 	return (0);
 }
 
-void		draw_column(t_all *node, double angle, double start)
+void		draw_column(t_all *node, double angle, double start, int color)
 {
 	t_help help;
 
@@ -85,21 +85,25 @@ void		draw_column(t_all *node, double angle, double start)
 	while (help.x < help.max_x)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
-		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, 0x4444FF);
+		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, color);
 	while (help.y < RES_Y)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.y++, create_trgb(node->floor->r, node->floor->g, node->floor->b));
 }
 
 void	draw_vector(t_all *node)
 {
-	t_player plr;
-	
+	t_player	plr;
+	t_help		help;
+
 	plr = *node->player;
 	plr.l = plr.x * SCALE;
 	plr.f = plr.y * SCALE;
 	plr.start = node->player->dir - M_PI_4;
 	plr.end = node->player->dir + M_PI_4;
 	node->mapa->x = 0;
+	help.x = 0;
+	help.y = 0;
+	
 	while (plr.start < plr.end)
 	{
 		plr.x = plr.l;
@@ -107,12 +111,45 @@ void	draw_vector(t_all *node)
 		node->player->i = 0;
 		while (/*plr.x < RES_X && plr.y < RES_Y && */plr.x > 0 && plr.y > 0 && node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
 		{
+			help.x = plr.x/SCALE;
+			help.y = plr.y/SCALE;
 			plr.x += cos(plr.start);
 			plr.y += sin(plr.start);
 			node->player->i++;
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		draw_column(node, plr.start - plr.dir, plr.start);
+		if ((int)help.y == (int)plr.y/SCALE && help.x < plr.x/SCALE)
+		{
+			draw_column(node, plr.start - plr.dir, plr.start, 0xFF0000);
+			help.i = 0;
+		}
+		else if ((int)help.y == (int)plr.y/SCALE && help.x > plr.x/SCALE)
+		{
+			draw_column(node, plr.start - plr.dir, plr.start, 0x0000FF);
+			help.i = 1;
+		}
+		else if (help.y > plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
+		{
+			draw_column(node, plr.start - plr.dir, plr.start, 0xFFFFFF);
+			help.i = 2;
+		}
+		else if (help.y < plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
+		{
+			draw_column(node, plr.start - plr.dir, plr.start, 0x00FF00);
+			help.i = 3;
+		}
+		else
+		{
+			if (help.i == 0)
+				draw_column(node, plr.start - plr.dir, plr.start, 0xFF0000);
+			else if (help.i == 1)
+				draw_column(node, plr.start - plr.dir, plr.start, 0x0000FF);
+			else if (help.i == 2)
+				draw_column(node, plr.start - plr.dir, plr.start, 0xFFFFFF);
+			else if (help.i == 3)
+				draw_column(node, plr.start - plr.dir, plr.start, 0x00FF00);	
+		}
+			
 		node->mapa->x++;
 		plr.start += STEP;
 	}
