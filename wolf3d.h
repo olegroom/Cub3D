@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/23 21:13:25 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/23 22:52:40 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 2200
-# define RES_Y 1240
+# define RES_X 1000
+# define RES_Y 740
 # define STEP (M_PI_2 - 0.250)/RES_X
 # define SCALE 50
 # define PERS "NWSE"
@@ -99,7 +99,7 @@ typedef	struct	s_color
 typedef struct	s_texture
 {
 	void	*img;
-	void	*addr;
+	int		*addr;
 	int		bpp;
 	int		size_line;
 	int		endian;

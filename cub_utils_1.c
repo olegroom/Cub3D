@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/23 21:13:12 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/23 21:26:02 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	node_init(t_all *node, int size)
 	node->texture = malloc(sizeof(t_texture));
 	node->texture->img = mlx_xpm_file_to_image(node->mlx, "./wood.xpm", &node->texture->width, &node->texture->height);
 	node->texture->addr = (int*)mlx_get_data_addr(node->texture->img, &node->texture->bpp, &node->texture->size_line, &node->texture->endian);
-	
+	printf("bpp = %d\nsize_line = %d\n", node->texture->bpp, node->texture->size_line);
 
 	node->ceiling = malloc(sizeof(t_color));
 	node->ceiling->r = 230;	
