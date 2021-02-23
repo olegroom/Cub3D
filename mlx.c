@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/22 21:58:04 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/23 21:14:35 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		draw_image(t_all *node)
 	draw_vector(node);
 	// ft_put_2d_map_draw(node);
 	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
+	// mlx_put_image_to_window(node->mlx, node->win, node->texture->img, 0, 0);
 	mlx_destroy_image(node->mlx, node->image->img);
 	return (0);
 }
@@ -86,6 +87,7 @@ void		draw_column(t_all *node, double angle, double start, int color)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
 		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, color);
+		// node->column->k++;
 	while (help.y < RES_Y)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.y++, create_trgb(node->floor->r, node->floor->g, node->floor->b));
 }
@@ -98,12 +100,12 @@ void	draw_vector(t_all *node)
 	plr = *node->player;
 	plr.l = plr.x * SCALE;
 	plr.f = plr.y * SCALE;
-	plr.start = node->player->dir - M_PI_4;
-	plr.end = node->player->dir + M_PI_4;
+	plr.start = node->player->dir - (M_PI_4 - node->help2->x);
+	plr.end = node->player->dir + (M_PI_4 - node->help2->x);
 	node->mapa->x = 0;
 	help.x = 0;
 	help.y = 0;
-	
+	node->help2->i = -1;
 	while (plr.start < plr.end)
 	{
 		plr.x = plr.l;

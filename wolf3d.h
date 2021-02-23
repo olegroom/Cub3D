@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/22 21:57:38 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/23 21:13:25 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define RES_X 2200
 # define RES_Y 1240
-# define STEP M_PI_2/RES_X
+# define STEP (M_PI_2 - 0.250)/RES_X
 # define SCALE 50
 # define PERS "NWSE"
 
@@ -29,7 +29,8 @@
 
 typedef struct	s_help2
 {
-	int i;
+	int		i;
+	double	x;
 }				t_help2;
 
 typedef struct	s_help
@@ -95,15 +96,27 @@ typedef	struct	s_color
 	int b;
 }				t_color;
 
+typedef struct	s_texture
+{
+	void	*img;
+	void	*addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		width;
+	int		height;
+}				t_texture;
+
 typedef struct	s_all
 {
+	t_texture	*texture;
 	t_column	*column;
 	void		*mlx;
 	void		*win;
 	char		**map;
-	t_help2		*help2;
 	t_image		*image;
 	t_help		*help;
+	t_help2		*help2;
 	t_player	*player;
 	t_mapa		*mapa;
 	t_color		*ceiling;
