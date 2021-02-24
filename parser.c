@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/22 22:24:30 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/24 21:26:54 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,11 @@ void	ft_fill(t_all *node)
 				node->player->x = node->mapa->y + 0.5;
 				node->player->y = node->mapa->x + 0.5;
 			}
-			
 			node->mapa->y++;
-			if (node->help->max_y < node->mapa->y)
-				node->help->max_y = node->mapa->y;
 		}
 		node->mapa->x++;
 	}
 	revert_x_y(node);
-	node->mapa->x_max = node->mapa->x;
-	// printf("Player's position:\nx = %f\ny = %f\n", node->player->x, node->player->y);
 }
 
 void	make_array_map(t_list **head, int size)
@@ -49,7 +44,7 @@ void	make_array_map(t_list **head, int size)
 	t_all	node;
 	t_list	*temp;
 	int		i;
-	
+
 	temp = *head;
 	node.map = calloc(size + 1, sizeof(char*));
 	i = -1;
@@ -63,15 +58,18 @@ void	make_array_map(t_list **head, int size)
 	draw_map_2d(&node, size);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	int fd;
-	char *line = NULL;
-	t_list *head = NULL;
+	int		fd;
+	char	*line;
+	t_list	*head;
+
+	head = NULL;
+	line = NULL;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		while(get_next_line(fd, &line))
+		while (get_next_line(fd, &line))
 			ft_lstadd_back(&head, ft_lstnew(line));
 		ft_lstadd_back(&head, ft_lstnew(line));
 		make_array_map(&head, ft_lstsize(head));

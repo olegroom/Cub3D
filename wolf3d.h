@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 15:38:46 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/24 22:20:38 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 800
-# define RES_Y 540
+# define RES_X 1000
+# define RES_Y 800
 # define STEP (M_PI_2 - 0.250)/RES_X
 # define SCALE 64
 # define PERS "NWSE"
@@ -142,5 +142,8 @@ void		draw_column(t_all *node, double angle, double start, int color);
 void		ft_put_2d_map_draw(t_all *node);
 int			create_trgb(int r, int g, int b);
 void		draw_wall_side(t_all *node, t_help help, t_player plr);
+void		ft_init_1(t_all *node);
+int			ft_key(int key_code, t_all *node);
+void		plr_init(t_all *node, t_player *plr, t_help *help);
 
 #endif
