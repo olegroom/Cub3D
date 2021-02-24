@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 22:27:09 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/24 22:42:29 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,29 @@ void	draw_wall_side(t_all *node, t_help help, t_player plr)
 	int color;
 	if ((int)help.y == (int)plr.y/SCALE && help.x < plr.x/SCALE)
 	{
-		node->texture->step_x = (int)plr.x % 64;
+		node->texture->step_x = (int)plr.y % 64;
 		node->texture->step_y = 64/node->column->height_pp;
 		draw_column(node, plr, color);
 		node->help2->i = 0;
 	}
 	else if ((int)help.y == (int)plr.y/SCALE && help.x > plr.x/SCALE)
 	{
+		node->texture->step_x = (int)plr.y % 64;
+		node->texture->step_y = 64/node->column->height_pp;
 		draw_column(node, plr, color);
 		node->help2->i = 1;
 	}
 	else if (help.y > plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
 	{
+		node->texture->step_x = (int)plr.x % 64;
+		node->texture->step_y = 64/node->column->height_pp;
 		draw_column(node, plr, color);
 		node->help2->i = 2;
 	}
 	else if (help.y < plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
 	{
+		node->texture->step_x = (int)plr.x % 64;
+		node->texture->step_y = 64/node->column->height_pp;
 		draw_column(node, plr, color);
 		node->help2->i = 3;
 	}
