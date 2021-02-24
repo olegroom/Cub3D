@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 22:34:21 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/24 22:48:49 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	ft_init_1(t_all *node)
 	node->ceiling->g = 230;
 	node->floor = malloc(sizeof(t_color));
 	node->floor->r = 0;
-	node->floor->b = 50;
-	node->floor->g = 250;
+	node->floor->b = 0;
+	node->floor->g = 200;
 }
 
 void	plr_init(t_all *node, t_player *plr, t_help *help)

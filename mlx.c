@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 22:42:29 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/24 23:00:05 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	draw_vector(t_all *node)
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
 		draw_wall_side(node, help, plr);
-		// draw_column(node, plr, 0xFF0000);
+		draw_column(node, plr, 0xFF0000);
 		node->mapa->x++;
 		plr.start += STEP;
 	}
