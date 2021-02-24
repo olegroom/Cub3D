@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 22:23:41 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/24 22:27:09 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,47 +50,50 @@ void	draw_vector(t_all *node)
 			node->player->i++;
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		// draw_wall_side(node, help, plr);
-		draw_column(node, plr, 0xFF0000);
+		draw_wall_side(node, help, plr);
+		// draw_column(node, plr, 0xFF0000);
 		node->mapa->x++;
 		plr.start += STEP;
 	}
 }
 
-// void	draw_wall_side(t_all *node, t_help help, t_player plr)
-// {
-// 	if ((int)help.y == (int)plr.y/SCALE && help.x < plr.x/SCALE)
-// 	{
-// 		draw_column(node, plr, 0xFF0000);
-// 		node->help2->i = 0;
-// 	}
-// 	else if ((int)help.y == (int)plr.y/SCALE && help.x > plr.x/SCALE)
-// 	{
-// 		draw_column(node, plr, 0x0000FF);
-// 		node->help2->i = 1;
-// 	}
-// 	else if (help.y > plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
-// 	{
-// 		draw_column(node, plr, 0xFFFFFF);
-// 		node->help2->i = 2;
-// 	}
-// 	else if (help.y < plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
-// 	{
-// 		draw_column(node, plr, 0x00FF00);
-// 		node->help2->i = 3;
-// 	}
-// 	else
-// 	{
-// 		if (node->help2->i == 0)
-// 			draw_column(node, plr, 0xFF0000);
-// 		else if (node->help2->i == 1)
-// 			draw_column(node, plr, 0x0000FF);
-// 		else if (node->help2->i == 2)
-// 			draw_column(node, plr, 0xFFFFFF);
-// 		else if (node->help2->i == 3)
-// 			draw_column(node, plr, 0x00FF00);
-// 	}
-// }
+void	draw_wall_side(t_all *node, t_help help, t_player plr)
+{
+	int color;
+	if ((int)help.y == (int)plr.y/SCALE && help.x < plr.x/SCALE)
+	{
+		node->texture->step_x = (int)plr.x % 64;
+		node->texture->step_y = 64/node->column->height_pp;
+		draw_column(node, plr, color);
+		node->help2->i = 0;
+	}
+	else if ((int)help.y == (int)plr.y/SCALE && help.x > plr.x/SCALE)
+	{
+		draw_column(node, plr, color);
+		node->help2->i = 1;
+	}
+	else if (help.y > plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
+	{
+		draw_column(node, plr, color);
+		node->help2->i = 2;
+	}
+	else if (help.y < plr.y/SCALE && (int)help.x == (int)plr.x/SCALE)
+	{
+		draw_column(node, plr, color);
+		node->help2->i = 3;
+	}
+	else
+	{
+		if (node->help2->i == 0)
+			draw_column(node, plr, color);
+		else if (node->help2->i == 1)
+			draw_column(node, plr, color);
+		else if (node->help2->i == 2)
+			draw_column(node, plr, color);
+		else if (node->help2->i == 3)
+			draw_column(node, plr, color);
+	}
+}
 
 void		draw_column(t_all *node, t_player plr, int color)
 {
@@ -105,10 +108,6 @@ void		draw_column(t_all *node, t_player plr, int color)
 	help.max_x = (RES_Y - node->column->height_pp)/2;
 
 	double ind = 0;
-
-	node->texture->step_x = (int)plr.x % 64;
-	node->texture->step_y = 64/node->column->height_pp;
-	
 	while (help.x < help.max_x)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
