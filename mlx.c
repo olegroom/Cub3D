@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/23 22:55:20 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/24 17:00:34 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,25 +83,18 @@ void		draw_column(t_all *node, double angle, double start, int color)
 	help.x = 0;
 	help.y = node->column->l;
 	help.max_x = (RES_Y - node->column->height_pp)/2;
-	int ind = 0;
-	int ho;
-	int n;
-	
+	double ind = 0;
+	int x = 0;
+	node->texture->step_y = 64/node->column->height_pp;
+	node->texture->step_x = (int)node->mapa->x % SCALE;
 	while (help.x < help.max_x)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
 	{
-		ind = (int)node->column->k % 64;
-		n = (int)node->mapa->x % 64;
-		color = *(node->texture->addr + node->texture->width * ind + n);
+		x = node->mapa->x % 64;
+		color = *(node->texture->addr + (int)((int)(node->texture->step_y * ind) * node->texture->width + node->texture->step_x));
 		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, color);
-	}
-	for (size_t i = 0; i < node->texture->height; i++)
-	{
-		for (size_t j = 0; j < node->texture->width; j++)
-		{
-			my_mlx_pixel_put(node->image, j, i, node->texture->addr[i * node->texture->width + j]);
-		}
+		ind++;
 	}
 	while (help.y < RES_Y)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.y++, create_trgb(node->floor->r, node->floor->g, node->floor->b));

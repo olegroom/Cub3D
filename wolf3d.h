@@ -6,17 +6,17 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/23 22:52:40 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/24 15:38:46 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 1000
-# define RES_Y 740
+# define RES_X 800
+# define RES_Y 540
 # define STEP (M_PI_2 - 0.250)/RES_X
-# define SCALE 50
+# define SCALE 64
 # define PERS "NWSE"
 
 # include <stdio.h>
@@ -105,6 +105,8 @@ typedef struct	s_texture
 	int		endian;
 	int		width;
 	int		height;
+	double	step_y;
+	double	step_x;
 }				t_texture;
 
 typedef struct	s_all
