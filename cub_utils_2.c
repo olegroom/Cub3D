@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:46:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 17:22:50 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/27 18:08:16 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	draw_square(t_all *node, int color)
 		node->help->y++;
 	}
 }
+
 
 int		create_trgb(int r, int g, int b)
 {

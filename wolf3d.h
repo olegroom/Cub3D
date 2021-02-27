@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/27 17:10:23 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/27 18:27:08 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 800
-# define RES_Y 620
+# define RES_X 600
+# define RES_Y 420
 # define STEP (M_PI_2 - 0.250)/RES_X
 # define SCALE 64
 # define PERS "NWSE"
@@ -26,6 +26,12 @@
 # include <math.h>
 # include "libs/libft/libft.h"
 # include "libs/minilibx/mlx.h"
+
+typedef struct	s_help3
+{
+	int x;
+	int y;
+}				t_help3;
 
 typedef struct	s_help2
 {
@@ -110,19 +116,19 @@ typedef struct	s_texture
 
 typedef struct	s_all
 {
-	t_texture	*texture;
-	t_column	*column;
 	void		*mlx;
 	void		*win;
 	char		**map;
-	t_image		*image;
+	int			lst_size;
 	t_help		*help;
 	t_help2		*help2;
+	t_image		*image;
+	t_texture	*texture;
 	t_player	*player;
+	t_column	*column;
 	t_mapa		*mapa;
 	t_color		*ceiling;
 	t_color		*floor;
-	int			lst_size;
 }				t_all;
 
 void		init_textures(t_all *node);
@@ -138,12 +144,12 @@ void		node_init(t_all *node, int size);
 void		revert_x_y(t_all *node);
 void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
-void		draw_column(t_all *node, t_player plr, int color);
+void		draw_column(t_all *node, t_player plr, t_help3 help3);
 void		ft_put_2d_map_draw(t_all *node);
 int			create_trgb(int r, int g, int b);
 void		draw_wall_side(t_all *node, t_help help, t_player plr);
 void		ft_init_1(t_all *node);
 int			ft_key(int key_code, t_all *node);
-void		plr_init(t_all *node, t_player *plr, t_help *help);
+void		plr_init(t_all *node, t_player *plr, t_help3 *help3);
 
 #endif
