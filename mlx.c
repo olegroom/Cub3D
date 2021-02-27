@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 23:00:05 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/27 17:09:59 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	draw_vector(t_all *node)
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
 		draw_wall_side(node, help, plr);
-		draw_column(node, plr, 0xFF0000);
+		// draw_column(node, plr, 0xFF0000);
 		node->mapa->x++;
 		plr.start += STEP;
 	}
@@ -60,10 +60,15 @@ void	draw_vector(t_all *node)
 void	draw_wall_side(t_all *node, t_help help, t_player plr)
 {
 	int color;
+	int ind;
+	
+	ind = 0;
 	if ((int)help.y == (int)plr.y/SCALE && help.x < plr.x/SCALE)
 	{
 		node->texture->step_x = (int)plr.y % 64;
 		node->texture->step_y = 64/node->column->height_pp;
+		color = *(node->texture[0].addr + (int)((int)(node->texture->step_y * ind) * node->texture->width + node->texture->step_x));
+		ind++;
 		draw_column(node, plr, color);
 		node->help2->i = 0;
 	}
@@ -71,6 +76,8 @@ void	draw_wall_side(t_all *node, t_help help, t_player plr)
 	{
 		node->texture->step_x = (int)plr.y % 64;
 		node->texture->step_y = 64/node->column->height_pp;
+		color = *(node->texture[0].addr + (int)((int)(node->texture->step_y * ind) * node->texture->width + node->texture->step_x));
+		ind++;
 		draw_column(node, plr, color);
 		node->help2->i = 1;
 	}
@@ -78,6 +85,8 @@ void	draw_wall_side(t_all *node, t_help help, t_player plr)
 	{
 		node->texture->step_x = (int)plr.x % 64;
 		node->texture->step_y = 64/node->column->height_pp;
+		color = *(node->texture[0].addr + (int)((int)(node->texture->step_y * ind) * node->texture->width + node->texture->step_x));
+		ind++;
 		draw_column(node, plr, color);
 		node->help2->i = 2;
 	}
@@ -85,6 +94,8 @@ void	draw_wall_side(t_all *node, t_help help, t_player plr)
 	{
 		node->texture->step_x = (int)plr.x % 64;
 		node->texture->step_y = 64/node->column->height_pp;
+		color = *(node->texture[0].addr + (int)((int)(node->texture->step_y * ind) * node->texture->width + node->texture->step_x));
+		ind++;
 		draw_column(node, plr, color);
 		node->help2->i = 3;
 	}
@@ -118,9 +129,9 @@ void		draw_column(t_all *node, t_player plr, int color)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
 	{
-		color = *(node->texture->addr + (int)((int)(node->texture->step_y * ind) * node->texture->width + node->texture->step_x));
+		// color = *(node->texture->addr + (int)((int)(node->texture->step_y * ind) * node->texture->width + node->texture->step_x));
 		my_mlx_pixel_put(node->image, node->mapa->x, node->column->k++, color);
-		ind++;
+		// ind++;
 	}
 	while (help.y < RES_Y)
 		my_mlx_pixel_put(node->image, node->mapa->x, help.y++, create_trgb(node->floor->r, node->floor->g, node->floor->b));

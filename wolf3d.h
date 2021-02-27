@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 22:58:52 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/27 17:10:23 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct	s_texture
 	int		height;
 	double	step_y;
 	double	step_x;
+	char	*path;
 }				t_texture;
 
 typedef struct	s_all
@@ -124,6 +125,7 @@ typedef struct	s_all
 	int			lst_size;
 }				t_all;
 
+void		init_textures(t_all *node);
 void		draw_vector(t_all *node);
 void		draw_space(t_all *node);
 void		make_array_map(t_list **head, int size);

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 22:48:49 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/27 17:14:00 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ void	node_init(t_all *node, int size)
 	node->column = malloc(sizeof(t_column));
 	node->column->height_wall = SCALE;
 	node->column->dist_to_pp = (RES_X/2)/tan(M_PI_4);
-	node->texture = malloc(sizeof(t_texture));
-	node->texture->img = mlx_xpm_file_to_image(node->mlx, "./wood.xpm", &node->texture->width, &node->texture->height);
-	node->texture->addr = (int*)mlx_get_data_addr(node->texture->img, &node->texture->bpp, &node->texture->size_line, &node->texture->endian);
+	node->texture = malloc(sizeof(t_texture) * 4);
 	ft_init_1(node);
+	init_textures(node);
 }
 
 void	ft_init_1(t_all *node)
@@ -86,6 +85,24 @@ void	plr_init(t_all *node, t_player *plr, t_help *help)
 	help->x = 0;
 	help->y = 0;
 	node->help2->i = -1;
+}
+
+void	init_textures(t_all *node)
+{
+	int i;
+
+	i = -1;
+	node->texture[0].path = "wood.xpm";
+	node->texture[1].path = "redbrick.xpm";
+	node->texture[2].path = "colorstone.xpm";
+	node->texture[3].path = "bluestone.xpm";
+	while (++i < 4)
+	{
+		node->texture[i].img = mlx_xpm_file_to_image(node->mlx, node->texture[i].path, &(node->texture[i].width),\
+		&(node->texture[i].height));
+		node->texture[i].addr = (int*)mlx_get_data_addr(node->texture->img, &node->texture->bpp,\
+		&node->texture->size_line, &node->texture->endian);
+	}
 }
 
 void	my_mlx_pixel_put(t_image *img, int x, int y, int color)
