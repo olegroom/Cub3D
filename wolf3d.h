@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/01 19:48:46 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/01 20:12:15 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct	s_help3
 {
 	int x;
 	int y;
-	float plrx;
-	float plry;
+	double plrx;
+	double plry;
 }				t_help3;
 
 typedef struct	s_help2
@@ -121,7 +121,7 @@ typedef struct	s_sprite
 	int		i;
 	float	x;
 	float	y;
-	int		length_to_sprite;
+	double	length_to_sprite;
 }				t_sprite;
 
 typedef struct	s_all
