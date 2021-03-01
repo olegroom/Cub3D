@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:46:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/27 18:08:16 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/28 18:22:58 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_put_2d_map_draw(t_all *node)
 {
+	node->num_sprts = 0;
 	node->mapa->x = 0;
 	while (node->mapa->x < node->lst_size)
 	{
@@ -27,6 +28,7 @@ void	ft_put_2d_map_draw(t_all *node)
 		node->mapa->x++;
 	}
 }
+
 
 void	draw_square(t_all *node, int color)
 {
@@ -42,7 +44,6 @@ void	draw_square(t_all *node, int color)
 		node->help->y++;
 	}
 }
-
 
 int		create_trgb(int r, int g, int b)
 {

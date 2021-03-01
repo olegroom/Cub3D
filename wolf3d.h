@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/27 18:27:08 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:48:46 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 600
-# define RES_Y 420
+# define RES_X 1200
+# define RES_Y 920
 # define STEP (M_PI_2 - 0.250)/RES_X
 # define SCALE 64
 # define PERS "NWSE"
@@ -31,6 +31,8 @@ typedef struct	s_help3
 {
 	int x;
 	int y;
+	float plrx;
+	float plry;
 }				t_help3;
 
 typedef struct	s_help2
@@ -114,12 +116,22 @@ typedef struct	s_texture
 	char	*path;
 }				t_texture;
 
+typedef struct	s_sprite
+{
+	int		i;
+	float	x;
+	float	y;
+	int		length_to_sprite;
+}				t_sprite;
+
 typedef struct	s_all
 {
 	void		*mlx;
 	void		*win;
 	char		**map;
 	int			lst_size;
+	int			num_sprts;
+	t_sprite	*sprite;
 	t_help		*help;
 	t_help2		*help2;
 	t_image		*image;
@@ -131,6 +143,9 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
+void		get_sprite_data(t_all *node, t_help3 help3);
+void		fill_sprite_x_y(t_all *node);
+void		find_num_sprites(t_all *node);
 void		init_textures(t_all *node);
 void		draw_vector(t_all *node);
 void		draw_space(t_all *node);

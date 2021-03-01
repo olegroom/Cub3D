@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/27 18:26:07 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:52:03 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	node_init(t_all *node, int size)
 	node->column->height_wall = SCALE;
 	node->column->dist_to_pp = (RES_X/2)/tan(M_PI_4);
 	node->texture = malloc(sizeof(t_texture) * 4);
+	find_num_sprites(node);
+	node->sprite = malloc(sizeof(t_sprite) * node->num_sprts);
+	printf("%d\n\n", node->num_sprts);
 	ft_init_1(node);
 	init_textures(node);
 }
@@ -92,11 +95,10 @@ void	init_textures(t_all *node)
 	int i;
 
 	i = -1;
-	node->texture[0].path = "misha.xpm";
-	node->texture[1].path = "redbrick.xpm";
-	node->texture[2].path = "colorstone.xpm";
-	node->texture[3].path = "bluestone.xpm";
-	// printf("%s\n", node->texture[2].path);
+	node->texture[0].path = "images/wood.xpm";
+	node->texture[1].path = "images/redbrick.xpm";
+	node->texture[2].path = "images/colorstone.xpm";
+	node->texture[3].path = "images/bluestone.xpm";
 	while (++i < 4)
 	{
 		node->texture[i].img = mlx_xpm_file_to_image(node->mlx, node->texture[i].path, &(node->texture[i].width),\

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/24 21:26:54 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/02/28 18:18:07 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_fill(t_all *node)
 {
+	int i = 0;
 	while (node->mapa->x < node->lst_size)
 	{
 		node->mapa->y = 0;

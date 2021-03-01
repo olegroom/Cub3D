@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/02/27 18:11:34 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/01 19:55:10 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ void	draw_vector(t_all *node)
 	t_help3		help3;
 
 	plr_init(node, &plr, &help3);
+	help3.plrx = plr.x * SCALE;
+	help3.plry = plr.y * SCALE;
 	while (plr.start < plr.end)
 	{
-		plr.x = plr.l;
-		plr.y = plr.f;
 		node->player->i = 0;
+		plr.y = plr.f;
+		plr.x = plr.l;
 		while (plr.x > 0 && plr.y > 0 && node->map[(int)plr.y/SCALE][(int)plr.x/SCALE] != '1')
 		{
 			help3.x = plr.x/SCALE;
@@ -54,6 +56,8 @@ void	draw_vector(t_all *node)
 		node->mapa->x++;
 		plr.start += STEP;
 	}
+	//sprites begin
+	get_sprite_data(node, help3);
 }
 
 void		draw_column(t_all *node, t_player plr, t_help3 help3)
@@ -123,9 +127,9 @@ void		draw_column(t_all *node, t_player plr, t_help3 help3)
 int		ft_key(int key_code, t_all *node)
 {
 	if (key_code == 123)
-		node->player->dir -= 0.025;
+		node->player->dir -= 0.05;
 	else if (key_code == 124)
-		node->player->dir += 0.025;
+		node->player->dir += 0.05;
 	else if (key_code == 13)
 	{
 		if (node->map[(int)(node->player->y + sin(node->player->dir)/4)]\
