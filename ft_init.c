@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/03 21:51:59 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/03 22:04:03 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	node_init(t_all *node, int size)
 	node->column->height_wall = SCALE;
 	node->column->dist_to_pp = (RES_X/2)/tan(M_PI_4);
 	node->texture = malloc(sizeof(t_texture) * 4);
-	// get_sprite_data(node);
-	node->sprite = malloc(sizeof(t_sprite) * node->num_sprts);
+	find_num_sprites(node);
 	printf("%d\n\n", node->num_sprts);
+	node->sprite = malloc(sizeof(t_sprite) * node->num_sprts);
 	ft_init_1(node);
 	init_textures(node);
 }

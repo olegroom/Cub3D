@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/03 21:40:03 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/03 23:11:59 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	draw_vector(t_all *node)
 	plr_init(node, &plr, &help3);
 	help3.plrx = plr.x * SCALE;
 	help3.plry = plr.y * SCALE;
+	get_sprite_data(node, help3);
 	while (plr.start < plr.end)
 	{
 		node->player->i = 0;
@@ -56,8 +57,6 @@ void	draw_vector(t_all *node)
 		node->mapa->x++;
 		plr.start += STEP;
 	}
-	//sprites begin
-	// get_sprite_data(node, help3);
 }
 
 void		draw_column(t_all *node, t_player plr, t_help3 help3)

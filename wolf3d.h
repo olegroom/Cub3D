@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/03 21:49:45 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/03 23:37:17 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,10 @@ typedef struct	s_texture
 typedef struct	s_sprite
 {
 	int		i;
-	float	x;
-	float	y;
-	double	length_to_sprite;
+	double	x;
+	double	y;
+	double	hyp;
+	double	screen_size;
 }				t_sprite;
 
 typedef struct	s_all
@@ -143,7 +144,8 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
-void		get_sprite_data(t_all *node);
+void		find_num_sprites(t_all *node);
+void		get_sprite_data(t_all *node, t_help3 help3);
 void		fill_sprite_x_y(t_all *node);
 void		init_textures(t_all *node);
 void		draw_vector(t_all *node);
