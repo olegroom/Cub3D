@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/01 19:57:10 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/03 21:40:03 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_vector(t_all *node)
 		plr.start += STEP;
 	}
 	//sprites begin
-	get_sprite_data(node, help3);
+	// get_sprite_data(node, help3);
 }
 
 void		draw_column(t_all *node, t_player plr, t_help3 help3)
