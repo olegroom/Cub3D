@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/03 23:37:17 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/04 21:28:18 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ typedef struct	s_sprite
 	double	y;
 	double	hyp;
 	double	screen_size;
+	int		v_offset;
+	int		h_offset;
+	float	dir;
 }				t_sprite;
 
 typedef struct	s_all

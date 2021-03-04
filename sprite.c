@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:55:16 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/03 23:54:57 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/04 21:39:25 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,26 +82,39 @@ void		ft_sort(t_all *node, int i)
 		}
 }
 
-void		find_screen_size(t_all *node)
+void		find_screen_size(t_all *node, t_help3 help3)
 {
 	int i;
 
 	i = -1;
 	while (++i < node->num_sprts)
+	{
 		node->sprite[i].screen_size = RES_Y/node->sprite[i].hyp;
+		// node->sprite[i].dir = atan2(node->sprite[i].x - help3.plrx, node->sprite[i].y - help3.plry);
+		node->sprite[i].v_offset = RES_Y/2 - node->sprite[i].screen_size/2;
+		// while (node->sprite[i].dir > M_PI)
+		// 	node->sprite[i].dir -= 2*M_PI;
+		// while (node->sprite[i].dir < -M_PI)
+		// 	node->sprite[i].dir += 2*M_PI;
+
+	}
+
 }
 
 void		get_sprite_data(t_all *node, t_help3 help3)
 {
+	int	v_offset;
+	int	i;
+	
 	find_spr_pos(node, -1, 0);
 	find_hypotenuz(node, help3);
 	ft_sort(node, -1);
-	find_screen_size(node);
-	// int i = -1;
-	// while (++i < node->num_sprts)
-	// {
+	find_screen_size(node, help3);
+	i = -1;
+	while (++i < node->num_sprts)
+	{
 		// printf("sprite[%d]\nhyp = %f\nx = %f\ny = %f\n", i, node->sprite[i].hyp\
 		// , node->sprite[i].x, node->sprite[i].y);
-		// printf("%f\n", node->sprite[i].screen_size);
-	// }
+		// printf("%f\n", node->sprite[i].dir);
+	}
 }
