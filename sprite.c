@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:55:16 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 00:26:22 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 01:29:17 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		get_params(t_all *node, t_help3 help3)
 		node->sprite[i].screen_size = RES_Y/node->sprite[i].hyp;
 		node->sprite[i].v_offset = RES_Y/2 - node->sprite[i].screen_size/2;
 		node->sprite[i].angle = atan2(node->player->y - node->sprite[i].y, node->sprite[i].x - node->player->x);
+		
 
 	}
 

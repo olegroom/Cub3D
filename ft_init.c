@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/04 23:23:59 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 01:35:23 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	plr_init(t_all *node, t_player *plr, t_help3 *help3)
 	*plr = *node->player;
 	plr->l = plr->x * SCALE;
 	plr->f = plr->y * SCALE;
-	plr->start = node->player->dir - (M_PI_4 - node->help2->x);
-	plr->end = node->player->dir + (M_PI_4 - node->help2->x);
+	plr->start = node->player->dir + (M_PI_4 - node->help2->x);
+	plr->end = node->player->dir - (M_PI_4 - node->help2->x);
 	node->mapa->x = 0;
 	help3->plrx = plr->x * SCALE;
 	help3->plry = plr->y * SCALE;

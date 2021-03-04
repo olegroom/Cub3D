@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 00:44:44 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 01:28:57 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define RES_X 1200
 # define RES_Y 920
-# define STEP (M_PI_2 - 0.250)/RES_X
+# define STEP (M_PI_2 - 0.25)/RES_X
 # define SCALE 64
 # define PERS "NWSE"
 

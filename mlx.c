@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 00:24:46 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 01:35:40 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_vector(t_all *node)
     	node->player->dir -= 2 * M_PI;
   	while (node->player->dir <= -2 * M_PI)
     	node->player->dir += 2 * M_PI;
-	while (plr.start < plr.end)
+	while (plr.start > plr.end)
 	{
 		node->player->i = 0;
 		plr.y = plr.f;
@@ -57,7 +57,7 @@ void	draw_vector(t_all *node)
 		}
 		draw_column(node, plr, help3);
 		node->mapa->x++;
-		plr.start += STEP;
+		plr.start -= STEP;
 	}
 }
 
@@ -128,12 +128,12 @@ void		draw_column(t_all *node, t_player plr, t_help3 help3)
 int		ft_key(int key_code, t_all *node)
 {
 	if (key_code == 123)
-		node->player->dir -= 0.05;
-	else if (key_code == 124)
 		node->player->dir += 0.05;
+	else if (key_code == 124)
+		node->player->dir -= 0.05;
 	else if (key_code == 13)
 	{
-		if (node->map[(int)(node->player->y + sin(node->player->dir)/4)]\
+		if (node->map[(int)(node->player->y - sin(node->player->dir)/4)]\
 		[(int)(node->player->x + cos(node->player->dir)/4)] != '1')
 		{
 			node->player->x += cos(node->player->dir)/8;
@@ -142,7 +142,7 @@ int		ft_key(int key_code, t_all *node)
 	}
 	else if (key_code == 1)
 	{
-		if (node->map[(int)(node->player->y - sin(node->player->dir)/4)]\
+		if (node->map[(int)(node->player->y + sin(node->player->dir)/4)]\
 		[(int)(node->player->x - cos(node->player->dir)/4)] != '1')
 		{
 			node->player->x -= cos(node->player->dir)/8;
@@ -152,19 +152,19 @@ int		ft_key(int key_code, t_all *node)
 	else if (key_code == 0)
 	{
 		if (node->map[(int)(node->player->y - cos(node->player->dir)/4)]\
-		[(int)(node->player->x + sin(node->player->dir)/4)] != '1')
+		[(int)(node->player->x - sin(node->player->dir)/4)] != '1')
 		{
-			node->player->x += sin(node->player->dir)/12;
-			node->player->y += cos(node->player->dir)/12;
+			node->player->x -= sin(node->player->dir)/12;
+			node->player->y -= cos(node->player->dir)/12;
 		}
 	}
 	else if (key_code == 2)
 	{
 		if (node->map[(int)(node->player->y + cos(node->player->dir)/4)]\
-		[(int)(node->player->x - sin(node->player->dir)/4)] != '1')
+		[(int)(node->player->x + sin(node->player->dir)/4)] != '1')
 		{
-			node->player->x -= sin(node->player->dir)/12;
-			node->player->y -= cos(node->player->dir)/12;
+			node->player->x += sin(node->player->dir)/12;
+			node->player->y += cos(node->player->dir)/12;
 		}
 	}
 	else if (key_code == 53)
