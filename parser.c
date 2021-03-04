@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/04 21:34:13 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 00:22:08 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_fill(t_all *node)
 {
-	int i = 0;
+	int i;
+	
+	i = 0;
 	while (node->mapa->x < node->lst_size)
 	{
 		node->mapa->y = 0;
@@ -23,11 +25,11 @@ void	ft_fill(t_all *node)
 			if (ft_strchr(PERS, node->map[node->mapa->x][node->mapa->y]))
 			{
 				if (node->map[node->mapa->x][node->mapa->y] == 'S')
-					node->player->dir = M_PI_2;
+					node->player->dir = M_PI * 1.5;
 				else if (node->map[node->mapa->x][node->mapa->y] == 'W')
 					node->player->dir = M_PI;
 				else if (node->map[node->mapa->x][node->mapa->y] == 'N')
-					node->player->dir = M_PI * 1.5;
+					node->player->dir = M_PI_2;
 				else if (node->map[node->mapa->x][node->mapa->y] == 'E')
 					node->player->dir = 0;
 				node->player->x = node->mapa->y + 0.5;

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/04 21:49:53 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 00:24:46 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ void	draw_vector(t_all *node)
 	t_help3		help3;
 
 	plr_init(node, &plr, &help3);
-	help3.plrx = plr.x * SCALE;
-	help3.plry = plr.y * SCALE;
 	get_sprite_data(node, help3);
+	while (node->player->dir >= 2 * M_PI)
+    	node->player->dir -= 2 * M_PI;
+  	while (node->player->dir <= -2 * M_PI)
+    	node->player->dir += 2 * M_PI;
 	while (plr.start < plr.end)
 	{
 		node->player->i = 0;
@@ -49,7 +51,7 @@ void	draw_vector(t_all *node)
 			help3.x = plr.x/SCALE;
 			help3.y = plr.y/SCALE;
 			plr.x += cos(plr.start);
-			plr.y += sin(plr.start);
+			plr.y -= sin(plr.start);
 			node->player->i++;
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
@@ -135,7 +137,7 @@ int		ft_key(int key_code, t_all *node)
 		[(int)(node->player->x + cos(node->player->dir)/4)] != '1')
 		{
 			node->player->x += cos(node->player->dir)/8;
-			node->player->y += sin(node->player->dir)/8;
+			node->player->y -= sin(node->player->dir)/8;
 		}
 	}
 	else if (key_code == 1)
@@ -144,7 +146,7 @@ int		ft_key(int key_code, t_all *node)
 		[(int)(node->player->x - cos(node->player->dir)/4)] != '1')
 		{
 			node->player->x -= cos(node->player->dir)/8;
-			node->player->y -= sin(node->player->dir)/8;
+			node->player->y += sin(node->player->dir)/8;
 		}
 	}
 	else if (key_code == 0)
@@ -153,7 +155,7 @@ int		ft_key(int key_code, t_all *node)
 		[(int)(node->player->x + sin(node->player->dir)/4)] != '1')
 		{
 			node->player->x += sin(node->player->dir)/12;
-			node->player->y -= cos(node->player->dir)/12;
+			node->player->y += cos(node->player->dir)/12;
 		}
 	}
 	else if (key_code == 2)
@@ -162,7 +164,7 @@ int		ft_key(int key_code, t_all *node)
 		[(int)(node->player->x - sin(node->player->dir)/4)] != '1')
 		{
 			node->player->x -= sin(node->player->dir)/12;
-			node->player->y += cos(node->player->dir)/12;
+			node->player->y -= cos(node->player->dir)/12;
 		}
 	}
 	else if (key_code == 53)

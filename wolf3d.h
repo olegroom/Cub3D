@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/04 22:06:13 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 00:44:44 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct	s_sprite
 	double	screen_size;
 	int		v_offset;
 	int		h_offset;
-	float	dir;
+	double	angle;
 }				t_sprite;
 
 typedef struct	s_all
@@ -149,6 +149,7 @@ typedef struct	s_all
 
 void		find_num_sprites(t_all *node);
 void		get_sprite_data(t_all *node, t_help3 help3);
+void		get_params(t_all *node, t_help3 help3);
 void		fill_sprite_x_y(t_all *node);
 void		init_textures(t_all *node);
 void		draw_vector(t_all *node);
