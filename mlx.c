@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/04 21:34:43 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/04 21:49:53 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		draw_column(t_all *node, t_player plr, t_help3 help3)
 
 	double ind = 0;
 	while (help.x < help.max_x)
-		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
+		my_mlx_pixel_put(node->image, node->mapa->x, help.x++, create_trgb(0, node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
 	{
 		if ((int)help3.y == (int)plr.y/SCALE && help3.x < plr.x/SCALE)
@@ -120,7 +120,7 @@ void		draw_column(t_all *node, t_player plr, t_help3 help3)
 		ind++;
 	}
 	while (help.y < RES_Y)
-		my_mlx_pixel_put(node->image, node->mapa->x, help.y++, create_trgb(node->floor->r, node->floor->g, node->floor->b));
+		my_mlx_pixel_put(node->image, node->mapa->x, help.y++, create_trgb(0, node->floor->r, node->floor->g, node->floor->b));
 }
 
 int		ft_key(int key_code, t_all *node)

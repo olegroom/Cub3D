@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/04 21:28:18 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/04 22:06:13 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void		draw_column(t_all *node, t_player plr, t_help3 help3);
 void		ft_put_2d_map_draw(t_all *node);
-int			create_trgb(int r, int g, int b);
+int			create_trgb(int t, int r, int g, int b);
 void		draw_wall_side(t_all *node, t_help help, t_player plr);
 void		ft_init_1(t_all *node);
 int			ft_key(int key_code, t_all *node);
