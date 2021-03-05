@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 01:28:57 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 03:27:30 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define RES_X 1200
 # define RES_Y 920
-# define STEP (M_PI_2 - 0.25)/RES_X
+# define STEP M_PI_2/RES_X
 # define SCALE 64
 # define PERS "NWSE"
 
@@ -56,6 +56,7 @@ typedef struct	s_mapa
 {
 	int		x;
 	int		y;
+	int		X;
 }				t_mapa;
 
 typedef struct	s_player
@@ -126,6 +127,8 @@ typedef struct	s_sprite
 	int		v_offset;
 	int		h_offset;
 	double	angle;
+	double	del_angle;
+	
 }				t_sprite;
 
 typedef struct	s_all
@@ -147,6 +150,7 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
+void		draw_sprite(t_all *node);
 void		find_num_sprites(t_all *node);
 void		get_sprite_data(t_all *node, t_help3 help3);
 void		get_params(t_all *node, t_help3 help3);

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:55:16 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 01:29:17 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 03:16:44 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,24 @@ void		ft_sort(t_all *node, int i)
 		}
 }
 
+double		get_delta(double start, double spr_angle)
+{
+	double delta_angle;
+
+	delta_angle = start - spr_angle;
+	if (delta_angle <= -M_PI)
+		delta_angle += 2 * M_PI;
+	else if (delta_angle >= M_PI)
+		delta_angle -= 2 * M_PI;
+	return (delta_angle);
+}
+
 void		get_params(t_all *node, t_help3 help3)
 {
-	int i;
+	int		i;
+	double	start;
 
+	start = node->player->dir + M_PI/4; 
 	i = -1;
 	while (++i < node->num_sprts)
 	{
@@ -75,8 +89,9 @@ void		get_params(t_all *node, t_help3 help3)
 		node->sprite[i].screen_size = RES_Y/node->sprite[i].hyp;
 		node->sprite[i].v_offset = RES_Y/2 - node->sprite[i].screen_size/2;
 		node->sprite[i].angle = atan2(node->player->y - node->sprite[i].y, node->sprite[i].x - node->player->x);
-		
-
+		node->sprite[i].del_angle = get_delta(start, node->sprite[i].angle);
+		node->sprite[i].v_offset = RES_Y/2 - node->sprite[i].screen_size/2;
+		node->sprite[i].h_offset = node->sprite[i].del_angle/(M_PI_2/RES_X) - node->sprite[i].screen_size;
 	}
 
 }
@@ -87,13 +102,61 @@ void		get_sprite_data(t_all *node, t_help3 help3)
 	
 	i = -1;
 	find_spr_pos(node, -1, 0);
-	ft_sort(node, -1);
 	get_params(node, help3);
-	while (++i < node->num_sprts)
-	{
+	ft_sort(node, -1);
+	// while (++i < node->num_sprts)
+	// {
 		// printf("sprite[%d]\nhyp = %f\nx = %f\ny = %f\n", i, node->sprite[i].hyp\
 		// , node->sprite[i].x, node->sprite[i].y);
-		printf("%f\n", node->sprite[i].angle);
-		printf("%f\n", node->player->dir);
+		// printf("%f\n", node->sprite[i].angle);
+		// printf("%f\n", node->player->dir);
+	// }
+}
+
+int			get_sprite_color(t_all *node, int y, int i)
+{
+	int color;
+	int texture_x;
+	int texture_y;
+	
+	if (node->sprite[i].screen_size > 1)
+	{
+	 texture_y = y * (node->texture[4].height - 1) / (node->sprite[i].screen_size - 1);
+	 texture_x = (node->mapa->x - node->sprite[i].h_offset) *
+	 (node->texture[4].width - 1) / (node->sprite[i].screen_size - 1);
+	 color = *(node->texture[4].addr + (int)((int)(texture_y) *
+	  node->texture[4].size_line / sizeof(int) +
+	  texture_x * (node->texture[4].bpp / 8) / sizeof(int)));
+	 return (color);
+	}
+	return (0);
+}
+
+
+void		draw_sprite(t_all *node)
+{
+	int				y;
+	int				i;
+	unsigned int	color;
+
+	i = 0;
+	while (i < node->num_sprts)
+	{
+		if (node->sprite[i].screen_size > RES_Y)
+			node->sprite[i].screen_size = 0;
+		if (node->mapa->x >= node->sprite[i].h_offset && \
+		node->mapa->x <= node->sprite[i].h_offset + node->sprite[i].screen_size && \
+		node->sprite[i].hyp < node->player->i)
+		{
+			y = 0;
+			while (y < node->sprite[i].screen_size)
+			{
+				color = get_sprite_color(node, y, i);
+				if (color != 0x000000)
+					my_mlx_pixel_put(node->win, node->mapa->x, (int)(node->sprite[i].v_offset + y), color);
+				y++;
+			}
+		}
+		i++;
 	}
 }
