@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:55:16 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 03:16:44 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 03:37:40 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,19 @@ void		get_params(t_all *node, t_help3 help3)
 void		get_sprite_data(t_all *node, t_help3 help3)
 {
 	int	i;
-	
+
 	i = -1;
 	find_spr_pos(node, -1, 0);
 	get_params(node, help3);
 	ft_sort(node, -1);
-	// while (++i < node->num_sprts)
-	// {
+	while (++i < node->num_sprts)
+	{
 		// printf("sprite[%d]\nhyp = %f\nx = %f\ny = %f\n", i, node->sprite[i].hyp\
 		// , node->sprite[i].x, node->sprite[i].y);
+		printf("scr_size = %f\n", node->sprite[i].screen_size);
 		// printf("%f\n", node->sprite[i].angle);
 		// printf("%f\n", node->player->dir);
-	// }
+	}
 }
 
 int			get_sprite_color(t_all *node, int y, int i)
@@ -121,15 +122,14 @@ int			get_sprite_color(t_all *node, int y, int i)
 	
 	if (node->sprite[i].screen_size > 1)
 	{
-	 texture_y = y * (node->texture[4].height - 1) / (node->sprite[i].screen_size - 1);
-	 texture_x = (node->mapa->x - node->sprite[i].h_offset) *
-	 (node->texture[4].width - 1) / (node->sprite[i].screen_size - 1);
-	 color = *(node->texture[4].addr + (int)((int)(texture_y) *
-	  node->texture[4].size_line / sizeof(int) +
-	  texture_x * (node->texture[4].bpp / 8) / sizeof(int)));
-	 return (color);
+		texture_y = y * (node->texture[4].height - 1) / (node->sprite[i].screen_size - 1);
+		texture_x = (node->mapa->X - node->sprite[i].h_offset) *
+		(node->texture[4].width - 1) / (node->sprite[i].screen_size - 1);
+		color = *(node->texture[4].addr + (int)((int)(texture_y) *\
+		node->texture[4].size_line / sizeof(int) +\
+		texture_x * (node->texture[4].bpp / 8) / sizeof(int)));
 	}
-	return (0);
+	return (color);
 }
 
 
@@ -144,16 +144,16 @@ void		draw_sprite(t_all *node)
 	{
 		if (node->sprite[i].screen_size > RES_Y)
 			node->sprite[i].screen_size = 0;
-		if (node->mapa->x >= node->sprite[i].h_offset && \
-		node->mapa->x <= node->sprite[i].h_offset + node->sprite[i].screen_size && \
+		if (node->mapa->X >= node->sprite[i].h_offset && \
+		node->mapa->X <= node->sprite[i].h_offset + node->sprite[i].screen_size && \
 		node->sprite[i].hyp < node->player->i)
 		{
 			y = 0;
 			while (y < node->sprite[i].screen_size)
 			{
 				color = get_sprite_color(node, y, i);
-				if (color != 0x000000)
-					my_mlx_pixel_put(node->win, node->mapa->x, (int)(node->sprite[i].v_offset + y), color);
+				// if (color != 0x000000)
+				my_mlx_pixel_put(node->win, node->mapa->X, (int)(node->sprite[i].v_offset + y), color);
 				y++;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 03:27:07 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 03:29:46 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	ft_init_1(t_all *node)
 void	plr_init(t_all *node, t_player *plr, t_help3 *help3)
 {
 	*plr = *node->player;
-	printf("x = %f\ny = %f\n", plr->x, plr->y);
-
 	plr->l = plr->x * SCALE;
 	plr->f = plr->y * SCALE;
 	plr->start = node->player->dir - (M_PI_4);

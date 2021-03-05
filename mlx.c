@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 03:28:53 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 03:36:55 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	draw_vector(t_all *node)
 	t_help3		help3;
 
 	node->mapa->X = RES_X;
-	get_sprite_data(node, help3);
 	plr_init(node, &plr, &help3);
+	get_sprite_data(node, help3);
 	while (node->player->dir >= 2 * M_PI)
     	node->player->dir -= 2 * M_PI;
   	while (node->player->dir <= -2 * M_PI)
@@ -57,7 +57,7 @@ void	draw_vector(t_all *node)
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
 		draw_column(node, plr, help3);
-		// draw_sprite(node);
+		draw_sprite(node);
 		node->mapa->X--;
 		plr.start += STEP;
 	}
