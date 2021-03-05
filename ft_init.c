@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 03:29:46 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 23:12:51 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	node_init(t_all *node, int size)
 	node->player = malloc(sizeof(t_player));
 	node->help = malloc(sizeof(t_help));
 	node->help2 = malloc(sizeof(t_help2));
-	node->help2->x = 0.125;
+	// node->help2->x = 0.125;
 	node->lst_size = size;
 	node->mlx = mlx_init();
 	node->win = mlx_new_window(node->mlx, RES_X, RES_Y, "new window");
@@ -28,7 +28,7 @@ void	node_init(t_all *node, int size)
 	node->column->dist_to_pp = (RES_X/2)/tan(M_PI_4);
 	node->texture = malloc(sizeof(t_texture) * 5);
 	find_num_sprites(node);
-	printf("%d\n\n", node->num_sprts);
+	// printf("Amount of sprites = %d\n\n", node->num_sprts);
 	node->sprite = malloc(sizeof(t_sprite) * node->num_sprts);
 	ft_init_1(node);
 	init_textures(node);
@@ -51,8 +51,8 @@ void	plr_init(t_all *node, t_player *plr, t_help3 *help3)
 	*plr = *node->player;
 	plr->l = plr->x * SCALE;
 	plr->f = plr->y * SCALE;
-	plr->start = node->player->dir - (M_PI_4);
-	plr->end = node->player->dir + (M_PI_4);
+	plr->start = node->player->dir - M_PI_4;
+	plr->end = node->player->dir + M_PI_4;
 	node->mapa->x = 0;
 	help3->plrx = plr->x * SCALE;
 	help3->plry = plr->y * SCALE;

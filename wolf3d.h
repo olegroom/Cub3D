@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 03:27:30 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/05 23:55:39 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 1200
-# define RES_Y 920
+# define RES_X 1600
+# define RES_Y 1200
 # define STEP M_PI_2/RES_X
 # define SCALE 64
 # define PERS "NWSE"
@@ -29,10 +29,10 @@
 
 typedef struct	s_help3
 {
-	int x;
-	int y;
-	double plrx;
-	double plry;
+	int		x;
+	int		y;
+	double	plrx;
+	double	plry;
 }				t_help3;
 
 typedef struct	s_help2
@@ -56,7 +56,7 @@ typedef struct	s_mapa
 {
 	int		x;
 	int		y;
-	int		X;
+	int		l;
 }				t_mapa;
 
 typedef struct	s_player
