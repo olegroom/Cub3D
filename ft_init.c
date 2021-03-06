@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 23:12:51 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 02:59:19 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	node_init(t_all *node, int size)
 	node->column->dist_to_pp = (RES_X/2)/tan(M_PI_4);
 	node->texture = malloc(sizeof(t_texture) * 5);
 	find_num_sprites(node);
-	// printf("Amount of sprites = %d\n\n", node->num_sprts);
 	node->sprite = malloc(sizeof(t_sprite) * node->num_sprts);
 	ft_init_1(node);
 	init_textures(node);

@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 23:55:39 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 04:36:05 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 1600
-# define RES_Y 1200
+# define RES_X 800
+# define RES_Y 600
 # define STEP M_PI_2/RES_X
 # define SCALE 64
 # define PERS "NWSE"
@@ -131,6 +131,18 @@ typedef struct	s_sprite
 	
 }				t_sprite;
 
+typedef struct	s_bmp
+{
+	int			size;
+	char		*img;
+	int			color;
+	int			fd;
+	char		header[14];
+	char		info[40];
+	char		pad[3];
+}				t_bmp;
+
+
 typedef struct	s_all
 {
 	void		*mlx;
@@ -170,7 +182,7 @@ void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void		draw_column(t_all *node, t_player plr, t_help3 help3);
 void		ft_put_2d_map_draw(t_all *node);
-int			create_trgb(int t, int r, int g, int b);
+int			create_trgb(int r, int g, int b);
 void		draw_wall_side(t_all *node, t_help help, t_player plr);
 void		ft_init_1(t_all *node);
 int			ft_key(int key_code, t_all *node);

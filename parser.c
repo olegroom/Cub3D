@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 03:24:42 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 04:28:05 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	make_array_map(t_list **head, int size)
 	node_init(&node, size);
 	ft_fill(&node);
 	draw_map_2d(&node, size);
+	// ft_bmp(&node);
 }
 
 int		main(int argc, char **argv)
@@ -66,6 +67,7 @@ int		main(int argc, char **argv)
 	int		fd;
 	char	*line;
 	t_list	*head;
+	t_all	node;
 
 	head = NULL;
 	line = NULL;

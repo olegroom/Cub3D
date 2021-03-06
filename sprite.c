@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:55:16 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 23:55:14 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 04:36:59 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,14 +150,9 @@ void		draw_sprite(t_all *node)
 			while (y < node->sprite[i].screen_size)
 			{
 				color = get_sprite_color(node, y, i);
-				if (color != create_trgb(0, 152, 0, 136))
+				if (color != create_trgb(152, 0, 136))
 				{
-					// printf("mapa->l = %d\n", node->mapa->l);
-					// printf("v_draw = %d\ny = %d\n", (int)(node->sprite[i].v_offset + y), y);
 					my_mlx_pixel_put(node->image, node->mapa->l, (int)(node->sprite[i].v_offset + y), color);
-					// printf("i = %d\n", i);
-					// printf("Screen size sprite[%d] = %f\n", i, node->sprite[i].screen_size);
-		
 				}
 				y++;
 			}

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/05 22:14:42 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 04:41:27 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		draw_column(t_all *node, t_player plr, t_help3 help3)
 
 	double ind = 0;
 	while (help.x < help.max_x)
-		my_mlx_pixel_put(node->image, node->mapa->l, help.x++, create_trgb(0, node->ceiling->r, node->ceiling->g, node->ceiling->b));
+		my_mlx_pixel_put(node->image, node->mapa->l, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
 	{
 		if ((int)help3.y == (int)plr.y/SCALE && help3.x < plr.x/SCALE)
@@ -129,7 +129,7 @@ void		draw_column(t_all *node, t_player plr, t_help3 help3)
 		ind++;
 	}
 	while (help.y < RES_Y)
-		my_mlx_pixel_put(node->image, node->mapa->l, help.y++, create_trgb(0, node->floor->r, node->floor->g, node->floor->b));
+		my_mlx_pixel_put(node->image, node->mapa->l, help.y++, create_trgb(node->floor->r, node->floor->g, node->floor->b));
 }
 
 int		ft_key(int key_code, t_all *node)
@@ -140,8 +140,8 @@ int		ft_key(int key_code, t_all *node)
 		node->player->dir -= 0.05;
 	else if (key_code == 13)
 	{
-		if (node->map[(int)(node->player->y - sin(node->player->dir)/4)]\
-		[(int)(node->player->x + cos(node->player->dir)/4)] != '1')
+		if (node->map[(int)(node->player->y - sin(node->player->dir)/8)]\
+		[(int)(node->player->x + cos(node->player->dir)/8)] != '1')
 		{
 			node->player->x += cos(node->player->dir)/8;
 			node->player->y -= sin(node->player->dir)/8;
@@ -149,8 +149,8 @@ int		ft_key(int key_code, t_all *node)
 	}
 	else if (key_code == 1)
 	{
-		if (node->map[(int)(node->player->y + sin(node->player->dir)/4)]\
-		[(int)(node->player->x - cos(node->player->dir)/4)] != '1')
+		if (node->map[(int)(node->player->y + sin(node->player->dir)/8)]\
+		[(int)(node->player->x - cos(node->player->dir)/8)] != '1')
 		{
 			node->player->x -= cos(node->player->dir)/8;
 			node->player->y += sin(node->player->dir)/8;
@@ -159,7 +159,7 @@ int		ft_key(int key_code, t_all *node)
 	else if (key_code == 0)
 	{
 		if (node->map[(int)(node->player->y - cos(node->player->dir)/4)]\
-		[(int)(node->player->x - sin(node->player->dir)/4)] != '1')
+		[(int)(node->player->x - sin(node->player->dir)/12)] != '1')
 		{
 			node->player->x -= sin(node->player->dir)/12;
 			node->player->y -= cos(node->player->dir)/12;
@@ -168,7 +168,7 @@ int		ft_key(int key_code, t_all *node)
 	else if (key_code == 2)
 	{
 		if (node->map[(int)(node->player->y + cos(node->player->dir)/4)]\
-		[(int)(node->player->x + sin(node->player->dir)/4)] != '1')
+		[(int)(node->player->x + sin(node->player->dir)/12)] != '1')
 		{
 			node->player->x += sin(node->player->dir)/12;
 			node->player->y += cos(node->player->dir)/12;
