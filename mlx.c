@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 05:31:49 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 05:56:50 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		draw_image(t_all *node)
 	// ft_put_2d_map_draw(node);
 	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
 	mlx_destroy_image(node->mlx, node->image->img);
-
 	return (0);
 }
 
@@ -35,9 +34,8 @@ void	draw_vector(t_all *node)
 {
 	t_player	plr;
 	t_help3		help3;
+
 	node->mapa->l = RES_X - 1;
-
-
 	plr_init(node, &plr, &help3);
 	while (node->player->dir >= 2 * M_PI)
     	node->player->dir -= 2 * M_PI;
@@ -58,8 +56,6 @@ void	draw_vector(t_all *node)
 			node->player->i++;
 			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
-		// if (node->mapa->l == -1)
-		// 	node->mapa->l = RES_X - 1;
 		draw_column(node, plr, help3);
 		draw_sprite(node);
 		node->mapa->l--;
@@ -71,8 +67,9 @@ void	draw_vector(t_all *node)
 
 void		draw_column(t_all *node, t_player plr, t_help3 help3)
 {
-	t_help help;
-	int color;
+	t_help	help;
+	int		color;
+	int		ind;
 
 	node->column->height_pp = node->column->height_wall/\
 	(node->player->i * cos(plr.start - plr.dir)) * node->column->dist_to_pp;
@@ -82,7 +79,7 @@ void		draw_column(t_all *node, t_player plr, t_help3 help3)
 	help.y = node->column->l;
 	help.max_x = (RES_Y - node->column->height_pp)/2;
 
-	double ind = 0;
+	ind = 0;
 	while (help.x < help.max_x)
 		my_mlx_pixel_put(node->image, node->mapa->l, help.x++, create_trgb(node->ceiling->r, node->ceiling->g, node->ceiling->b));
 	while (node->column->k < node->column->l)
@@ -136,9 +133,9 @@ void		draw_column(t_all *node, t_player plr, t_help3 help3)
 int		ft_key(int key_code, t_all *node)
 {
 	if (key_code == 123)
-		node->player->dir += 0.05;
+		node->player->dir += 0.06;
 	else if (key_code == 124)
-		node->player->dir -= 0.05;
+		node->player->dir -= 0.06;
 	else if (key_code == 13)
 	{
 		if (node->map[(int)(node->player->y - sin(node->player->dir)/8)]\
@@ -159,7 +156,7 @@ int		ft_key(int key_code, t_all *node)
 	}
 	else if (key_code == 0)
 	{
-		if (node->map[(int)(node->player->y - cos(node->player->dir)/4)]\
+		if (node->map[(int)(node->player->y - cos(node->player->dir)/12)]\
 		[(int)(node->player->x - sin(node->player->dir)/12)] != '1')
 		{
 			node->player->x -= sin(node->player->dir)/12;
@@ -168,7 +165,7 @@ int		ft_key(int key_code, t_all *node)
 	}
 	else if (key_code == 2)
 	{
-		if (node->map[(int)(node->player->y + cos(node->player->dir)/4)]\
+		if (node->map[(int)(node->player->y + cos(node->player->dir)/12)]\
 		[(int)(node->player->x + sin(node->player->dir)/12)] != '1')
 		{
 			node->player->x += sin(node->player->dir)/12;
@@ -177,6 +174,5 @@ int		ft_key(int key_code, t_all *node)
 	}
 	else if (key_code == 53)
 		exit(0);
-	// printf("\n%d\n", key_code);
 	return (0);
 }

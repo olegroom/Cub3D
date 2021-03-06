@@ -6,15 +6,15 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 05:12:42 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 05:46:31 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 800
-# define RES_Y 600
+# define RES_X 1800
+# define RES_Y 1200
 # define STEP M_PI_2/RES_X
 # define SCALE 64
 # define PERS "NWSE"
@@ -133,13 +133,13 @@ typedef struct	s_sprite
 
 typedef struct	s_bmp
 {
-	int			size;
 	char		*img;
+	int			size;
 	int			color;
 	int			fd;
 	char		header[14];
-	char		info[40];
-	char		pad[3];
+	char		meta[40];
+	char		padding[3];
 }				t_bmp;
 
 

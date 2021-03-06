@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 05:31:39 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 05:57:21 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,8 @@ void	make_array_map(t_list **head, int size)
 	// node.image->img = mlx_new_image(node.mlx, RES_X, RES_Y);
 	// node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
 	// draw_vector(&node);
-	// ft_put_2d_map_draw(node);
 	// mlx_put_image_to_window(node.mlx, node.win, node.image->img, 0, 0);
-	ft_bmp(&node);
-
+	// ft_bmp(&node);
 	// mlx_destroy_image(node.mlx, node.image->img);
 }
 

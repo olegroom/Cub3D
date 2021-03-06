@@ -6,17 +6,17 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:55:41 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 05:28:27 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 05:50:24 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		set_header(char *header, int param, int i, int bit)
+void		set_header(char *header, int num, int i, int bit)
 {
-	while (++i < 4)
+	while (++i < 4 && bit <= 32)
 	{
-		header[i] = (unsigned char)(param >> bit);
+		header[i] = (num >> bit);
 		bit += 8;
 	}
 }
@@ -33,25 +33,24 @@ void		ft_header(t_all *node, t_bmp *bmp)
 	bmp->header[10] = 54;
 	i = -1;
 	while (++i < 40)
-		bmp->info[i] = 0;
-	bmp->info[0] = 40;
-	bmp->info[12] = 1;
-	bmp->info[14] = 24;
+		bmp->meta[i] = 0;
+	bmp->meta[0] = 40;
+	bmp->meta[12] = 1;
+	bmp->meta[14] = 24;
 	i = -1;
 	while (++i < 3)
-		bmp->pad[i] = 0;
+		bmp->padding[i] = 0;
 	set_header(&bmp->header[2], bmp->size, -1, 0);
-	set_header(&bmp->info[4], RES_X, -1, 0);
-	set_header(&bmp->info[8], RES_Y, -1, 0);
+	set_header(&bmp->meta[4], RES_X, -1, 0);
+	set_header(&bmp->meta[8], RES_Y, -1, 0);
 	write(bmp->fd, bmp->header, 14);	
-	write(bmp->fd, bmp->info, 40);	
+	write(bmp->fd, bmp->meta, 40);	
 }
 
 void		imgbmp(t_all *node, t_bmp *bmp)
 {
 	int i;
 	int j;
-	int x;
 	int y;
 
 	j = -1;
@@ -60,26 +59,25 @@ void		imgbmp(t_all *node, t_bmp *bmp)
 		i = -1;
 		while (++i < RES_X)
 		{
-			x = i;
 			y = RES_Y - 1 - j;
-			bmp->color = *(int*)(node->image->addr + (RES_X * y + x) * node->image->bpp / 8);
+			bmp->color = *(int*)(node->image->addr + (RES_X * y + i) * 4);
 			write(bmp->fd, &bmp->color, 3);
 		}
 		i = -1;
 		while (++i < (4 - (RES_X * 3) % 4) % 4)
-			write(bmp->fd, &bmp->pad, 1);
+			write(bmp->fd, &bmp->padding, 1);
 	}
 }
 
 void		ft_bmp(t_all *node)
 {
 	t_bmp	bmp;
-	int		img_size;
+	int		size_image;
 
-	img_size = RES_X * RES_Y * 3;
-	bmp.size = img_size + 54;
-	bmp.img = malloc(sizeof(char) * img_size);
-	ft_memset(bmp.img, 0, img_size);
+	size_image = RES_X * RES_Y * 3;
+	bmp.size = size_image + 54;
+	bmp.img = malloc(sizeof(char) * size_image);
+	ft_memset(bmp.img, 0, size_image);
 	bmp.fd = open("img.bmp", O_CREAT | O_WRONLY, S_IRWXU);
 	ft_header(node, &bmp);
 	imgbmp(node, &bmp);
