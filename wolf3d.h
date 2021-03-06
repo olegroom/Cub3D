@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 04:36:05 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 05:12:42 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
+void		ft_bmp(t_all *node);
 void		draw_sprite(t_all *node);
 void		find_num_sprites(t_all *node);
 void		get_sprite_data(t_all *node, t_help3 help3);

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 04:41:27 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/06 05:31:49 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		draw_image(t_all *node)
 	// ft_put_2d_map_draw(node);
 	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
 	mlx_destroy_image(node->mlx, node->image->img);
+
 	return (0);
 }
 
