@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/06 05:52:29 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/08 13:28:51 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,10 @@ lib:
 $(NAME):
 	gcc parser.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c libft.a $(MLX)
 	./a.out map.cub
+
+save:
+	gcc parser.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c libft.a $(MLX)
+	./a.out map.cub --save
 
 img:
 	gcc img_test.c libft.a $(MLX)

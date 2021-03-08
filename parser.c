@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 05:57:21 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 13:28:14 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ void	make_array_map(t_list **head, int size)
 	node_init(&node, size);
 	ft_fill(&node);
 	draw_map_2d(&node, size);
-	// node.image->img = mlx_new_image(node.mlx, RES_X, RES_Y);
-	// node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
-	// draw_vector(&node);
-	// mlx_put_image_to_window(node.mlx, node.win, node.image->img, 0, 0);
-	// ft_bmp(&node);
-	// mlx_destroy_image(node.mlx, node.image->img);
 }
 
 int		main(int argc, char **argv)
@@ -76,12 +70,12 @@ int		main(int argc, char **argv)
 
 	head = NULL;
 	line = NULL;
-	if (argc == 2)
-	{
-		fd = open(argv[1], O_RDONLY);
-		while (get_next_line(fd, &line))
-			ft_lstadd_back(&head, ft_lstnew(line));
+	fd = open(argv[1], O_RDONLY);
+	while (get_next_line(fd, &line))
 		ft_lstadd_back(&head, ft_lstnew(line));
+	ft_lstadd_back(&head, ft_lstnew(line));
+	if (argc == 2)
 		make_array_map(&head, ft_lstsize(head));
-	}
+	else if (argc == 3 && strcmp(argv[1], "--save"))
+		make_bmp(&head, ft_lstsize(head));
 }

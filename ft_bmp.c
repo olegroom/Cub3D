@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:55:41 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 05:50:24 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 13:32:09 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,28 @@ void		ft_bmp(t_all *node)
 	imgbmp(node, &bmp);
 	free(bmp.img);
 	close(bmp.fd);
+}
+
+void	make_bmp(t_list **head, int size)
+{
+	t_all	node;
+	t_list	*temp;
+	int		i;
+
+	temp = *head;
+	node.map = calloc(size + 1, sizeof(char*));
+	i = -1;
+	while (temp)
+	{
+		node.map[++i] = temp->content;
+		temp = temp->next;
+	}
+	node_init(&node, size);
+	ft_fill(&node);
+	node.image->img = mlx_new_image(node.mlx, RES_X, RES_Y);
+	node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
+	draw_vector(&node);
+	mlx_put_image_to_window(node.mlx, node.win, node.image->img, 0, 0);
+	ft_bmp(&node);
+	mlx_destroy_image(node.mlx, node.image->img);
 }
