@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 14:52:07 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 15:07:56 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int		endx(t_all *node)
 {
 	exit(0);
-	mlx_destroy_image(node->mlx, node->image);
 	return (0);
 }
 
