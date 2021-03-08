@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 15:07:56 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 15:37:55 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int		endx(t_all *node)
 
 void	draw_map_2d(t_all *node, int size)
 {
-	mlx_loop_hook(node->mlx, draw_image, node);
-	mlx_hook(node->win, 2, 1L << 0, ft_key, node);
-	mlx_hook(node->win, 17, 0, endx, &node);
-	mlx_loop(node->mlx);
+		mlx_loop_hook(node->mlx, draw_image, node);
+		mlx_hook(node->win, 2, 1L << 0, ft_key, node);
+		mlx_hook(node->win, 17, 0, endx, &node);
+		mlx_loop(node->mlx);
 }
 
 int		draw_image(t_all *node)

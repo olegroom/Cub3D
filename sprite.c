@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:55:16 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 04:36:59 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 15:55:57 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ void		get_params(t_all *node, t_help3 help3)
 	{
 		node->sprite[i].hyp = hypot(help3.plrx - (node->sprite[i].x * SCALE),\
 		 help3.plry - (node->sprite[i].y * SCALE));
-		// node->sprite[i].screen_size = RES_Y/node->sprite[i].hyp;
 		node->sprite[i].screen_size = SCALE/node->sprite[i].hyp * node->column->dist_to_pp;
-		node->sprite[i].v_offset = RES_Y/2 - node->sprite[i].screen_size/2;
 		node->sprite[i].angle = atan2(node->player->y - node->sprite[i].y, node->sprite[i].x - node->player->x);
 		node->sprite[i].del_angle = get_delta(start, node->sprite[i].angle);
 		node->sprite[i].v_offset = (RES_Y/2 - node->sprite[i].screen_size/2);
@@ -102,14 +100,6 @@ void		get_sprite_data(t_all *node, t_help3 help3)
 	find_spr_pos(node, -1, 0);
 	get_params(node, help3);
 	ft_sort(node, -1);
-	// while (++i < node->num_sprts)
-	// {
-	// 	printf("sprite[%d]\nhyp = %f\nx = %f\ny = %f\n", i, node->sprite[i].hyp\
-	// 	, node->sprite[i].x, node->sprite[i].y);
-	// 	printf("scr_size = %f\n", node->sprite[i].screen_size);
-	// 	printf("sprite angle = %f\n", node->sprite[i].angle);
-	// 	printf("plr_dir = %f\n", node->player->dir);
-	// }
 }
 
 int			get_sprite_color(t_all *node, int y, int i)
@@ -151,9 +141,7 @@ void		draw_sprite(t_all *node)
 			{
 				color = get_sprite_color(node, y, i);
 				if (color != create_trgb(152, 0, 136))
-				{
 					my_mlx_pixel_put(node->image, node->mapa->l, (int)(node->sprite[i].v_offset + y), color);
-				}
 				y++;
 			}
 		}
