@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 02:59:19 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 14:42:19 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	node_init(t_all *node, int size)
 	node->player = malloc(sizeof(t_player));
 	node->help = malloc(sizeof(t_help));
 	node->help2 = malloc(sizeof(t_help2));
-	// node->help2->x = 0.125;
 	node->lst_size = size;
 	node->mlx = mlx_init();
 	node->win = mlx_new_window(node->mlx, RES_X, RES_Y, "new window");

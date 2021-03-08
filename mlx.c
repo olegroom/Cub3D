@@ -6,16 +6,24 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/06 05:56:50 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 14:52:07 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
+int		endx(t_all *node)
+{
+	exit(0);
+	mlx_destroy_image(node->mlx, node->image);
+	return (0);
+}
+
 void	draw_map_2d(t_all *node, int size)
 {
 	mlx_loop_hook(node->mlx, draw_image, node);
 	mlx_hook(node->win, 2, 1L << 0, ft_key, node);
+	mlx_hook(node->win, 17, 0, endx, &node);
 	mlx_loop(node->mlx);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 13:28:14 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 14:48:37 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,12 @@ int		main(int argc, char **argv)
 	head = NULL;
 	line = NULL;
 	fd = open(argv[1], O_RDONLY);
+	
 	while (get_next_line(fd, &line))
 		ft_lstadd_back(&head, ft_lstnew(line));
 	ft_lstadd_back(&head, ft_lstnew(line));
 	if (argc == 2)
 		make_array_map(&head, ft_lstsize(head));
-	else if (argc == 3 && strcmp(argv[1], "--save"))
+	else if (argc == 3 && ft_strcmp(argv[2], "--save"))
 		make_bmp(&head, ft_lstsize(head));
 }
