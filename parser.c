@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 16:19:45 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 17:08:17 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	make_array_map(t_list **head, int size)
 	t_list	*temp;
 	t_all	node;
 	int		i;
-	node.mlx = mlx_init();
-	node.win = mlx_new_window(node.mlx, RES_X, RES_Y, "new window");
 	
 	temp = *head;
 	node.map = calloc(size + 1, sizeof(char*));
@@ -71,22 +69,25 @@ int		main(int argc, char **argv)
 
 	head = NULL;
 	line = NULL;
-	fd = open(argv[1], O_RDONLY);
-	while (get_next_line(fd, &line))
-	{
-		if (ft_strcmp(line, "") == 0)
-		{
-			ft_lstadd_back(&head, ft_lstnew(line));
-			break ;
-		}
-		else if (ft_strcmp(line, ""))
-			continue ;
-	}
+	if ((fd = open(argv[1], O_RDONLY)) != 0)
+		return (error_found("File wasn't opened", 19));
 	while (get_next_line(fd, &line))
 		ft_lstadd_back(&head, ft_lstnew(line));
 	ft_lstadd_back(&head, ft_lstnew(line));
+	close(fd);
 	if (argc == 2)
 		make_array_map(&head, ft_lstsize(head));
 	else if (argc == 3 && ft_strcmp(argv[2], "--save"))
 		make_bmp(&head, ft_lstsize(head));
+}
+
+int		error_found(char *s1, int i)
+{
+	int j;
+	
+	j = 0;
+	while (j < i)
+		write(1, &s1[j++], 1);
+	write(1, "\n", 1);
+	return (1);
 }

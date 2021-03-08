@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 15:49:00 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/08 16:54:51 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,12 @@ typedef struct	s_bmp
 	char		padding[3];
 }				t_bmp;
 
+typedef struct	s_parser
+{
+	int x;
+	int y;
+}				t_parser;
+
 
 typedef struct	s_all
 {
@@ -162,6 +168,7 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
+int			error_found(char *s1, int i);
 int			endx(t_all *node);
 int			ft_strcmp(char *s1, char *s2);
 void		ft_fill(t_all *node);
