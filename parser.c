@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/18 18:01:11 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/18 19:24:08 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	make_array_map(t_list **head, int size)
 	t_list	*temp;
 	t_all	node;
 	int		i;
-	
+
+	node.lst_size = size;
 	temp = *head;
 	node.map = calloc(size + 1, sizeof(char*));
 	i = -1;
@@ -58,9 +59,28 @@ void	make_array_map(t_list **head, int size)
 		node.map[++i] = temp->content;
 		temp = temp->next;
 	}
-	node_init(&node, size);
+	int x, y;
+	mlx_get_screen_size(node.mlx, &x, &y);
+	printf("x = %d\ny = %d\n", x, y);
+	pars_data(&node);
+	node_init(&node);
 	ft_fill(&node);
 	draw_map_2d(&node, size);
+}
+
+void	pars_data(t_all *node)
+{
+	node->mapa->y = 0;
+	node->mapa->x = 0;
+	printf("node->mapa->y = %d\nnode->lst_size = %d\n", node->mapa->y, node->lst_size);
+	while (node->mapa->y < node->lst_size)
+	{
+		if (ft_strchr("RNSWEFC", node->map[node->mapa->y][node->mapa->x]))
+		{
+			
+		}
+		node->mapa->y++;
+	}
 }
 
 int		main(int argc, char **argv)
@@ -71,6 +91,8 @@ int		main(int argc, char **argv)
 
 	head = NULL;
 	line = NULL;
+	if (check_extension(argv) == 0)
+		return (0);
 	if ((fd = open(argv[1], O_RDONLY)) == 0)
 		return (error_found("File wasn't opened"));
 	while (get_next_line(fd, &line))
@@ -94,5 +116,16 @@ int		error_found(char *s1)
 		write(1, &s1[j++], 1);
 	write(1, "\n", 1);
 	exit(0);
-	return (1);
+	return (0);
+}
+
+int		check_extension(char **argv)
+{
+	int i;
+
+	i = ft_strlen(argv[1]) - 1;
+	if (argv[1][i] == 'b' && argv[1][i - 1] == 'u' && argv[1][i - 2] == 'c' && argv[1][i - 3] == '.')
+		return (1);
+	else
+		return (error_found("Wrong extension. Need to be .cub"));
 }

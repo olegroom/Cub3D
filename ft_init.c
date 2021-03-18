@@ -6,19 +6,18 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 15:58:14 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/18 19:22:45 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	node_init(t_all *node, int size)
+void	node_init(t_all *node)
 {
 	node->mapa = malloc(sizeof(t_mapa));
 	node->player = malloc(sizeof(t_player));
 	node->help = malloc(sizeof(t_help));
 	node->help2 = malloc(sizeof(t_help2));
-	node->lst_size = size;
 	node->mlx = mlx_init();
 	node->win = mlx_new_window(node->mlx, RES_X, RES_Y, "new window");
 	node->image = malloc(sizeof(t_image));

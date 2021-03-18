@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/18 17:45:44 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/18 19:22:32 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ typedef struct	s_parser
 
 typedef struct	s_all
 {
+	int			res_x;
+	int			res_y;
 	void		*mlx;
 	void		*win;
 	char		**map;
@@ -168,6 +170,8 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
+void		pars_data(t_all *node);
+int			check_extension(char **argv);
 int			error_found(char *s1);
 int			endx(t_all *node);
 int			ft_strcmp(char *s1, char *s2);
@@ -188,7 +192,7 @@ void		ft_putchar(char c);
 void		draw_map_2d(t_all *node, int size);
 int			draw_image(t_all *node);
 void		draw_person(t_all *node);
-void		node_init(t_all *node, int size);
+void		node_init(t_all *node);
 void		revert_x_y(t_all *node);
 void		draw_square(t_all *node, int color);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);

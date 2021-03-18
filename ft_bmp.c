@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:55:41 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 13:32:09 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/18 19:23:29 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,15 @@ void	make_bmp(t_list **head, int size)
 
 	temp = *head;
 	node.map = calloc(size + 1, sizeof(char*));
+	node.lst_size = size;
 	i = -1;
 	while (temp)
 	{
 		node.map[++i] = temp->content;
 		temp = temp->next;
 	}
-	node_init(&node, size);
+
+	node_init(&node);
 	ft_fill(&node);
 	node.image->img = mlx_new_image(node.mlx, RES_X, RES_Y);
 	node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
