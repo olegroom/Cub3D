@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 17:08:17 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/18 18:01:11 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_fill(t_all *node)
 		{
 			if (ft_strchr(PERS, node->map[node->mapa->x][node->mapa->y]))
 			{
+				if (node->player->x != 0 && node->player->y != 0)
+					error_found("More than 1 character");
 				if (node->map[node->mapa->x][node->mapa->y] == 'S')
 					node->player->dir = M_PI * 1.5;
 				else if (node->map[node->mapa->x][node->mapa->y] == 'W')
@@ -69,8 +71,8 @@ int		main(int argc, char **argv)
 
 	head = NULL;
 	line = NULL;
-	if ((fd = open(argv[1], O_RDONLY)) != 0)
-		return (error_found("File wasn't opened", 19));
+	if ((fd = open(argv[1], O_RDONLY)) == 0)
+		return (error_found("File wasn't opened"));
 	while (get_next_line(fd, &line))
 		ft_lstadd_back(&head, ft_lstnew(line));
 	ft_lstadd_back(&head, ft_lstnew(line));
@@ -81,13 +83,16 @@ int		main(int argc, char **argv)
 		make_bmp(&head, ft_lstsize(head));
 }
 
-int		error_found(char *s1, int i)
+int		error_found(char *s1)
 {
+	int i;
 	int j;
-	
+
+	i = ft_strlen(s1);
 	j = 0;
 	while (j < i)
 		write(1, &s1[j++], 1);
 	write(1, "\n", 1);
+	exit(0);
 	return (1);
 }

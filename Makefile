@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/08 14:50:26 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/18 17:58:55 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ LIBFT = ./libs/libft/libft.a
 
 MINILIBX = ./libs/libft/libmlx.dylib
 
-MLX = -lmlx
+MLX = -lmlx -framework OpenGL -framework Appkit
 
-MLX_N = libmlx.dylib -framework OpenGL -framework Appkit
+MLX_N = libmlx.dylib
 
 all: $(NAME)
 
@@ -39,6 +39,10 @@ save:
 	gcc parser.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c libft.a $(MLX) $(MLX_N)
 	./a.out map.cub --save
 
-img:
-	gcc img_test.c libft.a $(MLX)
-	./a.out
+clean:
+
+fclean:
+
+re:
+
+bonus:

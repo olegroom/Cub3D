@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 15:37:55 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/18 17:29:13 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	draw_vector(t_all *node)
 			plr.x += cos(plr.start);
 			plr.y -= sin(plr.start);
 			node->player->i++;
-			// my_mlx_pixel_put(node->image, plr.x, plr.y, 0xF05500);
 		}
 		draw_column(node, plr, help3);
 		draw_sprite(node);

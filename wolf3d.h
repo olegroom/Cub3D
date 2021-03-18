@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 16:54:51 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/18 17:45:44 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
-int			error_found(char *s1, int i);
+int			error_found(char *s1);
 int			endx(t_all *node);
 int			ft_strcmp(char *s1, char *s2);
 void		ft_fill(t_all *node);
