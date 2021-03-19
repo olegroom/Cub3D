@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:55:41 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/18 19:23:29 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/19 20:16:55 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void		ft_header(t_all *node, t_bmp *bmp)
 	while (++i < 3)
 		bmp->padding[i] = 0;
 	set_header(&bmp->header[2], bmp->size, -1, 0);
-	set_header(&bmp->meta[4], RES_X, -1, 0);
-	set_header(&bmp->meta[8], RES_Y, -1, 0);
+	set_header(&bmp->meta[4], node->res_x, -1, 0);
+	set_header(&bmp->meta[8], node->res_y, -1, 0);
 	write(bmp->fd, bmp->header, 14);	
 	write(bmp->fd, bmp->meta, 40);	
 }
@@ -54,17 +54,17 @@ void		imgbmp(t_all *node, t_bmp *bmp)
 	int y;
 
 	j = -1;
-	while (++j < RES_Y)
+	while (++j < node->res_y)
 	{
 		i = -1;
-		while (++i < RES_X)
+		while (++i < node->res_x)
 		{
-			y = RES_Y - 1 - j;
-			bmp->color = *(int*)(node->image->addr + (RES_X * y + i) * 4);
+			y = node->res_y - 1 - j;
+			bmp->color = *(int*)(node->image->addr + (node->res_x * y + i) * 4);
 			write(bmp->fd, &bmp->color, 3);
 		}
 		i = -1;
-		while (++i < (4 - (RES_X * 3) % 4) % 4)
+		while (++i < (4 - (node->res_x * 3) % 4) % 4)
 			write(bmp->fd, &bmp->padding, 1);
 	}
 }
@@ -74,7 +74,7 @@ void		ft_bmp(t_all *node)
 	t_bmp	bmp;
 	int		size_image;
 
-	size_image = RES_X * RES_Y * 3;
+	size_image = node->res_x * node->res_y * 3;
 	bmp.size = size_image + 54;
 	bmp.img = malloc(sizeof(char) * size_image);
 	ft_memset(bmp.img, 0, size_image);
@@ -103,8 +103,8 @@ void	make_bmp(t_list **head, int size)
 
 	node_init(&node);
 	ft_fill(&node);
-	node.image->img = mlx_new_image(node.mlx, RES_X, RES_Y);
-	node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
+	// node.image->img = mlx_new_image(node.mlx, node.res_x, node.res_y);
+	// node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
 	draw_vector(&node);
 	mlx_put_image_to_window(node.mlx, node.win, node.image->img, 0, 0);
 	ft_bmp(&node);

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:46:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 14:49:19 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/19 20:39:49 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_put_2d_map_draw(t_all *node)
 		while (node->map[node->mapa->x][node->mapa->y] != '\0')
 		{
 			if (node->map[node->mapa->x][node->mapa->y] == '1')
-				draw_square(node, 0xFFFFFF);
+				draw_square(node, 0xFF29B9);
 			node->mapa->y++;
 		}
 		node->mapa->x++;
@@ -32,15 +32,15 @@ void	ft_put_2d_map_draw(t_all *node)
 
 void	draw_square(t_all *node, int color)
 {
-	node->help->x = node->mapa->y * SCALE;
-	node->help->y = node->mapa->x * SCALE;
-	node->help->y_scale = node->help->y + SCALE;
-	node->help->x_scale = node->help->x + SCALE;
+	node->help->x = node->mapa->y * SCALE_MAP;
+	node->help->y = node->mapa->x * SCALE_MAP;
+	node->help->y_scale = node->help->y + SCALE_MAP;
+	node->help->x_scale = node->help->x + SCALE_MAP;
 	while (node->help->y < node->help->y_scale - 1)
 	{
 		while (node->help->x < node->help->x_scale - 1)
-			my_mlx_pixel_put(node->image, node->help->x++, node->help->y, color);
-		node->help->x -= SCALE - 1;
+			my_mlx_pixel_put(node, node->help->x++, node->help->y, color);
+		node->help->x -= SCALE_MAP - 1;
 		node->help->y++;
 	}
 }

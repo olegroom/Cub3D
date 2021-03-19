@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:55:16 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/08 15:55:57 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/19 20:28:34 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void		get_params(t_all *node, t_help3 help3)
 		node->sprite[i].screen_size = SCALE/node->sprite[i].hyp * node->column->dist_to_pp;
 		node->sprite[i].angle = atan2(node->player->y - node->sprite[i].y, node->sprite[i].x - node->player->x);
 		node->sprite[i].del_angle = get_delta(start, node->sprite[i].angle);
-		node->sprite[i].v_offset = (RES_Y/2 - node->sprite[i].screen_size/2);
-		node->sprite[i].h_offset = (node->sprite[i].del_angle/(M_PI_2/RES_X) - node->sprite[i].screen_size/2);
+		node->sprite[i].v_offset = (node->res_y/2 - node->sprite[i].screen_size/2);
+		node->sprite[i].h_offset = (node->sprite[i].del_angle/(M_PI_2/node->res_x) - node->sprite[i].screen_size/2);
 	}
 
 }
@@ -130,7 +130,7 @@ void		draw_sprite(t_all *node)
 	i = 0;
 	while (i < node->num_sprts)
 	{
-		if (node->sprite[i].screen_size > RES_Y)
+		if (node->sprite[i].screen_size > node->res_y)
 			node->sprite[i].screen_size = 0;
 		if (node->mapa->l >= node->sprite[i].h_offset && \
 		node->mapa->l <= (node->sprite[i].h_offset + node->sprite[i].screen_size) && \
@@ -141,7 +141,7 @@ void		draw_sprite(t_all *node)
 			{
 				color = get_sprite_color(node, y, i);
 				if (color != create_trgb(152, 0, 136))
-					my_mlx_pixel_put(node->image, node->mapa->l, (int)(node->sprite[i].v_offset + y), color);
+					my_mlx_pixel_put(node, node->mapa->l, (int)(node->sprite[i].v_offset + y), color);
 				y++;
 			}
 		}

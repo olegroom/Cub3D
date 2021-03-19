@@ -6,17 +6,18 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/18 19:22:32 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/19 20:39:02 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define RES_X 1800
-# define RES_Y 1200
-# define STEP M_PI_2/RES_X
+// # define RES_X 1800
+// # define RES_Y 1200
+// # define STEP M_PI_2/RES_X
 # define SCALE 64
+# define SCALE_MAP 10
 # define PERS "NWSE"
 
 # include <stdio.h>
@@ -24,6 +25,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include <string.h>
 # include "libs/libft/libft.h"
 # include "libs/minilibx/mlx.h"
 
@@ -151,6 +153,7 @@ typedef struct	s_parser
 
 typedef struct	s_all
 {
+	double		step;
 	int			res_x;
 	int			res_y;
 	void		*mlx;
@@ -195,7 +198,7 @@ void		draw_person(t_all *node);
 void		node_init(t_all *node);
 void		revert_x_y(t_all *node);
 void		draw_square(t_all *node, int color);
-void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
+void		my_mlx_pixel_put(t_all *node, int x, int y, int color);
 void		draw_column(t_all *node, t_player plr, t_help3 help3);
 void		ft_put_2d_map_draw(t_all *node);
 int			create_trgb(int r, int g, int b);

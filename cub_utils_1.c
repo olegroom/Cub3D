@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:50:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/03 21:51:25 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/19 20:33:17 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	revert_x_y(t_all *node)
 	node->mapa->y = temp;
 }
 
-void	my_mlx_pixel_put(t_image *img, int x, int y, int color)
+void	my_mlx_pixel_put(t_all *node, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x >= RES_X || y < 0 || y >= RES_Y)
+	if (x < 0 || y < 0 || x >= node->res_x || y >= node->res_y)
 		return ;
-	dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
+	dst = node->image->addr + (y * node->image->size_line + x * (node->image->bpp / 8));
 	*(unsigned int*)dst = color;
 }

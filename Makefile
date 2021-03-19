@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/18 18:21:48 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/19 20:45:04 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,11 @@ lib:
 	cp $(LIBFT) .
 
 $(NAME):
-	gcc parser.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c libft.a $(MLX) $(MLX_N)
+	gcc parser.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c main_parser.c libft.a $(MLX) $(MLX_N)
 	./a.out map.cub
 
 save:
-	gcc parser.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c libft.a $(MLX) $(MLX_N)
+	gcc parser.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c main_parser.c libft.a $(MLX) $(MLX_N)
 	./a.out map.cub --save
 
 clean:
