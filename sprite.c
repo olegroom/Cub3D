@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:55:16 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/19 20:28:34 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/20 20:00:55 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ double		get_delta(double start, double spr_angle)
 	return (delta_angle);
 }
 
-void		get_params(t_all *node, t_help3 help3)
+static void	get_params(t_all *node, t_help3 help3)
 {
 	int		i;
 	double	start;

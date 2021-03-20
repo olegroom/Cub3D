@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/19 23:05:38 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/20 21:18:36 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ void	make_array_map(t_list **head, int size)
 	}
 	int x, y;
 	mlx_get_screen_size(node.mlx, &x, &y);
-	printf("x = %d\ny = %d\n", x, y);
-	// pars_data(&node);
+	pars_data(&node);
+	if (node.res_x > x)
+		node.res_x = x;
+	if (node.res_y > y)
+		node.res_y = y;
 	node_init(&node);
 	ft_fill(&node);
 	draw_map_2d(&node, size);

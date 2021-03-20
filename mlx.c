@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/19 23:21:21 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/20 19:57:22 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int		endx(t_all *node)
 
 void	draw_map_2d(t_all *node, int size)
 {
-		mlx_loop_hook(node->mlx, draw_image, node);
-		mlx_hook(node->win, 2, 1L << 0, ft_key, node);
-		mlx_hook(node->win, 17, 0, endx, &node);
-		mlx_loop(node->mlx);
+	mlx_loop_hook(node->mlx, draw_image, node);
+	mlx_hook(node->win, 2, 1L << 0, ft_key, node);
+	mlx_hook(node->win, 17, 0, endx, node);
+	mlx_loop(node->mlx);
 }
 
 int		draw_image(t_all *node)
@@ -31,7 +31,6 @@ int		draw_image(t_all *node)
 	node->image->img = mlx_new_image(node->mlx, node->res_x, node->res_y);
 	node->image->addr = mlx_get_data_addr(node->image->img, &node->image->bpp, &node->image->size_line, &node->image->endian);
 	draw_vector(node);
-	// ft_put_2d_map_draw(node);
 	mlx_put_image_to_window(node->mlx, node->win, node->image->img, 0, 0);
 	mlx_destroy_image(node->mlx, node->image->img);
 	return (0);

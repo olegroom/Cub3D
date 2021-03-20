@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/19 20:36:00 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/20 22:27:09 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	node_init(t_all *node)
 {
-	node->res_x = 1060;
-	node->res_y = 740;
 	node->mapa = malloc(sizeof(t_mapa));
 	node->player = malloc(sizeof(t_player));
 	node->help = malloc(sizeof(t_help));
@@ -35,14 +33,13 @@ void	node_init(t_all *node)
 
 void	ft_init_1(t_all *node)
 {
-	node->ceiling = malloc(sizeof(t_color));
-	node->ceiling->r = 230;
-	node->ceiling->b = 255;
-	node->ceiling->g = 230;
-	node->floor = malloc(sizeof(t_color));
-	node->floor->r = 0;
-	node->floor->b = 0;
-	node->floor->g = 200;
+	// node->ceiling->r = 230;
+	// node->ceiling->b = 255;
+	// node->ceiling->g = 230;
+	// node->floor = malloc(sizeof(t_color));
+	// node->floor->r = 0;
+	// node->floor->b = 0;
+	// node->floor->g = 200;
 	node->step = M_PI_2/node->res_x;
 }
 
