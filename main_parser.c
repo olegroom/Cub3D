@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 04:23:20 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 04:42:56 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,16 @@ static int	go_pars_map(t_all *node, int y)
 		if (y + 1 != node->lst_size)
 			while (node->map[y + 1][next_x] != '\0')
 				next_x++;
-		while (--curr_x <= next_x)
+		if (curr_x < next_x)
 		{
-			if (node->map[y + 1][curr_x] == '0')
-				error_found("Invalid map");
-			curr_x += 2;
-		} 
+			curr_x--;
+			while (curr_x <= next_x)
+			{
+				if (node->map[y + 1][curr_x] == '0')
+					error_found("Invalid map");
+				curr_x ++;
+			}
+		}
 		y++;
 	}
 	return (1);
