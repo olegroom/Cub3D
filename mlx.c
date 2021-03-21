@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 20:12:49 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 20:16:00 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,50 +93,50 @@ void	draw_column(t_all *node, t_player plr, t_help3 help3)
 	{
 		if ((int)help3.y == (int)plr.y / SCALE && help3.x < plr.x / SCALE)
 		{
-			node->texture[0].step_x = (int)plr.y % 64;
-			node->texture[0].step_y = 64 / node->column->height_pp;
-			color = *(node->texture[0].addr + (int)((int)(node->texture[0].\
-			step_y * ind) * node->texture[0].width + node->texture[0].step_x));
+			node->te[0].step_x = (int)plr.y % 64;
+			node->te[0].step_y = 64 / node->column->height_pp;
+			color = *(node->te[0].addr + (int)((int)(node->te[0].\
+			step_y * ind) * node->te[0].width + node->te[0].step_x));
 			node->help2->i = 0;
 		}
 		else if ((int)help3.y == (int)plr.y / SCALE && help3.x > plr.x / SCALE)
 		{
-			node->texture[1].step_x = (int)plr.y % 64;
-			node->texture[1].step_y = 64 / node->column->height_pp;
-			color = *(node->texture[1].addr + (int)((int)(node->texture[1].\
-			step_y * ind) * node->texture[1].width + node->texture[1].step_x));
+			node->te[1].step_x = (int)plr.y % 64;
+			node->te[1].step_y = 64 / node->column->height_pp;
+			color = *(node->te[1].addr + (int)((int)(node->te[1].\
+			step_y * ind) * node->te[1].width + node->te[1].step_x));
 			node->help2->i = 1;
 		}
 		else if (help3.y > plr.y / SCALE && (int)help3.x == (int)plr.x / SCALE)
 		{
-			node->texture[2].step_x = (int)plr.x % 64;
-			node->texture[2].step_y = 64 / node->column->height_pp;
-			color = *(node->texture[2].addr + (int)((int)(node->texture[2].\
-			step_y * ind) * node->texture[2].width + node->texture[2].step_x));
+			node->te[2].step_x = (int)plr.x % 64;
+			node->te[2].step_y = 64 / node->column->height_pp;
+			color = *(node->te[2].addr + (int)((int)(node->te[2].\
+			step_y * ind) * node->te[2].width + node->te[2].step_x));
 			node->help2->i = 2;
 		}
 		else if (help3.y < plr.y / SCALE && (int)help3.x == (int)plr.x / SCALE)
 		{
-			node->texture[3].step_x = (int)plr.x % 64;
-			node->texture[3].step_y = 64 / node->column->height_pp;
-			color = *(node->texture[3].addr + (int)((int)(node->texture[3].\
-			step_y * ind) * node->texture[3].width + node->texture[3].step_x));
+			node->te[3].step_x = (int)plr.x % 64;
+			node->te[3].step_y = 64 / node->column->height_pp;
+			color = *(node->te[3].addr + (int)((int)(node->te[3].\
+			step_y * ind) * node->te[3].width + node->te[3].step_x));
 			node->help2->i = 3;
 		}
 		else
 		{
 			if (node->help2->i == 0)
-				color = *(node->texture[0].addr + (int)((int)(node->texture[0].\
-				step_y * ind) * node->texture[0].width + node->texture[0].step_x));
+				color = *(node->te[0].addr + (int)((int)(node->te[0].\
+				step_y * ind) * node->te[0].width + node->te[0].step_x));
 			else if (node->help2->i == 1)
-				color = *(node->texture[1].addr + (int)((int)(node->texture[1].\
-				step_y * ind) * node->texture[1].width + node->texture[1].step_x));
+				color = *(node->te[1].addr + (int)((int)(node->te[1].\
+				step_y * ind) * node->te[1].width + node->te[1].step_x));
 			else if (node->help2->i == 2)
-				color = *(node->texture[2].addr + (int)((int)(node->texture[2].\
-				step_y * ind) * node->texture[2].width + node->texture[2].step_x));
+				color = *(node->te[2].addr + (int)((int)(node->te[2].\
+				step_y * ind) * node->te[2].width + node->te[2].step_x));
 			else if (node->help2->i == 3)
-				color = *(node->texture[3].addr + (int)((int)(node->texture[3].\
-				step_y * ind) * node->texture[3].width + node->texture[3].step_x));
+				color = *(node->te[3].addr + (int)((int)(node->te[3].\
+				step_y * ind) * node->te[3].width + node->te[3].step_x));
 		}
 		my_mlx_pixel_put(node, node->mapa->l, node->column->k++, color);
 		ind++;
@@ -154,38 +154,38 @@ int		ft_key(int key_code, t_all *node)
 		node->player->dir -= 0.06;
 	else if (key_code == 13)
 	{
-		if (node->map[(int)(node->player->y - sin(node->player->dir)/8)]\
-		[(int)(node->player->x + cos(node->player->dir)/8)] != '1')
+		if (node->map[(int)(node->player->y - sin(node->player->dir) / 8)]\
+		[(int)(node->player->x + cos(node->player->dir) / 8)] != '1')
 		{
-			node->player->x += cos(node->player->dir)/8;
-			node->player->y -= sin(node->player->dir)/8;
+			node->player->x += cos(node->player->dir) / 8;
+			node->player->y -= sin(node->player->dir) / 8;
 		}
 	}
 	else if (key_code == 1)
 	{
-		if (node->map[(int)(node->player->y + sin(node->player->dir)/8)]\
-		[(int)(node->player->x - cos(node->player->dir)/8)] != '1')
+		if (node->map[(int)(node->player->y + sin(node->player->dir) / 8)]\
+		[(int)(node->player->x - cos(node->player->dir) / 8)] != '1')
 		{
-			node->player->x -= cos(node->player->dir)/8;
-			node->player->y += sin(node->player->dir)/8;
+			node->player->x -= cos(node->player->dir) / 8;
+			node->player->y += sin(node->player->dir) / 8;
 		}
 	}
 	else if (key_code == 0)
 	{
-		if (node->map[(int)(node->player->y - cos(node->player->dir)/12)]\
-		[(int)(node->player->x - sin(node->player->dir)/12)] != '1')
+		if (node->map[(int)(node->player->y - cos(node->player->dir) / 12)]\
+		[(int)(node->player->x - sin(node->player->dir) / 12)] != '1')
 		{
-			node->player->x -= sin(node->player->dir)/12;
-			node->player->y -= cos(node->player->dir)/12;
+			node->player->x -= sin(node->player->dir) / 12;
+			node->player->y -= cos(node->player->dir) / 12;
 		}
 	}
 	else if (key_code == 2)
 	{
-		if (node->map[(int)(node->player->y + cos(node->player->dir)/12)]\
-		[(int)(node->player->x + sin(node->player->dir)/12)] != '1')
+		if (node->map[(int)(node->player->y + cos(node->player->dir) / 12)]\
+		[(int)(node->player->x + sin(node->player->dir) / 12)] != '1')
 		{
-			node->player->x += sin(node->player->dir)/12;
-			node->player->y += cos(node->player->dir)/12;
+			node->player->x += sin(node->player->dir) / 12;
+			node->player->y += cos(node->player->dir) / 12;
 		}
 	}
 	else if (key_code == 53)

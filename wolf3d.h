@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 20:05:46 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 20:13:23 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ typedef struct	s_all
 	t_sprite	*sprite;
 	t_help		*help;
 	t_help2		*help2;
-	t_texture	*texture;
+	t_texture	*te;
 	t_image		*image;
 	t_player	*player;
 	t_column	*column;

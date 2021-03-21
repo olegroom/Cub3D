@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:43:49 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 19:49:49 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 20:14:48 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int			get_sprite_color(t_all *node, int y, int i)
 
 	if (node->sprite[i].screen_size > 1)
 	{
-		texture_y = y * (node->texture[4].height - 1) \
+		texture_y = y * (node->te[4].height - 1) \
 		/ (node->sprite[i].screen_size - 1);
 		texture_x = (node->mapa->l - node->sprite[i].h_offset) *
-		(node->texture[4].width - 1) / (node->sprite[i].screen_size - 1);
-		color = *(node->texture[4].addr + (int)((int)(texture_y) *\
-		node->texture[4].size_line / sizeof(int) +\
-		texture_x * (node->texture[4].bpp / 8) / sizeof(int)));
+		(node->te[4].width - 1) / (node->sprite[i].screen_size - 1);
+		color = *(node->te[4].addr + (int)((int)(texture_y) *\
+		node->te[4].size_line / sizeof(int) +\
+		texture_x * (node->te[4].bpp / 8) / sizeof(int)));
 	}
 	return (color);
 }
