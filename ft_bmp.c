@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:55:41 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/19 20:16:55 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 18:53:27 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,24 +87,30 @@ void		ft_bmp(t_all *node)
 
 void	make_bmp(t_list **head, int size)
 {
-	t_all	node;
 	t_list	*temp;
+	t_all	node;
 	int		i;
+	t_help	help;
 
+	node.lst_size = size;
 	temp = *head;
 	node.map = calloc(size + 1, sizeof(char*));
-	node.lst_size = size;
 	i = -1;
 	while (temp)
 	{
 		node.map[++i] = temp->content;
 		temp = temp->next;
 	}
-
+	mlx_get_screen_size(node.mlx, &help.x, &help.y);
+	pars_data(&node);
+	if (node.res_x > help.x)
+		node.res_x = help.x;
+	if (node.res_y > help.y)
+		node.res_y = help.y;
 	node_init(&node);
 	ft_fill(&node);
-	// node.image->img = mlx_new_image(node.mlx, node.res_x, node.res_y);
-	// node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
+	node.image->img = mlx_new_image(node.mlx, node.res_x, node.res_y);
+	node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
 	draw_vector(&node);
 	mlx_put_image_to_window(node.mlx, node.win, node.image->img, 0, 0);
 	ft_bmp(&node);

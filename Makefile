@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/21 00:53:08 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/21 18:56:10 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ MINILIBX = ./libs/libft/libmlx.dylib
 
 MLX = -lmlx -framework OpenGL -framework Appkit
 
-MLX_N = libmlx.dylib
+MLX_N = libmlx.dylib -framework OpenGL -framework Appkit
 
 all: $(NAME)
 
@@ -36,9 +36,11 @@ $(NAME):
 	./a.out map.cub
 
 save:
-	gcc parser.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c main_parser.c libft.a $(MLX) $(MLX_N)
+	gcc parser.c main_parser.c parser_id.c ft_bmp.c mlx.c cub_utils_1.c sprite.c ft_init.c cub_utils_2.c libft.a $(MLX) $(MLX_N)
 	./a.out map.cub --save
 
+norm:
+	norminette -R CheckForbiddenSourceHeader cub_utils_1.c cub_utils_2.c
 clean:
 
 fclean:
