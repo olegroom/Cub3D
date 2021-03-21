@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 04:42:56 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 18:28:27 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ static int	go_pars_map(t_all *node, int y)
 		{
 			if (node->map[y][x] == '0')
 				check_zero(node, y, x);
+			else if (node->map[y][x] != '0' && node->map[y][x] != '1' && node->map[y][x] != '2' \
+			&& node->map[y][x] != 'N' && node->map[y][x] != 'S'\
+			 && node->map[y][x] != 'W' && node->map[y][x] != 'E' && node->map[y][x] != ' ')
+				error_found("Non valid characters in map");
 			x++;
 		}
 		curr_x = x;
@@ -86,6 +90,16 @@ static int	go_pars_map(t_all *node, int y)
 				if (node->map[y + 1][curr_x] == '0')
 					error_found("Invalid map");
 				curr_x ++;
+			}
+		}
+		else if (next_x < curr_x)
+		{
+			next_x--;
+			while (next_x <= curr_x)
+			{
+				if (node->map[y][next_x] == '0')
+					error_found("Invalid map");
+				next_x++;
 			}
 		}
 		y++;
