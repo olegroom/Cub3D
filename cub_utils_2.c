@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:46:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 18:58:09 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 20:01:46 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,12 @@ int		ft_strcmp(char *s1, char *s2)
 			return (1);
 	}
 	return (0);
+}
+
+void	check_resol(t_all *node, t_help *help)
+{
+	if (node->res_x > help->x)
+		node->res_x = help->x;
+	if (node->res_y > help->y)
+		node->res_y = help->y;
 }

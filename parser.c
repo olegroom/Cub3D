@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 19:11:55 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 20:05:37 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	ft_fill(t_all *node)
 {
-	int i;
-	
-	i = 0;
 	while (node->mapa->x < node->lst_size)
 	{
 		node->mapa->y = 0;
@@ -62,10 +59,7 @@ void	make_array_map(t_list **head, int size)
 	}
 	mlx_get_screen_size(node.mlx, &help.x, &help.y);
 	pars_data(&node);
-	if (node.res_x > help.x)
-		node.res_x = help.x;
-	if (node.res_y > help.y)
-		node.res_y = help.y;
+	check_resol(&node, &help);
 	node_init(&node);
 	ft_fill(&node);
 	draw_map_2d(&node, size);
@@ -80,7 +74,7 @@ int		main(int argc, char **argv)
 	head = NULL;
 	line = NULL;
 	if (argc == 1)
-		return(error_found("Need to put .cub file as a second argument"));
+		return (error_found("Need to put .cub file as a second argument"));
 	if (check_extension(argv) == 0)
 		return (0);
 	if ((fd = open(argv[1], O_RDONLY)) == 0)
@@ -92,7 +86,7 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 		make_array_map(&head, ft_lstsize(head));
 	else if (argc == 3 && ft_strcmp(argv[2], "--save"))
-		make_bmp(&head, ft_lstsize(head));
+		make_bmp(&head, ft_lstsize(head), -1);
 }
 
 int		error_found(char *s1)
@@ -115,7 +109,8 @@ int		check_extension(char **argv)
 	int i;
 
 	i = ft_strlen(argv[1]) - 1;
-	if (argv[1][i] == 'b' && argv[1][i - 1] == 'u' && argv[1][i - 2] == 'c' && argv[1][i - 3] == '.')
+	if (argv[1][i] == 'b' && argv[1][i - 1] == 'u'\
+	&& argv[1][i - 2] == 'c' && argv[1][i - 3] == '.')
 		return (1);
 	else
 		return (error_found("Wrong extension. Need to be .cub"));

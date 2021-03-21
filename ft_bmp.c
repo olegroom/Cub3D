@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:55:41 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 18:53:27 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 20:01:32 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void		ft_header(t_all *node, t_bmp *bmp)
 	set_header(&bmp->header[2], bmp->size, -1, 0);
 	set_header(&bmp->meta[4], node->res_x, -1, 0);
 	set_header(&bmp->meta[8], node->res_y, -1, 0);
-	write(bmp->fd, bmp->header, 14);	
-	write(bmp->fd, bmp->meta, 40);	
+	write(bmp->fd, bmp->header, 14);
+	write(bmp->fd, bmp->meta, 40);
 }
 
 void		imgbmp(t_all *node, t_bmp *bmp)
@@ -85,17 +85,15 @@ void		ft_bmp(t_all *node)
 	close(bmp.fd);
 }
 
-void	make_bmp(t_list **head, int size)
+void		make_bmp(t_list **head, int size, int i)
 {
 	t_list	*temp;
 	t_all	node;
-	int		i;
 	t_help	help;
 
 	node.lst_size = size;
 	temp = *head;
 	node.map = calloc(size + 1, sizeof(char*));
-	i = -1;
 	while (temp)
 	{
 		node.map[++i] = temp->content;
@@ -103,14 +101,12 @@ void	make_bmp(t_list **head, int size)
 	}
 	mlx_get_screen_size(node.mlx, &help.x, &help.y);
 	pars_data(&node);
-	if (node.res_x > help.x)
-		node.res_x = help.x;
-	if (node.res_y > help.y)
-		node.res_y = help.y;
+	check_resol(&node, &help);
 	node_init(&node);
 	ft_fill(&node);
 	node.image->img = mlx_new_image(node.mlx, node.res_x, node.res_y);
-	node.image->addr = mlx_get_data_addr(node.image->img, &node.image->bpp, &node.image->size_line, &node.image->endian);
+	node.image->addr = mlx_get_data_addr(node.image->img, \
+	&node.image->bpp, &node.image->size_line, &node.image->endian);
 	draw_vector(&node);
 	mlx_put_image_to_window(node.mlx, node.win, node.image->img, 0, 0);
 	ft_bmp(&node);
