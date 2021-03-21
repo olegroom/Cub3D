@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/20 22:26:33 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 00:33:19 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,18 +148,23 @@ typedef struct	s_parser
 
 typedef struct	s_h
 {
-	int r;
-	int f;
-	int c;
-	int so;
-	int no;
-	int we;
-	int ea;
-	int spr;
+	int 	r;
+	int 	f;
+	int 	c;
+	int		so;
+	int		no;
+	int		we;
+	int		ea;
+	int		spr;
 }				t_h;
 
 typedef struct	s_all
 {
+	char		*so;
+	char		*no;
+	char		*we;
+	char		*ea;
+	char		*spr;
 	double		step;
 	int			res_x;
 	int			res_y;
@@ -181,6 +186,11 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
+int			go_pars_east(t_all *node, int y, int x);
+int			go_pars_west(t_all *node, int y, int x);
+int			go_pars_north(t_all *node, int y, int x);
+int			go_pars_south(t_all *node, int y, int x);
+int			go_pars_spr(t_all *node, int y, int x);
 int			go_pars_c(t_all *node, int y, int x);
 int			go_pars_f(t_all *node, int y, int x);
 int			go_pars_r(t_all *node, int y, int x);
@@ -208,7 +218,6 @@ void		revert_x_y(t_all *node);
 void		my_mlx_pixel_put(t_all *node, int x, int y, int color);
 void		draw_column(t_all *node, t_player plr, t_help3 help3);
 int			create_trgb(int r, int g, int b);
-void		ft_init_1(t_all *node);
 int			ft_key(int key_code, t_all *node);
 void		plr_init(t_all *node, t_player *plr, t_help3 *help3);
 

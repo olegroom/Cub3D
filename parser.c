@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/20 21:18:36 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:32:29 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int		main(int argc, char **argv)
 
 	head = NULL;
 	line = NULL;
+	if (argc == 1)
+		return(error_found("Need to put .cub file as a second argument"));
 	if (check_extension(argv) == 0)
 		return (0);
 	if ((fd = open(argv[1], O_RDONLY)) == 0)
@@ -100,6 +102,7 @@ int		error_found(char *s1)
 
 	i = ft_strlen(s1);
 	j = 0;
+	printf("Error\n");
 	while (j < i)
 		write(1, &s1[j++], 1);
 	write(1, "\n", 1);

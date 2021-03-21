@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/20 22:27:09 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:31:40 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	node_init(t_all *node)
 {
-	node->mapa = malloc(sizeof(t_mapa));
+	node->step = M_PI_2/node->res_x;
 	node->player = malloc(sizeof(t_player));
 	node->help = malloc(sizeof(t_help));
 	node->help2 = malloc(sizeof(t_help2));
@@ -27,20 +27,7 @@ void	node_init(t_all *node)
 	node->texture = malloc(sizeof(t_texture) * 5);
 	find_num_sprites(node);
 	node->sprite = malloc(sizeof(t_sprite) * node->num_sprts);
-	ft_init_1(node);
 	init_textures(node);
-}
-
-void	ft_init_1(t_all *node)
-{
-	// node->ceiling->r = 230;
-	// node->ceiling->b = 255;
-	// node->ceiling->g = 230;
-	// node->floor = malloc(sizeof(t_color));
-	// node->floor->r = 0;
-	// node->floor->b = 0;
-	// node->floor->g = 200;
-	node->step = M_PI_2/node->res_x;
 }
 
 void	plr_init(t_all *node, t_player *plr, t_help3 *help3)
@@ -61,11 +48,11 @@ void	init_textures(t_all *node)
 	int i;
 
 	i = -1;
-	node->texture[0].path = "images/bluestone.xpm";
-	node->texture[1].path = "images/brick.xpm";
 	node->texture[2].path = "images/colorstone_1.xpm";
 	node->texture[3].path = "images/wall_1.xpm";
-	node->texture[4].path = "images/pillar.xpm";
+	node->texture[1].path = "images/brick.xpm";
+	node->texture[0].path = "images/bluestone.xpm";
+	node->texture[4].path = node->spr;
 	while (++i < 5)
 	{
 		node->texture[i].img = mlx_xpm_file_to_image(node->mlx, node->texture[i].path, &(node->texture[i].width),\
