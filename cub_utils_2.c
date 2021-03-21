@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:46:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/20 19:48:57 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 18:58:09 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		create_trgb(int r, int g, int b)
 {
-	return(r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }
 
 int		ft_strcmp(char *s1, char *s2)

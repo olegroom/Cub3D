@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 20:27:33 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 00:30:11 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/21 19:13:15 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int			go_pars_east(t_all *node, int y, int x)
 		x++;
 		i++;
 	}
+	node->ea[i] = '\0';
 	return (1);
 }
 
@@ -98,6 +99,7 @@ int			go_pars_west(t_all *node, int y, int x)
 		x++;
 		i++;
 	}
+	node->we[i] = '\0';
 	return (1);
 }
 
@@ -129,6 +131,7 @@ int			go_pars_north(t_all *node, int y, int x)
 		x++;
 		i++;
 	}
+	node->no[i] = '\0';
 	return (1);
 }
 
@@ -160,6 +163,7 @@ int			go_pars_south(t_all *node, int y, int x)
 		x++;
 		i++;
 	}
+	node->so[i] = '\0';
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/21 18:56:10 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/21 18:58:28 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ save:
 	./a.out map.cub --save
 
 norm:
-	norminette -R CheckForbiddenSourceHeader cub_utils_1.c cub_utils_2.c
+	norminette -R CheckForbiddenSourceHeader cub_utils_1.c cub_utils_2.c ft_init.c
 clean:
 
 fclean:
