@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 02:55:41 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 20:01:32 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 02:06:54 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void		ft_bmp(t_all *node)
 
 	size_image = node->res_x * node->res_y * 3;
 	bmp.size = size_image + 54;
-	bmp.img = malloc(sizeof(char) * size_image);
+	if (!(bmp.img = malloc(sizeof(char) * size_image)))
+		error_found("Malloc error");
 	ft_memset(bmp.img, 0, size_image);
 	bmp.fd = open("img.bmp", O_CREAT | O_WRONLY, S_IRWXU);
 	ft_header(node, &bmp);

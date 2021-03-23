@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 18:36:29 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 22:47:03 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 02:06:14 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void		help_init(t_all *node, t_pars_h *he, int y)
 {
 	he->flag = 0;
 	he->x = 0;
-	node->mapa = malloc(sizeof(t_mapa));
+	if (!(node->mapa = malloc(sizeof(t_mapa))))
+		error_found("Malloc error");
 	node->mapa->x = y;
 }
 

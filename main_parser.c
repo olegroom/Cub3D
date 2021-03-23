@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 01:57:29 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 02:06:38 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,12 @@ void		pars_data(t_all *node)
 {
 	t_help	n;
 
-	node->floor = malloc(sizeof(t_color));
-	node->ceiling = malloc(sizeof(t_color));
-	node->h = malloc(sizeof(t_h));
+	if (!(node->floor = malloc(sizeof(t_color))))
+		error_found("Malloc error");
+	if (!(node->ceiling = malloc(sizeof(t_color))))
+		error_found("Malloc error");
+	if (!(node->h = malloc(sizeof(t_h))))
+		error_found("Malloc error");
 	init_flags(node, &n);
 	while (n.y < node->lst_size)
 	{

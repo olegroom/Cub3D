@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 23:40:48 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 02:07:19 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,26 @@
 void	node_init(t_all *node)
 {
 	node->step = (M_PI_2 - 0.25) / node->res_x;
-	node->player = malloc(sizeof(t_player));
-	node->help = malloc(sizeof(t_help));
-	node->help2 = malloc(sizeof(t_help2));
+	if (!(node->player = malloc(sizeof(t_player))))
+		error_found("Malloc error");
+	if (!(node->help = malloc(sizeof(t_help))))
+		error_found("Malloc error");
+	if (!(node->help2 = malloc(sizeof(t_help2))))
+		error_found("Malloc error");
 	node->mlx = mlx_init();
 	node->win = mlx_new_window(node->mlx, \
 	node->res_x, node->res_y, "Privet drug");
-	node->image = malloc(sizeof(t_image));
-	node->column = malloc(sizeof(t_column));
+	if (!(node->image = malloc(sizeof(t_image))))
+		error_found("Malloc error");
+	if (!(node->column = malloc(sizeof(t_column))))
+		error_found("Malloc error");
 	node->column->height_wall = SCALE;
 	node->column->dist_to_pp = (node->res_x / 2) / tan(M_PI_4);
-	node->te = malloc(sizeof(t_texture) * 5);
+	if (!(node->te = malloc(sizeof(t_texture) * 5)))
+		error_found("Malloc error");
 	find_num_sprites(node);
-	node->sprite = malloc(sizeof(t_sprite) * node->num_sprts);
+	if (!(node->sprite = malloc(sizeof(t_sprite) * node->num_sprts)))
+		error_found("Malloc error");
 	init_textures(node);
 }
 

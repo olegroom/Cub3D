@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 20:27:33 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 23:25:37 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 02:05:48 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int			go_pars_west(t_all *node, int y, int x)
 		x++;
 	}
 	x -= count_let;
-	node->we = malloc(sizeof(char) * count_let + 1);
+	if (!(node->we = malloc(sizeof(char) * count_let + 1)))
+		return (error_found("Malloc error"));
 	while (ft_isalnum(node->map[y][x]) || node->map[y][x] == '/'\
 	|| node->map[y][x] == '.' || node->map[y][x] == '_')
 		node->we[i++] = node->map[y][x++];
@@ -116,7 +117,8 @@ int			go_pars_spr(t_all *node, int y, int x)
 		x++;
 	}
 	x -= count_let;
-	node->spr = malloc(sizeof(char) * count_let + 1);
+	if (!(node->spr = malloc(sizeof(char) * count_let + 1)))
+		return (error_found("Malloc error"));
 	while (ft_isalnum(node->map[y][x]) || node->map[y][x] == '/'\
 	|| node->map[y][x] == '.' || node->map[y][x] == '_')
 		node->spr[i++] = node->map[y][x++];

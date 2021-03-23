@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 22:46:30 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 00:43:54 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 02:01:56 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int			go_pars_east(t_all *node, int y, int x)
 		x++;
 	}
 	x -= count_let;
-	node->ea = malloc(sizeof(char) * count_let + 1);
+	if (!(node->ea = malloc(sizeof(char) * count_let + 1)))
+		return (error_found("Malloced error"));
 	while (ft_isalnum(node->map[y][x]) || node->map[y][x] == '/'\
 	|| node->map[y][x] == '.' || node->map[y][x] == '_')
 		node->ea[i++] = node->map[y][x++];
