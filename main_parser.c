@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 00:44:22 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 01:57:29 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ int			pars_map(t_all *node, int y)
 
 	x = 0;
 	while (node->map[y][x] != ' ' && node->map[y][x] != '1')
+	{
 		y++;
+		if (y == node->lst_size)
+			return (error_found("Where is a map?"));
+	}
 	if (node->map[y][x] == ' ' || node->map[y][x] == '1')
 	{
 		go_pars_map(node, y);
@@ -108,4 +112,5 @@ void		pars_data(t_all *node)
 			return ;
 		n.y++;
 	}
+	return ;
 }
