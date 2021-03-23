@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 22:48:12 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/23 23:26:42 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,9 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
+void		reduce(t_all *node, int x, int y, int flag);
+int			check_color_range(t_all *node, int flag);
+int			ft_isnum(int ch);
 int			check_flags(t_all *node);
 void		init_flags(t_all *node, t_help *n);
 void		help_init(t_all *node, t_pars_h *he, int y);
@@ -224,8 +227,8 @@ int			go_pars_west(t_all *node, int y, int x);
 int			go_pars_north(t_all *node, int y, int x);
 int			go_pars_south(t_all *node, int y, int x);
 int			go_pars_spr(t_all *node, int y, int x);
-int			go_pars_c(t_all *node, int y, int x);
-int			go_pars_f(t_all *node, int y, int x);
+int			go_pars_c(t_all *node, int y, int x, int flag);
+int			go_pars_f(t_all *node, int y, int x, int flag);
 int			go_pars_r(t_all *node, int y, int x);
 void		pars_data(t_all *node);
 int			check_extension(char **argv);

@@ -1,8 +1,6 @@
-R 800 600
+R  1000, 800
 F 50, 215, 20
-C 150, 180, 205
-
-
+C 134, 134, 210
 
 S ./images/pillar.xpm
 SO ./images/wall_1.xpm

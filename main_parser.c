@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 22:47:28 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/23 23:16:37 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int			check_ident(t_all *node, t_help n)
 	if (node->map[n.y][n.x] == 'R' && node->map[n.y][n.x + 1] == ' ')
 		node->h->r = go_pars_r(node, n.y, 2);
 	else if (node->map[n.y][n.x] == 'F' && node->map[n.y][n.x + 1] == ' ')
-		node->h->f = go_pars_f(node, n.y, 2);
+		node->h->f = go_pars_f(node, n.y, 2, 0);
 	else if (node->map[n.y][n.x] == 'C' && node->map[n.y][n.x + 1] == ' ')
-		node->h->c = go_pars_c(node, n.y, 2);
+		node->h->c = go_pars_c(node, n.y, 2, 0);
 	else if (node->map[n.y][n.x] == 'S' && node->map[n.y][n.x + 1] == ' ')
 		node->h->spr = go_pars_spr(node, n.y, 2);
 	else if (node->map[n.y][n.x] == 'S' && node->map[n.y][n.x + 1] == 'O' \
@@ -96,7 +96,8 @@ void		pars_data(t_all *node)
 {
 	t_help	n;
 	int		i;
-
+	node->floor = malloc(sizeof(t_color));
+	node->ceiling = malloc(sizeof(t_color));
 	node->h = malloc(sizeof(t_h));
 	init_flags(node, &n);
 	while (n.y < node->lst_size)
