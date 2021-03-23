@@ -6,13 +6,13 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:54:11 by rosfryd           #+#    #+#             */
-/*   Updated: 2020/11/16 13:27:53 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 01:25:03 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			len(long int nbr)
+size_t				len(long int nbr)
 {
 	size_t		l;
 

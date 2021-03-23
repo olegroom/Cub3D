@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/24 01:10:58 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/24 01:29:11 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,17 +30,22 @@ CC = gcc -Wall -Wextra -Werror -g
 
 all: libft minilibx $(NAME)
 
+$(%.o): $(%.c)
+	$(CC) -o $@ -c $^
+
 libft:
-	$(MAKE) bonus -C libs/libft
+	$(MAKE) -C libs/libft
 
 minilibx:
 	$(MAKE) -C libs/minilibx
 
-$(NAME): $(SRC)
-	$(CC) -o $(NAME) $(SRC) $(LIBFT) $(MLX) $(MLX_N)
+$(NAME): $(OBJ)
+	$(CC) -o $@ $^ $(LIBFT) $(MLX) $(MLX_N)
 
 clean:
-
+	$(MAKE) clean -C libs/libft
+	$(MAKE) clean -C libs/minilibx
+	rm -rf $(OBJ)
 fclean:
 
 re:
