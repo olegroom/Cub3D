@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 23:28:39 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 00:44:22 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int			go_pars_map(t_all *node, int y)
 		if (y + 1 != node->lst_size)
 			while (node->map[y + 1][he.next_x] != '\0')
 				he.next_x++;
-		if (he.curr_x < he.next_x)
+		if (he.next_x == 0)
+			break ;
+		else if (he.curr_x < he.next_x)
 			check_curr_x(node, he.curr_x, he.next_x, y);
 		else if (he.next_x < he.curr_x)
 			check_next_x(node, he.curr_x, he.next_x, y);
@@ -95,7 +97,6 @@ int			check_ident(t_all *node, t_help n)
 void		pars_data(t_all *node)
 {
 	t_help	n;
-	int		i;
 
 	node->floor = malloc(sizeof(t_color));
 	node->ceiling = malloc(sizeof(t_color));

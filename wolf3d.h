@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 23:26:42 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 00:05:20 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,60 +201,60 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
-void		reduce(t_all *node, int x, int y, int flag);
-int			check_color_range(t_all *node, int flag);
-int			ft_isnum(int ch);
-int			check_flags(t_all *node);
-void		init_flags(t_all *node, t_help *n);
-void		help_init(t_all *node, t_pars_h *he, int y);
-void		check_errors(t_all *node, t_pars_h *he, int y);
-void		check_next_x(t_all *node, int curr_x, int next_x, int y);
-void		check_curr_x(t_all *node, int curr_x, int next_x, int y);
-void		check_next_step(t_all *node, char direct);
-void		ft_draw_init(t_all *node, t_help *help, t_start *start, t_player *plr);
-void		borders_draw(t_all *node, t_start *start);
-void		rot_protection(t_all *node);
-void		find_color(t_all *node, t_player *plr, t_start *start, int st);
-void		cast_ray(t_all *node, t_player *plr, t_help3 *help3);
-void		check_resol(t_all *node, t_help *help);
-int			get_sprite_color(t_all *node, int y, int i);
-void		find_spr_pos(t_all *node, int n, int m);
-void		ft_sort(t_all *node, int i);
-double		get_delta(double start, double spr_angle);
-void		get_params(t_all *node, t_help3 help3);
-int			go_pars_east(t_all *node, int y, int x);
-int			go_pars_west(t_all *node, int y, int x);
-int			go_pars_north(t_all *node, int y, int x);
-int			go_pars_south(t_all *node, int y, int x);
-int			go_pars_spr(t_all *node, int y, int x);
-int			go_pars_c(t_all *node, int y, int x, int flag);
-int			go_pars_f(t_all *node, int y, int x, int flag);
-int			go_pars_r(t_all *node, int y, int x);
-void		pars_data(t_all *node);
-int			check_extension(char **argv);
-int			error_found(char *s1);
-int			endx(t_all *node);
-int			ft_strcmp(char *s1, char *s2);
-void		ft_fill(t_all *node);
-void		make_bmp(t_list **head, int size, int i);
-void		ft_bmp(t_all *node);
-void		draw_sprite(t_all *node, int i);
-void		find_num_sprites(t_all *node);
-void		get_sprite_data(t_all *node, t_help3 help3);
-void		fill_sprite_x_y(t_all *node);
-void		init_textures(t_all *node);
-void		draw_vector(t_all *node);
-void		make_array_map(t_list **head, int size);
-void		ft_putendl(char *s);
-void		ft_putchar(char c);
-void		draw_map_2d(t_all *node, int size);
-int			draw_image(t_all *node);
-void		node_init(t_all *node);
-void		revert_x_y(t_all *node);
-void		my_mlx_pixel_put(t_all *node, int x, int y, int color);
-void		draw_column(t_all *node, t_player plr, t_help3 help3);
-int			create_trgb(int r, int g, int b);
-int			ft_key(int key_code, t_all *node);
-void		plr_init(t_all *node, t_player *plr, t_help3 *help3);
+void			reduce(t_all *node, int x, int y, int flag);
+int				check_color_range(t_all *node, int flag);
+int				ft_isnum(int ch);
+int				check_flags(t_all *node);
+void			init_flags(t_all *node, t_help *n);
+void			help_init(t_all *node, t_pars_h *he, int y);
+void			check_errors(t_all *node, t_pars_h *he, int y);
+void			check_next_x(t_all *node, int curr_x, int next_x, int y);
+void			check_curr_x(t_all *node, int curr_x, int next_x, int y);
+void			check_next_step(t_all *node, char direct);
+void			ft_draw_init(t_all *node, t_help *help, t_start *start, t_player *plr);
+void			borders_draw(t_all *node, t_start *start);
+void			rot_protection(t_all *node);
+void			find_color(t_all *node, t_player *plr, t_start *start, int st);
+void			cast_ray(t_all *node, t_player *plr, t_help3 *help3);
+void			check_resol(t_all *node, t_help *help);
+int				get_sprite_color(t_all *node, int y, int i);
+void			find_spr_pos(t_all *node, int n, int m);
+void			ft_sort(t_all *node, int i);
+double			get_delta(double start, double spr_angle);
+void			get_params(t_all *node, t_help3 help3);
+int				go_pars_east(t_all *node, int y, int x);
+int				go_pars_west(t_all *node, int y, int x);
+int				go_pars_north(t_all *node, int y, int x);
+int				go_pars_south(t_all *node, int y, int x);
+int				go_pars_spr(t_all *node, int y, int x);
+int				go_pars_c(t_all *node, int y, int x, int flag);
+int				go_pars_f(t_all *node, int y, int x, int flag);
+int				go_pars_r(t_all *node, int y, int x);
+void			pars_data(t_all *node);
+int				check_extension(char **argv);
+int				error_found(char *s1);
+int				endx();
+int				ft_strcmp(char *s1, char *s2);
+void			ft_fill(t_all *node);
+void			make_bmp(t_list **head, int size, int i);
+void			ft_bmp(t_all *node);
+void			draw_sprite(t_all *node, int i);
+void			find_num_sprites(t_all *node);
+void			get_sprite_data(t_all *node, t_help3 help3);
+void			fill_sprite_x_y(t_all *node);
+void			init_textures(t_all *node);
+void			draw_vector(t_all *node);
+void			make_array_map(t_list **head, int size);
+void			ft_putendl(char *s);
+void			ft_putchar(char c);
+void			draw_map_2d(t_all *node);
+int				draw_image(t_all *node);
+void			node_init(t_all *node);
+void			revert_x_y(t_all *node);
+void			my_mlx_pixel_put(t_all *node, int x, int y, int color);
+void			draw_column(t_all *node, t_player plr, t_help3 help3);
+unsigned int	create_trgb(int r, int g, int b);
+int				ft_key(int key_code, t_all *node);
+void			plr_init(t_all *node, t_player *plr, t_help3 *help3);
 
 #endif

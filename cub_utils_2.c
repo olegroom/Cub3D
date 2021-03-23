@@ -6,18 +6,18 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:46:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 23:28:23 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 00:03:34 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		create_trgb(int r, int g, int b)
+unsigned int	create_trgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
 }
 
-int		ft_strcmp(char *s1, char *s2)
+int				ft_strcmp(char *s1, char *s2)
 {
 	int i;
 
@@ -31,7 +31,7 @@ int		ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-void	check_resol(t_all *node, t_help *help)
+void			check_resol(t_all *node, t_help *help)
 {
 	if (node->res_x > help->x)
 		node->res_x = help->x;
@@ -39,7 +39,7 @@ void	check_resol(t_all *node, t_help *help)
 		node->res_y = help->y;
 }
 
-int		go_pars_f(t_all *node, int y, int x, int flag)
+int				go_pars_f(t_all *node, int y, int x, int flag)
 {
 	while (node->map[y][x] != '\0')
 	{
@@ -67,7 +67,7 @@ int		go_pars_f(t_all *node, int y, int x, int flag)
 	return (1);
 }
 
-int		go_pars_r(t_all *node, int y, int x)
+int				go_pars_r(t_all *node, int y, int x)
 {
 	int flag;
 

@@ -6,13 +6,13 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 18:16:48 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 00:05:10 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	draw_map_2d(t_all *node, int size)
+void	draw_map_2d(t_all *node)
 {
 	mlx_loop_hook(node->mlx, draw_image, node);
 	mlx_hook(node->win, 2, 1L << 0, ft_key, node);

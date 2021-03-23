@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 23:34:35 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/23 23:40:48 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	node_init(t_all *node)
 {
-	node->step = M_PI_2 / node->res_x;
+	node->step = (M_PI_2 - 0.25) / node->res_x;
 	node->player = malloc(sizeof(t_player));
 	node->help = malloc(sizeof(t_help));
 	node->help2 = malloc(sizeof(t_help2));
@@ -36,8 +36,8 @@ void	plr_init(t_all *node, t_player *plr, t_help3 *help3)
 	*plr = *node->player;
 	plr->l = plr->x * SCALE;
 	plr->f = plr->y * SCALE;
-	plr->start = node->player->dir - M_PI_4;
-	plr->end = node->player->dir + M_PI_4;
+	plr->start = node->player->dir - M_PI_4 + 0.125;
+	plr->end = node->player->dir + M_PI_4 - 0.125;
 	node->mapa->x = 0;
 	help3->plrx = plr->x * SCALE;
 	help3->plry = plr->y * SCALE;
@@ -58,7 +58,7 @@ void	init_textures(t_all *node)
 	{
 		if (!(node->te[i].img = mlx_xpm_file_to_image(node->mlx, \
 		node->te[i].path, &(node->te[i].width), &(node->te[i].height))))
-			error_found("File wasn't opened or doesn't exist");
+			error_found("Texture file wasn't opened or doesn't exist");
 		if (!(node->te[i].addr = (int*)mlx_get_data_addr(node->te[i].img,\
 		&node->te[i].bpp, &node->te[i].size_line, &node->te[i].endian)))
 			error_found("Address wasn't allocated");

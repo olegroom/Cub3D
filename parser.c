@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 20:05:37 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 00:05:31 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	make_array_map(t_list **head, int size)
 	check_resol(&node, &help);
 	node_init(&node);
 	ft_fill(&node);
-	draw_map_2d(&node, size);
+	draw_map_2d(&node);
 }
 
 int		main(int argc, char **argv)

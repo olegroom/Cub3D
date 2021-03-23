@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:43:49 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 20:14:48 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 00:04:50 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			get_sprite_color(t_all *node, int y, int i)
 	int texture_x;
 	int texture_y;
 
+	color = 0;
 	if (node->sprite[i].screen_size > 1)
 	{
 		texture_y = y * (node->te[4].height - 1) \
