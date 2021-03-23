@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/24 01:29:11 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/24 01:40:31 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,19 +35,23 @@ $(%.o): $(%.c)
 
 libft:
 	$(MAKE) -C libs/libft
+	$(MAKE) bonus -C libs/libft
 
 minilibx:
 	$(MAKE) -C libs/minilibx
 
 $(NAME): $(OBJ)
+	@echo "\n\033[0;33mCompiling..."
 	$(CC) -o $@ $^ $(LIBFT) $(MLX) $(MLX_N)
+	@echo "\033[0m"
 
 clean:
 	$(MAKE) clean -C libs/libft
 	$(MAKE) clean -C libs/minilibx
 	rm -rf $(OBJ)
-fclean:
 
-re:
+fclean: clean
+	$(MAKE) fclean -C libs/libft
+	rm -rf $(NAME)
 
-bonus:
+re: fclean all
