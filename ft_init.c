@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:51:02 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 20:16:55 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/23 23:34:35 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ void	init_textures(t_all *node)
 	node->te[4].path = node->spr;
 	while (++i < 5)
 	{
-		node->te[i].img = mlx_xpm_file_to_image(node->mlx, \
-		node->te[i].path, &(node->te[i].width),\
-		&(node->te[i].height));
-		node->te[i].addr = (int*)mlx_get_data_addr(node->te[i].img,\
-		&node->te[i].bpp, &node->te[i].size_line,\
-		&node->te[i].endian);
+		if (!(node->te[i].img = mlx_xpm_file_to_image(node->mlx, \
+		node->te[i].path, &(node->te[i].width), &(node->te[i].height))))
+			error_found("File wasn't opened or doesn't exist");
+		if (!(node->te[i].addr = (int*)mlx_get_data_addr(node->te[i].img,\
+		&node->te[i].bpp, &node->te[i].size_line, &node->te[i].endian)))
+			error_found("Address wasn't allocated");
 	}
 }

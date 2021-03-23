@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:46:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 23:24:40 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/23 23:28:23 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_resol(t_all *node, t_help *help)
 		node->res_y = help->y;
 }
 
-int			go_pars_f(t_all *node, int y, int x, int flag)
+int		go_pars_f(t_all *node, int y, int x, int flag)
 {
 	while (node->map[y][x] != '\0')
 	{
@@ -67,7 +67,7 @@ int			go_pars_f(t_all *node, int y, int x, int flag)
 	return (1);
 }
 
-int			go_pars_r(t_all *node, int y, int x)
+int		go_pars_r(t_all *node, int y, int x)
 {
 	int flag;
 

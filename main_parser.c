@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/23 23:16:37 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/23 23:28:39 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void		pars_data(t_all *node)
 {
 	t_help	n;
 	int		i;
+
 	node->floor = malloc(sizeof(t_color));
 	node->ceiling = malloc(sizeof(t_color));
 	node->h = malloc(sizeof(t_h));
