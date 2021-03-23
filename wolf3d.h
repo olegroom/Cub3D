@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/21 20:13:23 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/23 22:48:12 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 # include <string.h>
 # include "libs/libft/libft.h"
 # include "libs/minilibx/mlx.h"
+
+typedef struct	s_pars_h
+{
+	int flag;
+	int x;
+	int curr_x;
+	int next_x;
+	int temp_x;
+}				t_pars_h;
 
 typedef struct	s_help3
 {
@@ -158,34 +167,52 @@ typedef struct	s_h
 	int		spr;
 }				t_h;
 
+typedef struct	s_start
+{
+	int 	ind;
+	int 	color;
+}				t_start;
+
 typedef struct	s_all
 {
+	t_mapa		*mapa;
+	void		*win;
+	void		*mlx;
+	int			lst_size;
 	char		*so;
 	char		*no;
 	char		*we;
+	char		**map;
 	char		*ea;
 	char		*spr;
 	double		step;
 	int			res_x;
 	int			res_y;
-	void		*mlx;
-	void		*win;
-	char		**map;
-	t_color		*ceiling;
-	int			lst_size;
-	t_h			*h;
 	int			num_sprts;
+	t_player	*player;
+	t_texture	*te;
 	t_sprite	*sprite;
+	t_image		*image;
+	t_column	*column;
+	t_color		*ceiling;
 	t_help		*help;
 	t_help2		*help2;
-	t_texture	*te;
-	t_image		*image;
-	t_player	*player;
-	t_column	*column;
-	t_mapa		*mapa;
+	t_h			*h;
 	t_color		*floor;
 }				t_all;
 
+int			check_flags(t_all *node);
+void		init_flags(t_all *node, t_help *n);
+void		help_init(t_all *node, t_pars_h *he, int y);
+void		check_errors(t_all *node, t_pars_h *he, int y);
+void		check_next_x(t_all *node, int curr_x, int next_x, int y);
+void		check_curr_x(t_all *node, int curr_x, int next_x, int y);
+void		check_next_step(t_all *node, char direct);
+void		ft_draw_init(t_all *node, t_help *help, t_start *start, t_player *plr);
+void		borders_draw(t_all *node, t_start *start);
+void		rot_protection(t_all *node);
+void		find_color(t_all *node, t_player *plr, t_start *start, int st);
+void		cast_ray(t_all *node, t_player *plr, t_help3 *help3);
 void		check_resol(t_all *node, t_help *help);
 int			get_sprite_color(t_all *node, int y, int i);
 void		find_spr_pos(t_all *node, int n, int m);

@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/21 20:03:13 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/23 22:49:12 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,17 +32,18 @@ lib:
 	cp $(LIBFT) .
 
 $(NAME):
-	gcc parser.c main_parser.c parser_id.c ft_bmp.c sprite1.c mlx.c \
+	gcc -g parser_utils_1.c parser_utils_2.c mlx_utils_1.c mlx_utils_2.c parser.c main_parser.c parser_id.c ft_bmp.c sprite1.c mlx.c \
 	cub_utils_1.c sprite.c ft_init.c cub_utils_2.c libft.a $(MLX) $(MLX_N)
 	./a.out map.cub
 
 save:
-	gcc parser.c main_parser.c parser_id.c ft_bmp.c sprite1.c mlx.c \
+	gcc -g parser_utils_1.c parser_utils_2.c mlx_utils_1.c mlx_utils_2.c parser.c main_parser.c parser_id.c ft_bmp.c sprite1.c mlx.c \
 	cub_utils_1.c sprite.c ft_init.c cub_utils_2.c libft.a $(MLX) $(MLX_N)
 	./a.out map.cub --save
 
 norm:
-	norminette -R CheckForbiddenSourceHeader cub_utils_1.c cub_utils_2.c ft_init.c sprite.c sprite1.c ft_bmp.c mlx.c parser.c
+	norminette -R CheckForbiddenSourceHeader parser.c main_parser.c parser_id.c ft_bmp.c sprite1.c mlx.c \
+	cub_utils_1.c sprite.c ft_init.c cub_utils_2.c
 clean:
 
 fclean:
