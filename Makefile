@@ -6,7 +6,7 @@
 #    By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/30 21:57:18 by rosfryd           #+#    #+#              #
-#    Updated: 2021/03/24 01:40:31 by rosfryd          ###   ########.fr        #
+#    Updated: 2021/03/24 05:31:09 by rosfryd          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MINILIBX = ./libs/libft/libmlx.dylib
 
 MLX = -lmlx -framework OpenGL -framework Appkit
 
-MLX_N = libs/minilibx/libmlx.dylib -framework OpenGL -framework Appkit
+MLX_N = libmlx.dylib -framework OpenGL -framework Appkit
 
 CC = gcc -Wall -Wextra -Werror -g
 
@@ -39,6 +39,7 @@ libft:
 
 minilibx:
 	$(MAKE) -C libs/minilibx
+	cp libs/minilibx/libmlx.dylib .
 
 $(NAME): $(OBJ)
 	@echo "\n\033[0;33mCompiling..."
@@ -52,6 +53,8 @@ clean:
 
 fclean: clean
 	$(MAKE) fclean -C libs/libft
+	rm -rf libmlx.dylib
 	rm -rf $(NAME)
+	rm -rf img.bmp
 
 re: fclean all

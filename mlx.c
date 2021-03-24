@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 00:05:10 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 03:50:44 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_map_2d(t_all *node)
 {
-	mlx_loop_hook(node->mlx, draw_image, node);
+	draw_image(node);
 	mlx_hook(node->win, 2, 1L << 0, ft_key, node);
 	mlx_hook(node->win, 17, 0, endx, node);
 	mlx_loop(node->mlx);
@@ -22,7 +22,9 @@ void	draw_map_2d(t_all *node)
 
 int		draw_image(t_all *node)
 {
-	node->image->img = mlx_new_image(node->mlx, node->res_x, node->res_y);
+	if (!(node->image->img = mlx_new_image(node->mlx, \
+	node->res_x, node->res_y)))
+		error_found("imag wasn't created");
 	node->image->addr = mlx_get_data_addr(node->image->img, \
 	&node->image->bpp, &node->image->size_line, &node->image->endian);
 	draw_vector(node);
@@ -102,5 +104,6 @@ int		ft_key(int key_code, t_all *node)
 		check_next_step(node, 'e');
 	else if (key_code == 53)
 		exit(0);
+	draw_image(node);
 	return (0);
 }
