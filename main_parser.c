@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 02:06:38 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/25 04:28:18 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int			go_pars_map(t_all *node, int y)
 {
-	t_pars_h he;
+	t_pars_h	he;
 
+	he.l = y;
 	help_init(node, &he, y);
 	while (y < node->lst_size)
 	{
 		he.x = 0;
 		he.next_x = 0;
 		while (node->map[y][he.x] != '\0')
-			check_errors(node, &he, y);
+			check_errors(node, &he, y, he.l);
 		he.curr_x = he.x;
 		if (y + 1 != node->lst_size)
 			while (node->map[y + 1][he.next_x] != '\0')

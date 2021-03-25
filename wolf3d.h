@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 00:05:20 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/25 04:31:06 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define SCALE 64
 # define PERS "NWSE"
+# define VALID "012NSWE "
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -29,6 +30,7 @@ typedef struct	s_pars_h
 {
 	int flag;
 	int x;
+	int	l;
 	int curr_x;
 	int next_x;
 	int temp_x;
@@ -207,7 +209,7 @@ int				ft_isnum(int ch);
 int				check_flags(t_all *node);
 void			init_flags(t_all *node, t_help *n);
 void			help_init(t_all *node, t_pars_h *he, int y);
-void			check_errors(t_all *node, t_pars_h *he, int y);
+void			check_errors(t_all *node, t_pars_h *he, int y, int l);
 void			check_next_x(t_all *node, int curr_x, int next_x, int y);
 void			check_curr_x(t_all *node, int curr_x, int next_x, int y);
 void			check_next_step(t_all *node, char direct);

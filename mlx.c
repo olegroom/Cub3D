@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 13:52:46 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 03:50:44 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 22:25:29 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		draw_image(t_all *node)
 {
 	if (!(node->image->img = mlx_new_image(node->mlx, \
 	node->res_x, node->res_y)))
-		error_found("imag wasn't created");
+		error_found("image wasn't created");
 	node->image->addr = mlx_get_data_addr(node->image->img, \
 	&node->image->bpp, &node->image->size_line, &node->image->endian);
 	draw_vector(node);

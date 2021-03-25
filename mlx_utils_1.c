@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 18:15:03 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 01:26:08 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/24 22:26:38 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	borders_draw(t_all *node, t_start *start)
 	else if (node->help2->i == 3)
 		start->color = *(node->te[3].addr + (int)((int)(node->te[3].\
 		step_y * start->ind) * node->te[3].width + node->te[3].step_x));
+	else
+		start->color = 0x000000;
 }
 
 void	cast_ray(t_all *node, t_player *plr, t_help3 *help3)

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 00:05:31 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/25 01:45:46 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void	ft_fill(t_all *node)
 {
 	while (node->mapa->x < node->lst_size)
 	{
-		node->mapa->y = 0;
-		while (node->map[node->mapa->x][node->mapa->y] != '\0')
-		{
+		node->mapa->y = -1;
+		if (node->map[node->mapa->x][0] == '\n' || \
+		node->map[node->mapa->x][0] == '\0')
+			error_found("Trash after map");
+		while (node->map[node->mapa->x][++node->mapa->y] != '\0')
 			if (ft_strchr(PERS, node->map[node->mapa->x][node->mapa->y]))
 			{
 				if (node->player->x != 0 && node->player->y != 0)
@@ -34,8 +36,6 @@ void	ft_fill(t_all *node)
 				node->player->x = node->mapa->y + 0.5;
 				node->player->y = node->mapa->x + 0.5;
 			}
-			node->mapa->y++;
-		}
 		node->mapa->x++;
 	}
 	revert_x_y(node);
@@ -77,8 +77,8 @@ int		main(int argc, char **argv)
 		return (error_found("Need to put .cub file as a second argument"));
 	if (check_extension(argv) == 0)
 		return (0);
-	if ((fd = open(argv[1], O_RDONLY)) == 0)
-		return (error_found("File wasn't opened"));
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		error_found("File wasn't opened or doesn't exist");
 	while (get_next_line(fd, &line))
 		ft_lstadd_back(&head, ft_lstnew(line));
 	ft_lstadd_back(&head, ft_lstnew(line));
