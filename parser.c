@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 21:59:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/25 01:45:46 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/28 19:20:02 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		main(int argc, char **argv)
 	head = NULL;
 	line = NULL;
 	if (argc == 1)
-		return (error_found("Need to put .cub file as a second argument"));
+		error_found("Need to put .cub file as a second argument");
 	if (check_extension(argv) == 0)
 		return (0);
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
@@ -87,20 +87,14 @@ int		main(int argc, char **argv)
 		make_array_map(&head, ft_lstsize(head));
 	else if (argc == 3 && ft_strcmp(argv[2], "--save"))
 		make_bmp(&head, ft_lstsize(head), -1);
+	else
+		error_found("Wrong passing arguments");
 }
 
 int		error_found(char *s1)
 {
-	int i;
-	int j;
-
-	i = ft_strlen(s1);
-	j = 0;
-	printf("Error\n");
-	while (j < i)
-		write(1, &s1[j++], 1);
-	write(1, "\n", 1);
-	exit(0);
+	printf("Error\n%s\n", s1);
+	exit(-1);
 	return (0);
 }
 
@@ -113,5 +107,6 @@ int		check_extension(char **argv)
 	&& argv[1][i - 2] == 'c' && argv[1][i - 3] == '.')
 		return (1);
 	else
-		return (error_found("Wrong extension. Need to be .cub"));
+		error_found("Wrong extension. Need to be .cub");
+	return (1);
 }

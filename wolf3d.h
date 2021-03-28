@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 22:02:54 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/25 04:31:06 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/28 19:49:51 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 # include <string.h>
 # include "libs/libft/libft.h"
 # include "libs/minilibx/mlx.h"
+
+typedef struct	s_count
+{
+	int i;
+	int	count_let;
+}				t_count;
 
 typedef struct	s_pars_h
 {
@@ -188,8 +194,8 @@ typedef struct	s_all
 	char		*ea;
 	char		*spr;
 	double		step;
-	int			res_x;
-	int			res_y;
+	long int	res_x;
+	long int	res_y;
 	int			num_sprts;
 	t_player	*player;
 	t_texture	*te;
@@ -203,6 +209,12 @@ typedef struct	s_all
 	t_color		*floor;
 }				t_all;
 
+void			depend_on_color_ceil(int flag, t_all *node, int x, int y);
+void			depend_on_color1(int flag, t_all *node, int x, int y);
+void			depend_on_color(int flag, t_all *node, int x, int y);
+void			pars_init(t_count *count);
+int				my_ft_atoi(const char *str);
+int				check_png(char *str);
 void			reduce(t_all *node, int x, int y, int flag);
 int				check_color_range(t_all *node, int flag);
 int				ft_isnum(int ch);

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:44:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/25 04:28:18 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/28 19:17:56 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,15 @@ int			pars_map(t_all *node, int y)
 	int x;
 
 	x = 0;
-	while (node->map[y][x] != ' ' && node->map[y][x] != '1')
+	while (node->map[y][0] == '\0')
 	{
 		y++;
 		if (y == node->lst_size)
 			return (error_found("Where is a map?"));
 	}
-	if (node->map[y][x] == ' ' || node->map[y][x] == '1')
+	if (node->map[y][0] != ' ' && node->map[y][0] != '1')
+		error_found("Invalid key in .cub file");
+	else
 	{
 		go_pars_map(node, y);
 		return (1);
@@ -96,6 +98,8 @@ int			check_ident(t_all *node, t_help n)
 		node->h->ea = go_pars_east(node, n.y, 3);
 	else if (else_id(node, n) == 1)
 		return (1);
+	else if (node->map[n.y][0] != '\0')
+		error_found("Invalid key in .cub file");
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 22:46:30 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/25 03:43:24 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/28 17:45:29 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ void		check_next_x(t_all *node, int curr_x, int next_x, int y)
 {
 	next_x -= 2;
 	while (++next_x <= curr_x)
-		if (node->map[y][next_x] == '0')
+	{
+		if (node->map[y][next_x] != '1' && node->map[y]\
+		[next_x] != '\0' && node->map[y][next_x] != ' ')
 			error_found("Invalid map");
+	}
 }
 
 void		check_curr_x(t_all *node, int curr_x, int next_x, int y)
 {
 	curr_x -= 2;
 	while (++curr_x <= next_x)
-		if (node->map[y + 1][curr_x] == '0')
+		if (node->map[y + 1][curr_x] != '1' && \
+		node->map[y + 1][curr_x] != '\0' && node->map[y + 1][curr_x] != ' ')
 			error_found("Invalid map");
 }
 
@@ -57,11 +61,11 @@ int			check_color_range(t_all *node, int flag)
 
 int			go_pars_east(t_all *node, int y, int x)
 {
-	int		count_let;
-	int		i;
+	t_count count;
 
-	i = 0;
-	count_let = 0;
+	pars_init(&count);
+	if (node->h->ea == 1)
+		error_found("Dobule keys are forbidden");
 	while (node->map[y][x] == ' ')
 		x++;
 	if (node->map[y][x] == '.' && node->map[y][x + 1] == '/')
@@ -71,15 +75,15 @@ int			go_pars_east(t_all *node, int y, int x)
 	while (ft_isalnum(node->map[y][x]) || node->map[y][x] == '/'\
 	|| node->map[y][x] == '.' || node->map[y][x] == '_')
 	{
-		count_let++;
+		count.count_let++;
 		x++;
 	}
-	x -= count_let;
-	if (!(node->ea = malloc(sizeof(char) * count_let + 1)))
+	x -= count.count_let;
+	if (!(node->ea = malloc(sizeof(char) * count.count_let + 1)))
 		return (error_found("Malloced error"));
 	while (ft_isalnum(node->map[y][x]) || node->map[y][x] == '/'\
 	|| node->map[y][x] == '.' || node->map[y][x] == '_')
-		node->ea[i++] = node->map[y][x++];
-	node->ea[i] = '\0';
-	return (1);
+		node->ea[count.i++] = node->map[y][x++];
+	node->ea[count.i] = '\0';
+	return (check_png(node->ea));
 }

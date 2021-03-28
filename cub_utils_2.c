@@ -6,7 +6,7 @@
 /*   By: rosfryd <rosfryd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:46:34 by rosfryd           #+#    #+#             */
-/*   Updated: 2021/03/24 00:03:34 by rosfryd          ###   ########.fr       */
+/*   Updated: 2021/03/28 19:44:18 by rosfryd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void			check_resol(t_all *node, t_help *help)
 
 int				go_pars_f(t_all *node, int y, int x, int flag)
 {
+	if (node->h->f == 1)
+		error_found("Dobule keys are forbidden");
 	while (node->map[y][x] != '\0')
 	{
 		while (node->map[y][x] == ' ' || node->map[y][x] == ',')
@@ -49,12 +51,7 @@ int				go_pars_f(t_all *node, int y, int x, int flag)
 			return (error_found("More than 3 input data"));
 		if (ft_isnum(node->map[y][x]))
 		{
-			if (flag == 0)
-				node->floor->r = ft_atoi(&node->map[y][x]);
-			else if (flag == 1)
-				node->floor->g = ft_atoi(&node->map[y][x]);
-			else if (flag == 2)
-				node->floor->b = ft_atoi(&node->map[y][x]);
+			depend_on_color(flag, node, x, y);
 			while (ft_isnum(node->map[y][x]))
 				x++;
 			flag++;
@@ -72,6 +69,8 @@ int				go_pars_r(t_all *node, int y, int x)
 	int flag;
 
 	flag = 0;
+	if (node->h->r == 1)
+		error_found("Dobule keys are forbidden");
 	while (node->map[y][x] != '\0')
 	{
 		while (node->map[y][x] == ' ' || node->map[y][x] == ',')
@@ -82,10 +81,7 @@ int				go_pars_r(t_all *node, int y, int x)
 			return (error_found("More than 2 input data"));
 		if (ft_isnum(node->map[y][x]))
 		{
-			if (flag == 0)
-				node->res_x = ft_atoi(&node->map[y][x]);
-			else if (flag == 1)
-				node->res_y = ft_atoi(&node->map[y][x]);
+			depend_on_color1(flag, node, x, y);
 			while (ft_isnum(node->map[y][x]))
 				x++;
 			flag++;
